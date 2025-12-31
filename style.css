@@ -1,1044 +1,702 @@
-/* style.css */
-
-/* ===========================================
-   RESET E CONFIGURAÇÕES GLOBAIS
-   =========================================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-/* GARANTIR QUE O CONTEÚDO ESTEJA VISÍVEL */
-#main-content {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease;
-}
-
-#main-content.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* FORÇAR DISPLAY BLOCK APÓS LOADING */
-body.loaded #main-content {
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: block !important;
-}
-
-/* SE TUDO FALHAR, ESTE É O FALLBACK ABSOLUTO */
-@media screen and (min-width: 1px) {
-    #main-content {
-        display: block;
-    }
-}
-:root {
-    /* Cores principais */
-    --primary-color: #6C63FF;
-    --secondary-color: #4A44C6;
-    --accent-color: #FF6584;
-    --accent-color-2: #36D1DC;
-    --dark-color: #0F0F23;
-    --darker-color: #090914;
-    --light-color: #F8F9FF;
-    --text-color: #E2E2E2;
-    --text-light: #A0A0C0;
-    
-    /* Gradientes */
-    --gradient-primary: linear-gradient(135deg, #6C63FF 0%, #4A44C6 100%);
-    --gradient-accent: linear-gradient(135deg, #FF6584 0%, #FF9A9E 100%);
-    --gradient-cyber: linear-gradient(135deg, #36D1DC 0%, #5B86E5 100%);
-    --gradient-dark: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
-    
-    /* Efeitos */
-    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    --shadow-hover: 0 20px 40px rgba(108, 99, 255, 0.2);
-    --border-radius: 16px;
-    --border-radius-lg: 24px;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
-    color: var(--text-color);
-    background: var(--darker-color);
-    overflow-x: hidden;
-    line-height: 1.6;
-    position: relative;
-    min-height: 100vh;
-}
-
-/* Efeito de partículas de fundo */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 80%, rgba(108, 99, 255, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 101, 132, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(54, 209, 220, 0.03) 0%, transparent 50%);
-    z-index: -1;
-}
-
-/* ===========================================
-   TELA DE LOADING LINDA
-   =========================================== */
-#welcome-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: var(--darker-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.welcome-content {
-    text-align: center;
-    color: white;
-    max-width: 800px;
-    padding: 2rem;
-    position: relative;
-}
-
-.welcome-content h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    margin-bottom: 3rem;
-    font-weight: 700;
-    background: linear-gradient(90deg, #6C63FF, #FF6584, #36D1DC);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: gradientShift 3s ease infinite;
-    font-family: 'Open Sans', sans-serif;
-}
-
-/* Loader LINDO */
-.loader {
-    position: relative;
-    width: 180px;
-    height: 180px;
-    margin: 2rem auto;
-}
-
-.loader::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top: 3px solid var(--primary-color);
-    border-right: 3px solid var(--accent-color);
-    animation: spin 2s linear infinite;
-    box-shadow: 0 0 30px rgba(108, 99, 255, 0.3);
-}
-
-.loader::after {
-    content: '';
-    position: absolute;
-    width: 70%;
-    height: 70%;
-    top: 15%;
-    left: 15%;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top: 3px solid var(--accent-color-2);
-    border-right: 3px solid var(--primary-color);
-    animation: spinReverse 1.5s linear infinite;
-}
-
-.loader-dot {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: var(--primary-color);
-    border-radius: 50%;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: pulse 1.5s ease-in-out infinite;
-    box-shadow: 0 0 20px var(--primary-color);
-}
-
-/* Animações da tela de loading */
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@keyframes spinReverse {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(-360deg); }
-}
-
-@keyframes pulse {
-    0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
-    50% { transform: translateX(-50%) scale(1.3); opacity: 0.7; }
-}
-
-@keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-
-/* ===========================================
-   CONTEÚDO PRINCIPAL
-   =========================================== */
-#main-content {
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-/* ===========================================
-   HEADER
-   =========================================== */
-header {
-    background: rgba(15, 15, 35, 0.9);
-    backdrop-filter: blur(10px);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    padding: 1.2rem 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid rgba(108, 99, 255, 0.1);
-    transition: var(--transition);
-}
-
-header.scrolled {
-    padding: 0.8rem 5%;
-    background: rgba(15, 15, 35, 0.95);
-    box-shadow: var(--shadow);
-}
-
-header h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-family: 'Open Sans', sans-serif;
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 1.5rem;
-}
-
-nav a {
-    text-decoration: none;
-    color: var(--light-color);
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    transition: var(--transition);
-    font-size: 1rem;
-}
-
-nav a:hover {
-    background: rgba(108, 99, 255, 0.1);
-    color: var(--primary-color);
-}
-
-/* ===========================================
-   SEÇÕES GERAIS
-   =========================================== */
-section {
-    padding: 8rem 5% 5rem;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-section:first-of-type {
-    padding-top: 10rem;
-}
-
-section h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    margin-bottom: 3rem;
-    text-align: center;
-    position: relative;
-    padding-bottom: 1rem;
-    color: var(--light-color);
-    font-weight: 700;
-    font-family: 'Open Sans', sans-serif;
-}
-
-section h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: var(--gradient-primary);
-    border-radius: 2px;
-}
-
-/* ===========================================
-   SOBRE MIM
-   =========================================== */
-.sobre-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    background: rgba(15, 15, 35, 0.6);
-    backdrop-filter: blur(10px);
-    padding: 3rem;
-    border-radius: var(--border-radius-lg);
-    border: 1px solid rgba(108, 99, 255, 0.1);
-    box-shadow: var(--shadow);
-}
-
-@media (min-width: 768px) {
-    .sobre-container {
-        grid-template-columns: 300px 1fr;
-        align-items: center;
-    }
-}
-
-.foto-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.foto-container img {
-    width: 100%;
-    max-width: 280px;
-    height: 280px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid transparent;
-    background: var(--gradient-primary) border-box;
-    box-shadow: var(--shadow-hover);
-    transition: var(--transition);
-}
-
-.foto-container img:hover {
-    transform: scale(1.05);
-}
-
-.descricao h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    color: var(--light-color);
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    display: inline-block;
-}
-
-.descricao .text p {
-    margin-bottom: 1.5rem;
-    color: var(--text-light);
-    line-height: 1.8;
-}
-
-.contato {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(108, 99, 255, 0.1);
-}
-
-.contato p {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    margin-bottom: 1rem;
-    color: var(--text-color);
-}
-
-.contato i {
-    color: var(--primary-color);
-    width: 20px;
-}
-
-.contato a {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.contato a:hover {
-    text-decoration: underline;
-}
-
-/* ===========================================
-   HABILIDADES
-   =========================================== */
-.habilidades-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
-}
-
-.habilidade-card {
-    background: rgba(15, 15, 35, 0.7);
-    backdrop-filter: blur(10px);
-    padding: 2rem;
-    border-radius: var(--border-radius);
-    text-align: center;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    border: 1px solid rgba(108, 99, 255, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.habilidade-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-hover);
-    border-color: var(--primary-color);
-}
-
-.habilidade-card i {
-    font-size: 3.5rem;
-    transition: var(--transition);
-    margin-bottom: 0.5rem;
-}
-
-.habilidade-card:hover i {
-    transform: scale(1.2);
-}
-
-.habilidade-card h3 {
-    font-size: 1.3rem;
-    color: var(--light-color);
-    margin-bottom: 0.5rem;
-}
-
-.habilidade-card p {
-    color: var(--text-light);
-    font-size: 0.9rem;
-    line-height: 1.6;
-}
-
-.skill-bar {
-    width: 100%;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
-    overflow: hidden;
-    margin-top: 1rem;
-}
-
-.skill-level {
-    height: 100%;
-    background: var(--gradient-primary);
-    border-radius: 3px;
-    transition: width 1s ease;
-}
-
-/* Cores específicas */
-.fa-html5 { color: #E34F26; }
-.fa-css3-alt { color: #1572B6; }
-.fa-js { color: #F7DF1E; }
-.fa-react { color: #61DAFB; }
-.fa-node { color: #339933; }
-.fa-java { color: #007396; }
-.fa-python { color: #3776AB; }
-.fa-database { color: #47A248; }
-.fa-git-alt { color: #F05032; }
-.fa-github { color: #FFFFFF; }
-
-/* ===========================================
-   PROJETOS
-   =========================================== */
-.projetos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 2.5rem;
-}
-
-.projeto-card {
-    background: rgba(15, 15, 35, 0.6);
-    backdrop-filter: blur(10px);
-    border-radius: var(--border-radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    border: 1px solid rgba(108, 99, 255, 0.1);
-    display: flex;
-    flex-direction: column;
-}
-
-.projeto-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-hover);
-}
-
-.projeto-imagem {
-    position: relative;
-    height: 200px;
-    overflow: hidden;
-}
-
-.projeto-imagem img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--transition);
-}
-
-.projeto-card:hover .projeto-imagem img {
-    transform: scale(1.05);
-}
-
-.projeto-tech {
-    position: absolute;
-    bottom: 1rem;
-    left: 1rem;
-    display: flex;
-    gap: 0.5rem;
-}
-
-.projeto-tech span {
-    background: rgba(15, 15, 35, 0.9);
-    color: var(--primary-color);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.projeto-conteudo {
-    padding: 1.5rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.projeto-conteudo h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--light-color);
-}
-
-.projeto-desc {
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-    flex-grow: 1;
-}
-
-.projeto-features {
-    margin-bottom: 1.5rem;
-}
-
-.projeto-features p {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--text-color);
-    font-size: 0.9rem;
-}
-
-.projeto-features i {
-    color: var(--primary-color);
-    font-size: 0.8rem;
-}
-
-.projeto-links {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.projeto-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--gradient-primary);
-    color: white;
-    padding: 0.7rem 1.2rem;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: var(--transition);
-    border: none;
-    font-size: 0.9rem;
-}
-
-.projeto-btn.secundario {
-    background: transparent;
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-}
-
-.projeto-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
-}
-
-.projeto-btn.secundario:hover {
-    background: var(--gradient-primary);
-    color: white;
-}
-
-/* ===========================================
-   FORMAÇÃO
-   =========================================== */
-.formacao-container {
-    margin-bottom: 4rem;
-}
-
-.formacao-card {
-    background: rgba(15, 15, 35, 0.7);
-    padding: 2.5rem;
-    border-radius: var(--border-radius);
-    border-left: 4px solid var(--primary-color);
-    transition: var(--transition);
-}
-
-.formacao-card:hover {
-    transform: translateY(-5px);
-}
-
-.formacao-card h3 {
-    font-size: 1.6rem;
-    margin-bottom: 0.5rem;
-    color: var(--light-color);
-}
-
-.instituicao {
-    color: var(--accent-color-2);
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-}
-
-.formacao-card p {
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
-    line-height: 1.7;
-}
-
-.disciplinas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-    margin-top: 1.5rem;
-}
-
-.disciplinas span {
-    background: rgba(108, 99, 255, 0.1);
-    color: var(--primary-color);
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-}
-
-.cursos-title {
-    margin-bottom: 2rem;
-}
-
-.cursos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
-.curso-card {
-    background: rgba(15, 15, 35, 0.7);
-    padding: 1.5rem;
-    border-radius: var(--border-radius);
-    text-align: center;
-    transition: var(--transition);
-    border: 1px solid rgba(108, 99, 255, 0.1);
-}
-
-.curso-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary-color);
-    box-shadow: var(--shadow-hover);
-}
-
-.curso-card i {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-}
-
-.curso-card h4 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: var(--light-color);
-}
-
-.curso-card p {
-    color: var(--text-light);
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-}
-
-.curso-status {
-    display: inline-block;
-    padding: 0.3rem 1rem;
-    background: rgba(54, 209, 220, 0.1);
-    color: var(--accent-color-2);
-    border-radius: 15px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-/* ===========================================
-   CONTATO
-   =========================================== */
-.contato-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-@media (min-width: 992px) {
-    .contato-container {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-.contato-info h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    color: var(--light-color);
-}
-
-.contato-info p {
-    color: var(--text-light);
-    margin-bottom: 2rem;
-}
-
-.contato-detalhes {
-    margin-bottom: 2rem;
-}
-
-.contato-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.contato-item i {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(108, 99, 255, 0.1);
-    border-radius: 50%;
-}
-
-.contato-item h4 {
-    font-size: 1rem;
-    color: var(--light-color);
-    margin-bottom: 0.2rem;
-}
-
-.contato-item p {
-    color: var(--text-light);
-    margin: 0;
-}
-
-.social-links {
-    display: flex;
-    gap: 1rem;
-}
-
-.social-links a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    background: rgba(108, 99, 255, 0.1);
-    color: var(--primary-color);
-    border-radius: 50%;
-    font-size: 1.2rem;
-    transition: var(--transition);
-}
-
-.social-links a:hover {
-    background: var(--gradient-primary);
-    color: white;
-    transform: translateY(-3px);
-}
-
-.contato-form {
-    background: rgba(15, 15, 35, 0.7);
-    padding: 2.5rem;
-    border-radius: var(--border-radius-lg);
-    border: 1px solid rgba(108, 99, 255, 0.1);
-}
-
-.contato-form h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--light-color);
-}
-
-.form-group {
-    position: relative;
-    margin-bottom: 1.5rem;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 1rem;
-    font-size: 1rem;
-    font-family: 'Roboto', sans-serif;
-    background: rgba(26, 26, 46, 0.8);
-    border: 2px solid rgba(108, 99, 255, 0.2);
-    border-radius: 10px;
-    color: var(--light-color);
-    transition: var(--transition);
-    resize: vertical;
-}
-
-.form-group textarea {
-    min-height: 120px;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    background: rgba(26, 26, 46, 0.9);
-}
-
-.form-group label {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    font-size: 1rem;
-    color: var(--text-light);
-    pointer-events: none;
-    transition: var(--transition);
-    background: rgba(26, 26, 46, 0.9);
-    padding: 0 0.5rem;
-}
-
-.form-group input:focus + label,
-.form-group input:not(:placeholder-shown) + label,
-.form-group textarea:focus + label,
-.form-group textarea:not(:placeholder-shown) + label {
-    top: -0.6rem;
-    left: 0.8rem;
-    font-size: 0.8rem;
-    color: var(--primary-color);
-}
-
-.btn-enviar {
-    width: 100%;
-    background: var(--gradient-primary);
-    color: white;
-    border: none;
-    padding: 1rem;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-}
-
-.btn-enviar:hover {
-    background: var(--gradient-accent);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(255, 101, 132, 0.2);
-}
-
-/* ===========================================
-   FOOTER
-   =========================================== */
-footer {
-    background: rgba(9, 9, 20, 0.95);
-    color: var(--light-color);
-    padding: 3rem 5% 2rem;
-    margin-top: 4rem;
-    border-top: 1px solid rgba(108, 99, 255, 0.1);
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto 2rem;
-}
-
-@media (min-width: 768px) {
-    .footer-content {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-}
-
-.footer-logo h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
-.footer-logo p {
-    color: var(--text-light);
-}
-
-.footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.footer-links a {
-    color: var(--text-light);
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.footer-links a:hover {
-    color: var(--primary-color);
-}
-
-.footer-social {
-    display: flex;
-    gap: 1rem;
-}
-
-.footer-social a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: rgba(108, 99, 255, 0.1);
-    color: var(--primary-color);
-    border-radius: 50%;
-    font-size: 1.2rem;
-    transition: var(--transition);
-}
-
-.footer-social a:hover {
-    background: var(--gradient-primary);
-    color: white;
-    transform: translateY(-3px);
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(108, 99, 255, 0.1);
-}
-
-.footer-bottom p {
-    color: var(--text-light);
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-}
-
-.footer-bottom i {
-    color: var(--accent-color);
-}
-
-/* ===========================================
-   RESPONSIVIDADE
-   =========================================== */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
-    }
-    
-    nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    section {
-        padding: 6rem 2rem 3rem;
-    }
-    
-    .sobre-container,
-    .contato-form {
-        padding: 2rem;
-    }
-    
-    .projetos-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .habilidades-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    }
-}
-
-@media (max-width: 480px) {
-    .cursos-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .projeto-links {
-        flex-direction: column;
-    }
-    
-    .projeto-btn {
-        width: 100%;
-        justify-content: center;
-    }
-}
-
-/* Scrollbar personalizada */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--darker-color);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--gradient-primary);
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--gradient-accent);
-}
-
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felipe Prado - Portfólio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Tela de Loading LINDA -->
+    <div id="welcome-screen">
+        <div class="welcome-content">
+            <h1>Bem-vindo ao meu Portfólio</h1>
+            <div class="loader">
+                <div class="loader-dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <main id="main-content">
+        <header>
+            <h1>Felipe Rodrigues Prado</h1>
+            <nav>
+                <ul>
+                    <li><a href="#sobre-mim">Sobre Mim</a></li>
+                    <li><a href="#habilidades">Habilidades</a></li>
+                    <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#formacao">Formação</a></li>
+                    <li><a href="#contatos">Contato</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="sobre-mim">
+            <h2>Sobre Mim</h2>
+            <div class="sobre-container">
+                <div class="foto-container">
+                    <img src="assets/myself.webp" alt="Minha Foto">
+                </div>
+                <div class="descricao">
+                    <div class="text">
+                        <p>
+                            Olá! Sou Felipe Rodrigues Prado, um desenvolvedor apaixonado por tecnologia e inovação. Com 22 anos e residente de São Paulo, venho aprimorando minhas habilidades em desenvolvimento de software. No momento, estou cursando Análise e Desenvolvimento de Sistemas, focando principalmente em frontend, backend e análise de sistemas. Busco sempre aplicar meus conhecimentos em projetos reais e estou em busca de novas oportunidades para crescer ainda mais profissionalmente.
+                        </p>
+                    </div>
+                    <div class="contato">
+                        <p><i class="fas fa-phone"></i> <strong>Celular:</strong> (13) 98117-5814</p>
+                        <p><i class="fas fa-envelope"></i> <strong>E-mail:</strong> <a href="mailto:felipeendz@gmail.com">felipeendz@gmail.com</a></p>
+                        <p><i class="fab fa-linkedin"></i> <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/felipe-prado013" target="_blank">linkedin.com/in/felipe-prado013</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="habilidades">
+            <h2>Habilidades Técnicas</h2>
+            <div class="habilidades-grid">
+                <div class="habilidade-card" data-tooltip="HTML5 - Linguagem de marcação">
+                    <i class="fab fa-html5"></i>
+                    <h3>HTML5</h3>
+                    <p>Domínio de HTML5 para construção de páginas semânticas, acessíveis e bem estruturadas.</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="habilidade-card" data-tooltip="CSS3 - Estilização">
+                    <i class="fab fa-css3-alt"></i>
+                    <h3>CSS3</h3>
+                    <p>Proficiência em estilização de layouts modernos e responsivos, utilizando técnicas avançadas.</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="habilidade-card" data-tooltip="JavaScript - Linguagem de programação">
+                    <i class="fab fa-js"></i>
+                    <h3>JavaScript</h3>
+                    <p>Experiência no desenvolvimento de aplicações dinâmicas e interativas.</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="habilidade-card" data-tooltip="React - Biblioteca JavaScript">
+                    <i class="fab fa-react"></i>
+                    <h3>React</h3>
+                    <p>Experiência com React para criação de interfaces dinâmicas e escaláveis.</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="habilidade-card" data-tooltip="Next.js - Framework React para produção">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Next.js</h3>
+                    <p>Experiência com Next.js para aplicações server-side rendering e produção.</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="habilidade-card" data-tooltip="Node.js - Ambiente de execução">
+                    <i class="fab fa-node"></i>
+                    <h3>Node.js</h3>
+                    <p>Habilidade em construir servidores web e APIs RESTful.</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="habilidade-card" data-tooltip="Java - Linguagem de programação">
+                    <i class="fab fa-java"></i>
+                    <h3>Java</h3>
+                    <p>Habilidade na construção de sistemas robustos, com foco em OOP.</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="habilidade-card" data-tooltip="Python - Linguagem de programação">
+                    <i class="fab fa-python"></i>
+                    <h3>Python</h3>
+                    <p>Conhecimento em Python para automação de processos e análise de dados.</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="habilidade-card" data-tooltip="MongoDB - Banco de dados NoSQL">
+                    <i class="fas fa-database"></i>
+                    <h3>MongoDB</h3>
+                    <p>Experiência com bancos de dados NoSQL, utilizando MongoDB.</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="habilidade-card" data-tooltip="Git - Controle de versão">
+                    <i class="fab fa-git-alt"></i>
+                    <h3>Git</h3>
+                    <p>Experiência com controle de versão utilizando Git.</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="habilidade-card" data-tooltip="GitHub - Plataforma de desenvolvimento">
+                    <i class="fab fa-github"></i>
+                    <h3>GitHub</h3>
+                    <p>Domínio do GitHub para hospedagem de repositórios e colaboração.</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 90%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projetos">
+            <h2>Projetos</h2>
+            
+            <div class="projetos-grid">
+                <!-- Food Explorer -->
+                <div class="projeto-card">
+                    <div class="projeto-imagem">
+                        <img src="assets/meuportifolio.png" alt="Food Explorer">
+                        <div class="projeto-tech">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                    </div>
+                    <div class="projeto-conteudo">
+                        <h3>Food Explorer</h3>
+                        <p class="projeto-desc">Aplicação web que permite aos usuários buscar, explorar e salvar receitas de diferentes tipos de alimentos.</p>
+                        <div class="projeto-features">
+                            <p><i class="fas fa-check"></i> Sistema de autenticação</p>
+                            <p><i class="fas fa-check"></i> Busca avançada</p>
+                            <p><i class="fas fa-check"></i> Favoritos</p>
+                        </div>
+                        <div class="projeto-links">
+                            <a href="https://github.com/FelipePrado200/Food-Explorer-FrontEnd" target="_blank" class="projeto-btn">
+                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rocket Notes -->
+                <div class="projeto-card">
+                    <div class="projeto-imagem">
+                        <img src="assets/rocketnotesportifolio.webp" alt="RocketNotes">
+                        <div class="projeto-tech">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>SQLite</span>
+                        </div>
+                    </div>
+                    <div class="projeto-conteudo">
+                        <h3>Rocket Notes</h3>
+                        <p class="projeto-desc">Aplicação de notas para organizar ideias e informações de maneira eficiente.</p>
+                        <div class="projeto-features">
+                            <p><i class="fas fa-check"></i> CRUD completo</p>
+                            <p><i class="fas fa-check"></i> Sistema de tags</p>
+                            <p><i class="fas fa-check"></i> Busca em tempo real</p>
+                        </div>
+                        <div class="projeto-links">
+                            <a href="https://github.com/FelipePrado200/RocketNotes" target="_blank" class="projeto-btn">
+                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bank System -->
+                <div class="projeto-card">
+                    <div class="projeto-imagem">
+                        <img src="assets/banksystem.jpg" alt="Bank System">
+                        <div class="projeto-tech">
+                            <span>Python</span>
+                            <span>OOP</span>
+                        </div>
+                    </div>
+                    <div class="projeto-conteudo">
+                        <h3>Bank System</h3>
+                        <p class="projeto-desc">Sistema bancário em Python com criação de conta, depósitos, saques e consulta de saldo.</p>
+                        <div class="projeto-features">
+                            <p><i class="fas fa-check"></i> Sistema de transações</p>
+                            <p><i class="fas fa-check"></i> Extrato bancário</p>
+                            <p><i class="fas fa-check"></i> Validações de segurança</p>
+                        </div>
+                        <div class="projeto-links">
+                            <a href="https://github.com/FelipePrado200/Sistema-Banc-rio-" target="_blank" class="projeto-btn">
+                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DevFlix -->
+                <div class="projeto-card">
+                    <div class="projeto-imagem">
+                        <img src="assets/readme.png" alt="DevFlix">
+                        <div class="projeto-tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="projeto-conteudo">
+                        <h3>DevFlix</h3>
+                        <p class="projeto-desc">Plataforma de streaming de filmes desenvolvida para demonstrar habilidades em desenvolvimento web.</p>
+                        <div class="projeto-features">
+                            <p><i class="fas fa-check"></i> Interface responsiva</p>
+                            <p><i class="fas fa-check"></i> Filtro por gênero</p>
+                            <p><i class="fas fa-check"></i> Player de vídeo</p>
+                        </div>
+                        <div class="projeto-links">
+                            <a href="https://felipeprado200.github.io/Devflix/" target="_blank" class="projeto-btn">
+                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                            </a>
+                            <a href="https://github.com/FelipePrado200/Devflix" target="_blank" class="projeto-btn secundario">
+                                <i class="fab fa-github"></i> Código
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Site Advocacia -->
+                <div class="projeto-card">
+                    <div class="projeto-imagem">
+                        <img src="assets/freelance.png" alt="Site Advocacia">
+                        <div class="projeto-tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="projeto-conteudo">
+                        <h3>Site Advocacia</h3>
+                        <p class="projeto-desc">Site freelancer desenvolvido para um advogado, com design profissional e responsivo.</p>
+                        <div class="projeto-features">
+                            <p><i class="fas fa-check"></i> Design profissional</p>
+                            <p><i class="fas fa-check"></i> Totalmente responsivo</p>
+                            <p><i class="fas fa-check"></i> Formulário de contato</p>
+                        </div>
+                        <div class="projeto-links">
+                            <a href="https://felipeprado200.github.io/site-matheus/" target="_blank" class="projeto-btn">
+                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chronos Pomodoro -->
+                <div class="projeto-card">
+                    <div class="projeto-imagem">
+                        <img src="assets/pomodoro.png" alt="Chronos Pomodoro">
+                        <div class="projeto-tech">
+                            <span>React</span>
+                            <span>CSS</span>
+                            <span>LocalStorage</span>
+                        </div>
+                    </div>
+                    <div class="projeto-conteudo">
+                        <h3>Chronos Pomodoro</h3>
+                        <p class="projeto-desc">Aplicação de produtividade baseada na Técnica Pomodoro para gerenciamento de tempo.</p>
+                        <div class="projeto-features">
+                            <p><i class="fas fa-check"></i> Temporizador configurável</p>
+                            <p><i class="fas fa-check"></i> Histórico de sessões</p>
+                            <p><i class="fas fa-check"></i> Notificações</p>
+                        </div>
+                        <div class="projeto-links">
+                            <a href="https://chronos-pomodoro-lime.vercel.app/" target="_blank" class="projeto-btn">
+                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                            </a>
+                            <a href="https://github.com/FelipePrado200/chronos-pomodoro" target="_blank" class="projeto-btn secundario">
+                                <i class="fab fa-github"></i> Código
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- My Finances -->
+                <div class="projeto-card">
+                    <div class="projeto-imagem">
+                        <img src="assets/finances.png" alt="My Finances">
+                        <div class="projeto-tech">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>PostgreSQL</span>
+                        </div>
+                    </div>
+                    <div class="projeto-conteudo">
+                        <h3>My Finances</h3>
+                        <p class="projeto-desc">Sistema de controle financeiro pessoal para gerenciamento de receitas e despesas.</p>
+                        <div class="projeto-features">
+                            <p><i class="fas fa-check"></i> Dashboard de gastos</p>
+                            <p><i class="fas fa-check"></i> Categorização</p>
+                            <p><i class="fas fa-check"></i> Relatórios</p>
+                        </div>
+                        <div class="projeto-links">
+                            <a href="https://github.com/FelipePrado200/my-finances" target="_blank" class="projeto-btn">
+                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Blog -->
+                <div class="projeto-card">
+                    <div class="projeto-imagem">
+                        <img src="assets/theblog.png" alt="The Blog">
+                        <div class="projeto-tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="projeto-conteudo">
+                        <h3>The Blog</h3>
+                        <p class="projeto-desc">Simulação de um blog moderno com sistema de posts e comentários.</p>
+                        <div class="projeto-features">
+                            <p><i class="fas fa-check"></i> Layout moderno</p>
+                            <p><i class="fas fa-check"></i> Sistema de posts</p>
+                            <p><i class="fas fa-check"></i> Comentários</p>
+                        </div>
+                        <div class="projeto-links">
+                            <a href="https://github.com/FelipePrado200/The-blog" target="_blank" class="projeto-btn">
+                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pet Dev -->
+                <div class="projeto-card">
+                    <div class="projeto-imagem">
+                        <img src="assets/petdev.png" alt="Pet Dev">
+                        <div class="projeto-tech">
+                            <span>React</span>
+                            <span>CSS</span>
+                            <span>API</span>
+                        </div>
+                    </div>
+                    <div class="projeto-conteudo">
+                        <h3>Pet Dev</h3>
+                        <p class="projeto-desc">Dashboard para petshop com controle de clientes, serviços e agendamentos.</p>
+                        <div class="projeto-features">
+                            <p><i class="fas fa-check"></i> Dashboard interativo</p>
+                            <p><i class="fas fa-check"></i> Agendamentos</p>
+                            <p><i class="fas fa-check"></i> Controle de clientes</p>
+                        </div>
+                        <div class="projeto-links">
+                            <a href="https://github.com/FelipePrado200/petdev" target="_blank" class="projeto-btn">
+                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="formacao">
+            <h2>Formação</h2>
+            <div class="formacao-container">
+                <div class="formacao-card">
+                    <h3>Análise e Desenvolvimento de Sistemas</h3>
+                    <p class="instituicao">UniAmérica • 2023 – 2025 • Finalizado</p>
+                    <p>Formação focada em desenvolvimento de software, frontend, backend, bancos de dados e metodologias ágeis.</p>
+                    <div class="disciplinas">
+                        <span>Programação Web</span>
+                        <span>Banco de Dados</span>
+                        <span>Engenharia de Software</span>
+                        <span>Redes de Computadores</span>
+                        <span>Desenvolvimento Mobile</span>
+                        <span>Gestão de Projetos</span>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="cursos-title">Cursos e Certificações</h2>
+            <div class="cursos-grid">
+                <div class="curso-card">
+                    <i class="fas fa-rocket"></i>
+                    <h4>Explorer</h4>
+                    <p>Rocketseat • 120h</p>
+                    <span class="curso-status">Completo</span>
+                </div>
+                <div class="curso-card">
+                    <i class="fab fa-java"></i>
+                    <h4>Java</h4>
+                    <p>Rocketseat • 45h</p>
+                    <span class="curso-status">Completo</span>
+                </div>
+                <div class="curso-card">
+                    <i class="fas fa-code"></i>
+                    <h4>NLW Unite</h4>
+                    <p>Rocketseat • 8h</p>
+                    <span class="curso-status">Completo</span>
+                </div>
+                <div class="curso-card">
+                    <i class="fab fa-microsoft"></i>
+                    <h4>C#</h4>
+                    <p>Rocketseat • 40h</p>
+                    <span class="curso-status">Completo</span>
+                </div>
+                <div class="curso-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h4>Basic FrontEnd</h4>
+                    <p>UniAmérica • 40h</p>
+                    <span class="curso-status">Completo</span>
+                </div>
+                <div class="curso-card">
+                    <i class="fas fa-object-group"></i>
+                    <h4>Object-Oriented Developer</h4>
+                    <p>UniAmérica • 60h</p>
+                    <span class="curso-status">Completo</span>
+                </div>
+                <div class="curso-card">
+                    <i class="fas fa-code"></i>
+                    <h4>Programming Basics</h4>
+                    <p>UniAmérica • 50h</p>
+                    <span class="curso-status">Completo</span>
+                </div>
+                <div class="curso-card">
+                    <i class="fas fa-desktop"></i>
+                    <h4>FrontEnd Developer</h4>
+                    <p>UniAmérica • 80h</p>
+                    <span class="curso-status">Completo</span>
+                </div>
+                <div class="curso-card">
+                    <i class="fas fa-server"></i>
+                    <h4>BackEnd Developer</h4>
+                    <p>UniAmérica • 80h</p>
+                    <span class="curso-status">Completo</span>
+                </div>
+                <div class="curso-card">
+                    <i class="fas fa-layer-group"></i>
+                    <h4>Full Stack Developer</h4>
+                    <p>UniAmérica • 120h</p>
+                    <span class="curso-status">Completo</span>
+                </div>
+                <div class="curso-card">
+                    <i class="fas fa-infinity"></i>
+                    <h4>DevOps Strategist</h4>
+                    <p>UniAmérica • 60h</p>
+                    <span class="curso-status">Completo</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="contatos">
+            <h2>Entre em Contato</h2>
+            <div class="contato-container">
+                <div class="contato-info">
+                    <h3>Vamos conversar!</h3>
+                    <p>Estou sempre aberto a novas oportunidades e colaborações.</p>
+                    
+                    <div class="contato-detalhes">
+                        <div class="contato-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>felipeendz@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contato-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Telefone</h4>
+                                <p>(13) 98117-5814</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contato-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <h4>WhatsApp</h4>
+                                <p>(13) 98117-5814</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contato-item">
+                            <i class="fab fa-linkedin"></i>
+                            <div>
+                                <h4>LinkedIn</h4>
+                                <p>/felipe-prado013</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://github.com/FelipePrado200" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/felipe-prado013" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contato-form">
+                    <h3>Envie uma mensagem</h3>
+                    <form id="whatsappForm">
+                        <div class="form-group">
+                            <input type="text" id="nome" placeholder=" " required>
+                            <label for="nome">Nome completo</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder=" " required>
+                            <label for="email">E-mail</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="mensagem" placeholder=" " rows="5" required></textarea>
+                            <label for="mensagem">Sua mensagem</label>
+                        </div>
+                        
+                        <button type="submit" class="btn-enviar">
+                            <i class="fab fa-whatsapp"></i> Enviar via WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Felipe Prado</h3>
+                    <p>Desenvolvedor Full Stack</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="#sobre-mim">Sobre</a>
+                    <a href="#habilidades">Habilidades</a>
+                    <a href="#projetos">Projetos</a>
+                    <a href="#formacao">Formação</a>
+                    <a href="#contatos">Contato</a>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="https://github.com/FelipePrado200" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/felipe-prado013" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Felipe Rodrigues Prado. Todos os direitos reservados.</p>
+                <p>Desenvolvido com <i class="fas fa-heart"></i> e muito código</p>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // ===== TELA DE LOADING =====
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("DOM carregado!");
+            
+            const welcomeScreen = document.getElementById("welcome-screen");
+            const mainContent = document.getElementById("main-content");
+            
+            // Verificar se elementos existem
+            if (!welcomeScreen || !mainContent) {
+                console.error("Elementos não encontrados!");
+                document.body.classList.add('loaded');
+                return;
+            }
+            
+            console.log("Iniciando loading...");
+            
+            // Remove a tela de loading após 3 segundos
+            setTimeout(() => {
+                welcomeScreen.style.opacity = "0";
+                welcomeScreen.style.transition = "opacity 0.5s ease";
+                
+                setTimeout(() => {
+                    welcomeScreen.style.display = "none";
+                    mainContent.style.opacity = "1";
+                    mainContent.style.visibility = "visible";
+                    
+                    console.log("Loading removido, conteúdo visível");
+                }, 500);
+            }, 3000);
+
+            // ===== FORMULÁRIO WHATSAPP =====
+            const whatsappForm = document.getElementById("whatsappForm");
+            if (whatsappForm) {
+                whatsappForm.addEventListener("submit", (event) => {
+                    event.preventDefault();
+                    
+                    const nome = document.getElementById("nome")?.value || "";
+                    const email = document.getElementById("email")?.value || "";
+                    const mensagem = document.getElementById("mensagem")?.value || "";
+                    
+                    if (!nome || !email || !mensagem) {
+                        alert("Por favor, preencha todos os campos!");
+                        return;
+                    }
+                    
+                    const numeroWhatsApp = "5513981175814";
+                    const textoWhatsApp = `Olá, meu nome é ${nome}. Meu e-mail é ${email}. ${mensagem}`;
+                    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(textoWhatsApp)}`;
+                    
+                    window.open(url, "_blank");
+                    whatsappForm.reset();
+                });
+            }
+
+            // ===== NAVEGAÇÃO SUAVE =====
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (!targetId || targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // ===== HEADER SCROLL EFFECT =====
+            const header = document.querySelector('header');
+            if (header) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 100) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
+        });
+
+        // ===== FALLBACK CASO O DOMContentLoaded FALHE =====
+        window.addEventListener('load', function() {
+            console.log("Window loaded!");
+            
+            // Garante que o conteúdo apareça mesmo se algo der errado
+            setTimeout(() => {
+                const welcomeScreen = document.getElementById("welcome-screen");
+                const mainContent = document.getElementById("main-content");
+                
+                if (welcomeScreen && mainContent) {
+                    welcomeScreen.style.display = "none";
+                    mainContent.style.opacity = "1";
+                    mainContent.style.visibility = "visible";
+                    document.body.classList.add('loaded');
+                }
+            }, 4000); // 4 segundos como fallback
+        });
+
+        // ===== FORÇAR EXIBIÇÃO EM CASO DE ERRO =====
+        window.addEventListener('error', function(e) {
+            console.error("Erro detectado:", e.message);
+            document.body.classList.add('loaded');
+            document.getElementById('main-content')?.style.display = 'block';
+            document.getElementById('welcome-screen')?.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

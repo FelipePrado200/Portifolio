@@ -2,264 +2,122 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felipe Prado | Portfólio</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/Gemini_Generated_Image_ks7u13ks7u13ks7u.jpeg">
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-    <link rel="manifest" href="assets/site.webmanifest">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Felipe Prado - Portfólio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Tela de Boas-Vindas -->
-    <div id="welcome-screen">
-        <div class="welcome-content">
-            <h1>Bem-Vindo ao Meu Portfólio</h1>
-            <div class="loader"></div>
+
+<div id="welcome-screen">
+    <div class="welcome-content">
+        <h1>Bem-vindo ao meu Portfólio</h1>
+        <div class="loader"></div>
+    </div>
+</div>
+
+<header>
+    <h1>Felipe Rodrigues Prado</h1>
+    <nav>
+        <ul>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#habilidades">Habilidades</a></li>
+            <li><a href="#projetos">Projetos</a></li>
+            <li><a href="#formacao">Formação</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="sobre">
+    <h2>Sobre Mim</h2>
+    <div class="sobre-box">
+        <img src="assets/myself.webp" alt="Felipe Prado">
+        <p>
+            Sou desenvolvedor apaixonado por tecnologia, focado em frontend e backend.
+            Atualmente curso Análise e Desenvolvimento de Sistemas e busco oportunidades
+            para crescer profissionalmente e aplicar meus conhecimentos em projetos reais.
+        </p>
+    </div>
+</section>
+
+<section id="habilidades">
+    <h2>Habilidades Técnicas</h2>
+    <div class="grid">
+        <div class="card"><i class="fab fa-html5"></i><span>HTML5</span></div>
+        <div class="card"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+        <div class="card"><i class="fab fa-js"></i><span>JavaScript</span></div>
+        <div class="card"><i class="fab fa-react"></i><span>React</span></div>
+        <div class="card"><i class="fab fa-node"></i><span>Node.js</span></div>
+        <div class="card"><i class="fab fa-java"></i><span>Java</span></div>
+        <div class="card"><i class="fab fa-python"></i><span>Python</span></div>
+        <div class="card"><i class="fas fa-database"></i><span>MongoDB</span></div>
+        <div class="card"><i class="fab fa-git-alt"></i><span>Git</span></div>
+        <div class="card"><i class="fab fa-github"></i><span>GitHub</span></div>
+    </div>
+</section>
+
+<section id="projetos">
+    <h2>Projetos</h2>
+
+    <div class="projeto">
+        <img src="assets/readme.png">
+        <div>
+            <h3>DevFlix</h3>
+            <p>Plataforma de streaming fictícia criada com HTML, CSS e JavaScript.</p>
+            <a href="https://felipeprado200.github.io/Devflix/" target="_blank">Ver projeto</a>
         </div>
     </div>
 
-    <!-- Conteúdo Principal -->
-    <div id="main-content" class="hidden">
-        <header>
-            <h1>Felipe Rodrigues Prado</h1>
-            <nav>
-                <ul>
-                    <li><a href="#sobre-mim">Sobre Mim</a></li>
-                    <li><a href="#habilidades">Habilidades</a></li>
-                    <li><a href="#projetos">Projetos</a></li>
-                    <li><a href="#formacao">Formação</a></li>
-                    <li><a href="#contatos">Contatos</a></li>
-                </ul>
-            </nav>
-        </header>
+    <div class="projeto">
+        <img src="assets/pomodoro.png">
+        <div>
+            <h3>Chronos Pomodoro</h3>
+            <p>Aplicação de produtividade baseada na técnica Pomodoro.</p>
+            <a href="https://chronos-pomodoro-lime.vercel.app/" target="_blank">Ver projeto</a>
+        </div>
+    </div>
+</section>
 
-        <section id="sobre-mim">
-            <h2>Sobre Mim</h2>
-            <div class="sobre-container">
-                <div class="foto-container">
-                    <img src="assets/myself.webp" alt="Minha Foto">
-                </div>
-                <div class="descricao">
-                    <div class="text">
-                        <p>
-                            Olá! Sou Felipe Rodrigues Prado, um desenvolvedor apaixonado por tecnologia e inovação. Com 22 anos e residente de São Paulo, venho aprimorando minhas habilidades em desenvolvimento de software. No momento, estou cursando Análise e Desenvolvimento de Sistemas, focando principalmente em frontend, backend e análise de sistemas. Busco sempre aplicar meus conhecimentos em projetos reais e estou em busca de novas oportunidades para crescer ainda mais profissionalmente.
-                        </p>
-                    </div>
-                    <div class="contato">
-                        <p><strong>Celular:</strong> (13) 98117-5814</p>
-                        <p><strong>E-mail:</strong> <a href="mailto:felipeendz@gmail.com">felipeendz@gmail.com</a></p>
-                        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/felipe-prado013" target="_blank">linkedin.com/in/felipe-prado013</a></p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section id="formacao">
+    <h2>Formação Acadêmica</h2>
 
-        <section id="habilidades">
-            <h2>Habilidades Técnicas</h2>
-            <div class="habilidades-container">
-                <div class="habilidade">
-                    <i class="fab fa-html5"></i>
-                    <h3>HTML5</h3>
-                    <p>Domínio de HTML5 para construção de páginas semânticas, acessíveis e bem estruturadas.</p>
-                </div>
-                <div class="habilidade">
-                    <i class="fab fa-css3-alt"></i>
-                    <h3>CSS3</h3>
-                    <p>Proficiência em estilização de layouts modernos e responsivos, utilizando técnicas avançadas como Flexbox e Grid.</p>
-                </div>
-                <div class="habilidade">
-                    <i class="fab fa-js"></i>
-                    <h3>JavaScript</h3>
-                    <p>Experiência no desenvolvimento de aplicações dinâmicas e interativas, utilizando recursos avançados da linguagem.</p>
-                </div>
-                <div class="habilidade">
-                    <i class="fab fa-react"></i>
-                    <h3>React</h3>
-                    <p>Experiência com React para criação de interfaces dinâmicas e escaláveis, utilizando hooks, context API e Redux.</p>
-                </div>
-                <div class="habilidade">
-                    <i class="fab fa-java"></i>
-                    <h3>Java</h3>
-                    <p>Habilidade na construção de sistemas robustos, com foco em OOP (Programação Orientada a Objetos) e frameworks como Spring.</p>
-                </div>
-                <div class="habilidade">
-                    <i class="fab fa-python"></i>
-                    <h3>Python</h3>
-                    <p>Conhecimento em Python para automação de processos, análise de dados e desenvolvimento de aplicações web e scripts.</p>
-                </div>
-                <div class="habilidade">
-                    <i class="fab fa-node"></i>
-                    <h3>Node.js</h3>
-                    <p>Habilidade em construir servidores web e APIs RESTful utilizando Node.js e Express.js.</p>
-                </div>
-                <div class="habilidade">
-                    <i class="fas fa-database"></i>
-                    <h3>MongoDB</h3>
-                    <p>Experiência com bancos de dados NoSQL, utilizando MongoDB para modelagem de dados e implementação de queries eficientes.</p>
-                </div>
-                <div class="habilidade">
-                     <i class="fab fa-git-alt"></i>
-                    <h3>Git</h3>
-                    <p>Experiência com controle de versão utilizando Git para gerenciamento de projetos e colaboração em equipe.</p>
-                </div>
-                <div class="habilidade">
-                    <i class="fab fa-github"></i>
-                    <h3>GitHub</h3>
-                    <p>Domínio do GitHub para hospedagem de repositórios, colaboração em projetos open source e gerenciamento de issues e pull requests.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="projetos">
-            <h2>Projetos</h2>
-            <div class="projeto">
-                <h3>Food Explorer</h3>
-                <p>
-                    O Food Explorer é uma aplicação web que permite 
-                    aos usuários buscar, explorar e salvar receitas de diferentes 
-                    tipos de alimentos. A ideia central é proporcionar uma experiência 
-                    rica onde o usuário pode visualizar informações detalhadas sobre 
-                    ingredientes, passos de preparação e categorização das receitas.
-                </p>
-                <div class="projeto-imagem">
-                    <img src="assets/meuportifolio.png" alt="Food Explorer">
-                </div>
-                <a href="https://github.com/FelipePrado200/Food-Explorer-FrontEnd" target="_blank">Visualizar Projeto</a>
-            </div>
-            <div class="projeto">
-                <h3>Rocket Notes</h3>
-                <p>
-                    Rocketnotes é uma aplicação de notas criada para ajudar você a 
-                    organizar suas ideias e informações de maneira eficiente. Com funcionalidades 
-                    práticas como criação, pesquisa e exclusão de notas, a plataforma é ideal para 
-                    simplificar seu dia a dia.
-                </p>
-                <div class="projeto-imagem">
-                    <img src="assets/rocketnotesportifolio.webp" alt="RocketNotes">
-                </div>
-                <a href="https://github.com/FelipePrado200/RocketNotes" target="_blank">Visualizar Projeto</a>
-            </div>
-
-            <div class="projeto">
-                <h3>Bank System</h3>
-                <p>Este projeto implementa um sistema bancário em Python, onde um usuário pode criar uma conta bancária, realizar depósitos, efetuar saques e consultar o saldo.</p>
-                <div class="projeto-imagem">
-                    <img src="assets/banksystem.jpg" alt="Bank System">
-                </div>
-                <a href="https://github.com/FelipePrado200/Sistema-Banc-rio-" target="_blank">Visualizar Projeto</a>
-            </div>
-
-            <div class="projeto">
-                <h3>DevFlix</h3>
-                <p>DevFlix é uma plataforma de streaming de filmes desenvolvida como parte do meu portfólio. O projeto foi criado para demonstrar habilidades em desenvolvimento web, utilizando HTML, CSS e JavaScript. A aplicação simula uma experiência de streaming, com funcionalidades como login, registro, pesquisa de filmes, filtragem por gênero, e uma interface interativa para visualização de detalhes dos filmes.</p>
-                <div class="projeto-imagem">
-                    <img src="assets/readme.png" alt="Cpf Generator">
-                </div>
-                <a href="https://felipeprado200.github.io/Devflix/" target="_blank">Visualizar Projeto</a>
-            </div>
-
-            <div class="projeto">
-                <h3>Site Advocacia</h3>
-                <p>Esse site é um projeto Free lance que eu criei para um advogado.</p>
-                <div class="projeto-imagem">
-                    <img src="assets/freelance.png" alt="Cpf Generator">
-                </div>
-                <a href="https://felipeprado200.github.io/site-matheus/" target="_blank">Visualizar Projeto</a>
-            </div>
-            <div class="projeto">
-                <h3>Chronos Pomodoro</h3>
-                <p>A Técnica Pomodoro é uma metodologia de produtividade criada por Francesco Cirillo, que consiste em dividir o trabalho em blocos de tempo (os famosos "Pomodoros") intercalados com pausas. O objetivo é manter o foco total por um período curto e garantir descansos para evitar o cansaço mental.</p>
-                <div class="projeto-imagem">
-                    <img src="assets/pomodoro.png" alt="Pomodoro app">
-                </div>
-                <a href="https://chronos-pomodoro-lime.vercel.app/" target="_blank">Visualizar Projeto</a>
-            </div>
-            <div class="projeto">
-                <h3>My finances</h3>
-                <p>Projeto em desenvolvimento para controle de finanças</p>
-                <div class="projeto-imagem">
-                    <img src="assets/finances.png" alt="Pomodoro app">
-                </div>
-                <a href="https://github.com/FelipePrado200/my-finances" target="_blank">Visualizar Projeto</a>
-            </div>
-            <div class="projeto">
-                <h3>The Blog</h3>
-                <p>Simulação de um blog.</p>
-                <div class="projeto-imagem">
-                    <img src="assets/theblog.png" alt="Pomodoro app">
-                </div>
-                <a href="https://github.com/FelipePrado200/The-blog" target="_blank">Visualizar Projeto</a>
-            </div>
-            <div class="projeto">
-                <h3>Pet Dev</h3>
-                <p>Dashboard de um petshop</p>
-                <div class="projeto-imagem">
-                    <img src="assets/petdev.png" alt="Pomodoro app">
-                </div>
-                <a href="https://github.com/FelipePrado200/petdev" target="_blank">Visualizar Projeto</a>
-            </div>
-       
-        </section>
-
-        <section id="formacao">
-            <h2>Formação</h2>
-            <ul>
-                <li><strong>Análise e Desenvolvimento de Sistemas</strong> – UniAmérica (2023 – 2025) - cursando</li>
-            </ul>
-            <h2>Cursos</h2>
-            <ul>
-                <li>Explorer (Rocketseat)</li>
-                <li>Java (Rocketseat)</li>
-                <li>NLW Unite (Rocketseat)</li>
-                <li>C sharp (Rocketseat)</li>
-                <li>Basic FrontEnd (UniAmérica)</li>
-                <li>Object-Oriented Developer (UniAmérica)</li>
-                <li>Programing Basics (UniAmérica)</li>
-                <li>FrontEnd Developer (UniAmérica)</li>
-                <li>BackEnd Developer (UniAmérica)</li>
-                <li>Full Stack Developer (UniAmérica)</li>
-                <li>DevOps Strategist (UniAmérica)</li>
-            </ul>
-        </section>
-
-        <section id="contatos">
-            <h2>Entre em Contato</h2>
-            <form class="contato-form" id="whatsappForm">
-                <div class="form-group">
-                    <label for="nome">Seu Nome</label>
-                    <input type="text" id="nome" name="nome" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Seu E-mail</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="mensagem">Sua Mensagem</label>
-                    <textarea id="mensagem" name="mensagem" required></textarea>
-                </div>
-                <button type="submit" class="btn-enviar">Enviar</button>
-            </form>
-        </section>
-
-        <footer>
-            <p>&copy; 2025 Felipe Rodrigues Prado. Todos os direitos reservados.</p>
-        </footer>
+    <div class="formacao-card">
+        <h3>Análise e Desenvolvimento de Sistemas</h3>
+        <span>UniAmérica • 2023 – 2025 • Cursando</span>
+        <p>Formação focada em desenvolvimento de software, frontend, backend e bancos de dados.</p>
     </div>
 
-    <script src="script.js"></script>
+    <h2>Cursos</h2>
+
+    <div class="grid">
+        <div class="card">Explorer — Rocketseat</div>
+        <div class="card">Java — Rocketseat</div>
+        <div class="card">NLW Unite — Rocketseat</div>
+        <div class="card">C# — Rocketseat</div>
+        <div class="card">Full Stack — UniAmérica</div>
+        <div class="card">DevOps — UniAmérica</div>
+    </div>
+</section>
+
+<section id="contato">
+    <h2>Contato</h2>
+    <form>
+        <input type="text" placeholder="Nome" required>
+        <input type="email" placeholder="E-mail" required>
+        <textarea placeholder="Mensagem" required></textarea>
+        <button>Enviar</button>
+    </form>
+</section>
+
+<footer>
+    <p>© 2025 Felipe Rodrigues Prado</p>
+</footer>
+
 </body>
 </html>
-
-
-
-
-
-
-

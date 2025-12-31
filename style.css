@@ -65,7 +65,7 @@ body::before {
 }
 
 /* ===========================================
-   TELA DE LOADING
+   TELA DE LOADING LINDA
    =========================================== */
 #welcome-screen {
     position: fixed;
@@ -101,11 +101,11 @@ body::before {
     font-family: 'Open Sans', sans-serif;
 }
 
-/* Loader */
+/* Loader LINDO */
 .loader {
     position: relative;
-    width: 120px;
-    height: 120px;
+    width: 180px;
+    height: 180px;
     margin: 2rem auto;
 }
 
@@ -119,6 +119,7 @@ body::before {
     border-top: 3px solid var(--primary-color);
     border-right: 3px solid var(--accent-color);
     animation: spin 2s linear infinite;
+    box-shadow: 0 0 30px rgba(108, 99, 255, 0.3);
 }
 
 .loader::after {
@@ -137,18 +138,18 @@ body::before {
 
 .loader-dot {
     position: absolute;
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     background: var(--primary-color);
     border-radius: 50%;
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
     animation: pulse 1.5s ease-in-out infinite;
-    box-shadow: 0 0 10px var(--primary-color);
+    box-shadow: 0 0 20px var(--primary-color);
 }
 
-/* Animações */
+/* Animações da tela de loading */
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -169,27 +170,16 @@ body::before {
     50% { background-position: 100% 50%; }
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 /* ===========================================
    CONTEÚDO PRINCIPAL
    =========================================== */
 #main-content {
-    opacity: 1;
+    opacity: 0;
     transition: opacity 0.5s ease;
 }
 
 /* ===========================================
-   HEADER E NAVEGAÇÃO
+   HEADER
    =========================================== */
 header {
     background: rgba(15, 15, 35, 0.9);
@@ -248,7 +238,7 @@ nav a:hover {
    =========================================== */
 section {
     padding: 8rem 5% 5rem;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
@@ -280,9 +270,9 @@ section h2::after {
 }
 
 /* ===========================================
-   SEÇÃO SOBRE MIM
+   SOBRE MIM
    =========================================== */
-.sobre-box {
+.sobre-container {
     display: grid;
     grid-template-columns: 1fr;
     gap: 3rem;
@@ -295,20 +285,20 @@ section h2::after {
 }
 
 @media (min-width: 768px) {
-    .sobre-box {
+    .sobre-container {
         grid-template-columns: 300px 1fr;
         align-items: center;
     }
 }
 
-.image-container {
+.foto-container {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.image-container img {
+.foto-container img {
     width: 100%;
     max-width: 280px;
     height: 280px;
@@ -320,11 +310,11 @@ section h2::after {
     transition: var(--transition);
 }
 
-.image-container img:hover {
+.foto-container img:hover {
     transform: scale(1.05);
 }
 
-.sobre-text h3 {
+.descricao h3 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
     color: var(--light-color);
@@ -335,45 +325,54 @@ section h2::after {
     display: inline-block;
 }
 
-.sobre-text p {
+.descricao .text p {
     margin-bottom: 1.5rem;
     color: var(--text-light);
     line-height: 1.8;
 }
 
-.sobre-info {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+.contato {
     margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(108, 99, 255, 0.1);
 }
 
-.sobre-info p {
+.contato p {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
     color: var(--text-color);
 }
 
-.sobre-info i {
+.contato i {
     color: var(--primary-color);
     width: 20px;
 }
 
-/* ===========================================
-   SEÇÃO HABILIDADES
-   =========================================== */
-#habilidades .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 1.5rem;
+.contato a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
 }
 
-#habilidades .card {
+.contato a:hover {
+    text-decoration: underline;
+}
+
+/* ===========================================
+   HABILIDADES
+   =========================================== */
+.habilidades-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.habilidade-card {
     background: rgba(15, 15, 35, 0.7);
     backdrop-filter: blur(10px);
-    padding: 2rem 1rem;
+    padding: 2rem;
     border-radius: var(--border-radius);
     text-align: center;
     box-shadow: var(--shadow);
@@ -388,25 +387,32 @@ section h2::after {
     cursor: pointer;
 }
 
-#habilidades .card:hover {
+.habilidade-card:hover {
     transform: translateY(-10px);
     box-shadow: var(--shadow-hover);
     border-color: var(--primary-color);
 }
 
-#habilidades .card i {
-    font-size: 3rem;
+.habilidade-card i {
+    font-size: 3.5rem;
     transition: var(--transition);
+    margin-bottom: 0.5rem;
 }
 
-#habilidades .card:hover i {
+.habilidade-card:hover i {
     transform: scale(1.2);
 }
 
-#habilidades .card span {
-    font-weight: 600;
-    font-size: 1.1rem;
+.habilidade-card h3 {
+    font-size: 1.3rem;
     color: var(--light-color);
+    margin-bottom: 0.5rem;
+}
+
+.habilidade-card p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.6;
 }
 
 .skill-bar {
@@ -415,7 +421,7 @@ section h2::after {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 3px;
     overflow: hidden;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 }
 
 .skill-level {
@@ -425,56 +431,28 @@ section h2::after {
     transition: width 1s ease;
 }
 
-/* Cores específicas para cada tecnologia */
-#habilidades .fab.fa-html5 { 
-    color: #E34F26; 
-    text-shadow: 0 0 15px rgba(227, 79, 38, 0.4);
-}
-#habilidades .fab.fa-css3-alt { 
-    color: #1572B6; 
-    text-shadow: 0 0 15px rgba(21, 114, 182, 0.4);
-}
-#habilidades .fab.fa-js { 
-    color: #F7DF1E; 
-    text-shadow: 0 0 15px rgba(247, 223, 30, 0.4);
-}
-#habilidades .fab.fa-react { 
-    color: #61DAFB; 
-    text-shadow: 0 0 15px rgba(97, 218, 251, 0.4);
-}
-#habilidades .fab.fa-node { 
-    color: #339933; 
-    text-shadow: 0 0 15px rgba(51, 153, 51, 0.4);
-}
-#habilidades .fab.fa-java { 
-    color: #007396; 
-    text-shadow: 0 0 15px rgba(0, 115, 150, 0.4);
-}
-#habilidades .fab.fa-python { 
-    color: #3776AB; 
-    text-shadow: 0 0 15px rgba(55, 118, 171, 0.4);
-}
-#habilidades .fas.fa-database { 
-    color: #47A248; 
-    text-shadow: 0 0 15px rgba(71, 162, 72, 0.4);
-}
-#habilidades .fab.fa-git-alt { 
-    color: #F05032; 
-    text-shadow: 0 0 15px rgba(240, 80, 50, 0.4);
-}
-#habilidades .fab.fa-github { 
-    color: #FFFFFF; 
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-}
+/* Cores específicas */
+.fa-html5 { color: #E34F26; }
+.fa-css3-alt { color: #1572B6; }
+.fa-js { color: #F7DF1E; }
+.fa-react { color: #61DAFB; }
+.fa-node { color: #339933; }
+.fa-java { color: #007396; }
+.fa-python { color: #3776AB; }
+.fa-database { color: #47A248; }
+.fa-git-alt { color: #F05032; }
+.fa-github { color: #FFFFFF; }
 
 /* ===========================================
-   SEÇÃO PROJETOS
+   PROJETOS
    =========================================== */
-.projeto {
+.projetos-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-bottom: 4rem;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2.5rem;
+}
+
+.projeto-card {
     background: rgba(15, 15, 35, 0.6);
     backdrop-filter: blur(10px);
     border-radius: var(--border-radius-lg);
@@ -482,32 +460,29 @@ section h2::after {
     box-shadow: var(--shadow);
     transition: var(--transition);
     border: 1px solid rgba(108, 99, 255, 0.1);
+    display: flex;
+    flex-direction: column;
 }
 
-@media (min-width: 768px) {
-    .projeto {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-.projeto:hover {
+.projeto-card:hover {
     transform: translateY(-10px);
     box-shadow: var(--shadow-hover);
 }
 
-.projeto-img {
+.projeto-imagem {
     position: relative;
+    height: 200px;
     overflow: hidden;
 }
 
-.projeto-img img {
+.projeto-imagem img {
     width: 100%;
-    height: 250px;
+    height: 100%;
     object-fit: cover;
     transition: var(--transition);
 }
 
-.projeto:hover .projeto-img img {
+.projeto-card:hover .projeto-imagem img {
     transform: scale(1.05);
 }
 
@@ -528,30 +503,28 @@ section h2::after {
     font-weight: 600;
 }
 
-.projeto-content {
-    padding: 2rem;
+.projeto-conteudo {
+    padding: 1.5rem;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
-.projeto h3 {
-    font-size: 1.8rem;
+.projeto-conteudo h3 {
+    font-size: 1.5rem;
     margin-bottom: 1rem;
     color: var(--light-color);
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
 }
 
 .projeto-desc {
     color: var(--text-light);
     margin-bottom: 1.5rem;
-    line-height: 1.7;
+    line-height: 1.6;
+    flex-grow: 1;
 }
 
 .projeto-features {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .projeto-features p {
@@ -572,7 +545,6 @@ section h2::after {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    margin-top: auto;
 }
 
 .projeto-btn {
@@ -581,7 +553,7 @@ section h2::after {
     gap: 0.5rem;
     background: var(--gradient-primary);
     color: white;
-    padding: 0.8rem 1.5rem;
+    padding: 0.7rem 1.2rem;
     border-radius: 25px;
     text-decoration: none;
     font-weight: 600;
@@ -607,45 +579,26 @@ section h2::after {
 }
 
 /* ===========================================
-   SEÇÃO FORMAÇÃO
+   FORMAÇÃO
    =========================================== */
-.formacao-timeline {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto 4rem;
+.formacao-container {
+    margin-bottom: 4rem;
 }
 
-.timeline-item {
-    display: grid;
-    grid-template-columns: 150px 1fr;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    position: relative;
-}
-
-@media (max-width: 768px) {
-    .timeline-item {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
-    }
-}
-
-.timeline-date {
-    color: var(--primary-color);
-    font-weight: 600;
-    font-size: 1.1rem;
-    padding-top: 0.5rem;
-}
-
-.timeline-content {
+.formacao-card {
     background: rgba(15, 15, 35, 0.7);
-    padding: 1.5rem;
+    padding: 2.5rem;
     border-radius: var(--border-radius);
     border-left: 4px solid var(--primary-color);
+    transition: var(--transition);
 }
 
-.timeline-content h3 {
-    font-size: 1.4rem;
+.formacao-card:hover {
+    transform: translateY(-5px);
+}
+
+.formacao-card h3 {
+    font-size: 1.6rem;
     margin-bottom: 0.5rem;
     color: var(--light-color);
 }
@@ -653,23 +606,33 @@ section h2::after {
 .instituicao {
     color: var(--accent-color-2);
     font-weight: 500;
-    margin-bottom: 1rem;
-    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.formacao-card p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
 }
 
 .disciplinas {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
 }
 
 .disciplinas span {
     background: rgba(108, 99, 255, 0.1);
     color: var(--primary-color);
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.cursos-title {
+    margin-bottom: 2rem;
 }
 
 .cursos-grid {
@@ -714,18 +677,15 @@ section h2::after {
 .curso-status {
     display: inline-block;
     padding: 0.3rem 1rem;
+    background: rgba(54, 209, 220, 0.1);
+    color: var(--accent-color-2);
     border-radius: 15px;
     font-size: 0.8rem;
     font-weight: 600;
 }
 
-.curso-status.completo {
-    background: rgba(54, 209, 220, 0.1);
-    color: var(--accent-color-2);
-}
-
 /* ===========================================
-   SEÇÃO CONTATO
+   CONTATO
    =========================================== */
 .contato-container {
     display: grid;
@@ -1011,13 +971,17 @@ footer {
         padding: 6rem 2rem 3rem;
     }
     
-    .sobre-box,
+    .sobre-container,
     .contato-form {
         padding: 2rem;
     }
     
-    #habilidades .grid {
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    .projetos-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .habilidades-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
 }
 

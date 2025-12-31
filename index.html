@@ -93,6 +93,22 @@
                         <div class="skill-level" style="width: 80%"></div>
                     </div>
                 </div>
+                <div class="habilidade-card" data-tooltip="Next.js - Framework React para produção">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Next.js</h3>
+                    <p>Experiência com Next.js para aplicações server-side rendering e produção.</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="habilidade-card" data-tooltip="Node.js - Ambiente de execução">
+                    <i class="fab fa-node"></i>
+                    <h3>Node.js</h3>
+                    <p>Habilidade em construir servidores web e APIs RESTful.</p>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 75%"></div>
+                    </div>
+                </div>
                 <div class="habilidade-card" data-tooltip="Java - Linguagem de programação">
                     <i class="fab fa-java"></i>
                     <h3>Java</h3>
@@ -105,14 +121,6 @@
                     <i class="fab fa-python"></i>
                     <h3>Python</h3>
                     <p>Conhecimento em Python para automação de processos e análise de dados.</p>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 75%"></div>
-                    </div>
-                </div>
-                <div class="habilidade-card" data-tooltip="Node.js - Ambiente de execução">
-                    <i class="fab fa-node"></i>
-                    <h3>Node.js</h3>
-                    <p>Habilidade em construir servidores web e APIs RESTful.</p>
                     <div class="skill-bar">
                         <div class="skill-level" style="width: 75%"></div>
                     </div>
@@ -394,13 +402,15 @@
             <div class="formacao-container">
                 <div class="formacao-card">
                     <h3>Análise e Desenvolvimento de Sistemas</h3>
-                    <p class="instituicao">UniAmérica • 2023 – 2025 • Cursando</p>
+                    <p class="instituicao">UniAmérica • 2023 – 2025 • Finalizado</p>
                     <p>Formação focada em desenvolvimento de software, frontend, backend, bancos de dados e metodologias ágeis.</p>
                     <div class="disciplinas">
                         <span>Programação Web</span>
                         <span>Banco de Dados</span>
                         <span>Engenharia de Software</span>
                         <span>Redes de Computadores</span>
+                        <span>Desenvolvimento Mobile</span>
+                        <span>Gestão de Projetos</span>
                     </div>
                 </div>
             </div>
@@ -578,106 +588,115 @@
     </main>
 
     <script>
-    // ===== TELA DE LOADING =====
-    document.addEventListener("DOMContentLoaded", () => {
-        console.log("DOM carregado!");
-        
-        const welcomeScreen = document.getElementById("welcome-screen");
-        const mainContent = document.getElementById("main-content");
-        
-        // Verificar se elementos existem
-        if (!welcomeScreen || !mainContent) {
-            console.error("Elementos não encontrados!");
-            return;
-        }
-        
-        console.log("Iniciando loading...");
-        
-        // Remove a tela de loading após 3 segundos
-        setTimeout(() => {
-            welcomeScreen.style.opacity = "0";
-            welcomeScreen.style.transition = "opacity 0.5s ease";
+        // ===== TELA DE LOADING =====
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("DOM carregado!");
             
-            setTimeout(() => {
-                welcomeScreen.style.display = "none";
-                mainContent.style.opacity = "1";
-                mainContent.style.transition = "opacity 0.5s ease";
-                
-                console.log("Loading removido, conteúdo visível");
-            }, 500);
-        }, 3000);
-
-        // ===== FORMULÁRIO WHATSAPP =====
-        const whatsappForm = document.getElementById("whatsappForm");
-        if (whatsappForm) {
-            whatsappForm.addEventListener("submit", (event) => {
-                event.preventDefault();
-                
-                const nome = document.getElementById("nome")?.value || "";
-                const email = document.getElementById("email")?.value || "";
-                const mensagem = document.getElementById("mensagem")?.value || "";
-                
-                if (!nome || !email || !mensagem) {
-                    alert("Por favor, preencha todos os campos!");
-                    return;
-                }
-                
-                const numeroWhatsApp = "5513981175814";
-                const textoWhatsApp = `Olá, meu nome é ${nome}. Meu e-mail é ${email}. ${mensagem}`;
-                const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(textoWhatsApp)}`;
-                
-                window.open(url, "_blank");
-                whatsappForm.reset();
-            });
-        }
-
-        // ===== NAVEGAÇÃO SUAVE =====
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (!targetId || targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // ===== HEADER SCROLL EFFECT =====
-        const header = document.querySelector('header');
-        if (header) {
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-        }
-    });
-
-    // ===== FALLBACK CASO O DOMContentLoaded FALHE =====
-    window.addEventListener('load', function() {
-        console.log("Window loaded!");
-        
-        // Garante que o conteúdo apareça mesmo se algo der errado
-        setTimeout(() => {
             const welcomeScreen = document.getElementById("welcome-screen");
             const mainContent = document.getElementById("main-content");
             
-            if (welcomeScreen && mainContent) {
-                welcomeScreen.style.display = "none";
-                mainContent.style.opacity = "1";
-                mainContent.style.visibility = "visible";
+            // Verificar se elementos existem
+            if (!welcomeScreen || !mainContent) {
+                console.error("Elementos não encontrados!");
+                document.body.classList.add('loaded');
+                return;
             }
-        }, 4000); // 4 segundos como fallback
-    });
-</script>
+            
+            console.log("Iniciando loading...");
+            
+            // Remove a tela de loading após 3 segundos
+            setTimeout(() => {
+                welcomeScreen.style.opacity = "0";
+                welcomeScreen.style.transition = "opacity 0.5s ease";
+                
+                setTimeout(() => {
+                    welcomeScreen.style.display = "none";
+                    mainContent.style.opacity = "1";
+                    mainContent.style.visibility = "visible";
+                    
+                    console.log("Loading removido, conteúdo visível");
+                }, 500);
+            }, 3000);
+
+            // ===== FORMULÁRIO WHATSAPP =====
+            const whatsappForm = document.getElementById("whatsappForm");
+            if (whatsappForm) {
+                whatsappForm.addEventListener("submit", (event) => {
+                    event.preventDefault();
+                    
+                    const nome = document.getElementById("nome")?.value || "";
+                    const email = document.getElementById("email")?.value || "";
+                    const mensagem = document.getElementById("mensagem")?.value || "";
+                    
+                    if (!nome || !email || !mensagem) {
+                        alert("Por favor, preencha todos os campos!");
+                        return;
+                    }
+                    
+                    const numeroWhatsApp = "5513981175814";
+                    const textoWhatsApp = `Olá, meu nome é ${nome}. Meu e-mail é ${email}. ${mensagem}`;
+                    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(textoWhatsApp)}`;
+                    
+                    window.open(url, "_blank");
+                    whatsappForm.reset();
+                });
+            }
+
+            // ===== NAVEGAÇÃO SUAVE =====
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (!targetId || targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // ===== HEADER SCROLL EFFECT =====
+            const header = document.querySelector('header');
+            if (header) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 100) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
+        });
+
+        // ===== FALLBACK CASO O DOMContentLoaded FALHE =====
+        window.addEventListener('load', function() {
+            console.log("Window loaded!");
+            
+            // Garante que o conteúdo apareça mesmo se algo der errado
+            setTimeout(() => {
+                const welcomeScreen = document.getElementById("welcome-screen");
+                const mainContent = document.getElementById("main-content");
+                
+                if (welcomeScreen && mainContent) {
+                    welcomeScreen.style.display = "none";
+                    mainContent.style.opacity = "1";
+                    mainContent.style.visibility = "visible";
+                    document.body.classList.add('loaded');
+                }
+            }, 4000); // 4 segundos como fallback
+        });
+
+        // ===== FORÇAR EXIBIÇÃO EM CASO DE ERRO =====
+        window.addEventListener('error', function(e) {
+            console.error("Erro detectado:", e.message);
+            document.body.classList.add('loaded');
+            document.getElementById('main-content')?.style.display = 'block';
+            document.getElementById('welcome-screen')?.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
-

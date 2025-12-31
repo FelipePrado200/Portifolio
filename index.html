@@ -269,7 +269,7 @@
                     <p>Formação full stack com foco em JavaScript, Node.js, React, React Native e banco de dados.</p>
                 </div>
             </div>
-        </div>
+        </div> <!-- FECHAMENTO QUE ESTAVA FALTANDO -->
 
         <h2 class="cursos-title"><i class="fas fa-certificate"></i> Cursos e Certificações</h2>
 
@@ -425,7 +425,69 @@
     </footer>
 </div>
 
-<!-- JAVASCRIPT -->
-<script src="script.js"></script>
+<!-- JAVASCRIPT SIMPLIFICADO E FUNCIONAL -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const welcomeScreen = document.getElementById("welcome-screen");
+    const mainContent = document.getElementById("main-content");
+
+    // Remove a tela de loading após 2 segundos
+    setTimeout(() => {
+        welcomeScreen.style.opacity = "0";
+        welcomeScreen.style.transition = "opacity 0.5s ease";
+        
+        setTimeout(() => {
+            welcomeScreen.style.display = "none";
+            mainContent.classList.remove("hidden");
+            mainContent.style.opacity = "1";
+            mainContent.style.transition = "opacity 0.5s ease";
+        }, 500);
+    }, 2000);
+
+    // Formulário WhatsApp
+    const whatsappForm = document.getElementById("whatsappForm");
+    if (whatsappForm) {
+        whatsappForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const nome = document.getElementById("nome").value;
+            const email = document.getElementById("email").value;
+            const mensagem = document.getElementById("mensagem").value;
+
+            const numeroWhatsApp = "5513981175814";
+            const textoWhatsApp = `Olá, meu nome é ${nome}. Meu e-mail é ${email}. ${mensagem}`;
+
+            const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(textoWhatsApp)}`;
+            window.open(url, "_blank");
+        });
+    }
+
+    // Navegação suave
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Header scroll effect
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+});
+</script>
 </body>
 </html>

@@ -2,257 +2,430 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felipe Prado | Portfólio</title>
+
+    <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/Gemini_Generated_Image_ks7u13ks7u13ks7u.jpeg">
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-    <link rel="manifest" href="assets/site.webmanifest">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Felipe Prado - Portfólio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/732/732212.png">
 </head>
 <body>
-    <!-- Tela de Boas-Vindas -->
-    <div id="welcome-screen">
-        <div class="welcome-content">
-            <h1>Bem-Vindo ao Meu Portfólio</h1>
-            <div class="loader"></div>
+
+<!-- TELA DE LOADING -->
+<div id="welcome-screen">
+    <div class="welcome-content">
+        <h1>Bem-vindo ao meu Portfólio</h1>
+        <div class="loader">
+            <div class="loader-dot"></div>
         </div>
     </div>
+</div>
 
-    <!-- Conteúdo Principal -->
-    <div id="main-content" class="hidden">
-        <header>
-            <h1>Felipe Rodrigues Prado</h1>
-            <nav>
-                <ul>
-                    <li><a href="#sobre-mim">Sobre Mim</a></li>
-                    <li><a href="#habilidades">Habilidades</a></li>
-                    <li><a href="#projetos">Projetos</a></li>
-                    <li><a href="#formacao">Formação</a></li>
-                    <li><a href="#contatos">Contatos</a></li>
-                </ul>
-            </nav>
-        </header>
+<!-- CONTEÚDO PRINCIPAL -->
+<div id="main-content" class="hidden">
+    <!-- HEADER -->
+    <header>
+        <h1>Felipe Rodrigues Prado</h1>
+        <nav>
+            <ul>
+                <li><a href="#sobre"><i class="fas fa-user"></i> Sobre</a></li>
+                <li><a href="#habilidades"><i class="fas fa-code"></i> Habilidades</a></li>
+                <li><a href="#projetos"><i class="fas fa-rocket"></i> Projetos</a></li>
+                <li><a href="#formacao"><i class="fas fa-graduation-cap"></i> Formação</a></li>
+                <li><a href="#contato"><i class="fas fa-envelope"></i> Contato</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <section id="sobre-mim">
-            <h2>Sobre Mim</h2>
-            <div class="sobre-container">
-                <div class="foto-container">
-                    <img src="assets/myself.webp" alt="Minha Foto">
-                </div>
-                <div class="descricao">
-                    <div class="text">
-                        <p>
-                            Olá! Sou Felipe Rodrigues Prado, um desenvolvedor apaixonado por tecnologia e inovação. Com 22 anos e residente de São Paulo, venho aprimorando minhas habilidades em desenvolvimento de software. No momento, estou cursando Análise e Desenvolvimento de Sistemas, focando principalmente em frontend, backend e análise de sistemas. Busco sempre aplicar meus conhecimentos em projetos reais e estou em busca de novas oportunidades para crescer ainda mais profissionalmente.
-                        </p>
-                    </div>
-                    <div class="contato">
-                        <p><strong>Celular:</strong> (13) 98117-5814</p>
-                        <p><strong>E-mail:</strong> <a href="mailto:felipeendz@gmail.com">felipeendz@gmail.com</a></p>
-                        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/felipe-prado013" target="_blank">linkedin.com/in/felipe-prado013</a></p>
-                    </div>
-                </div>
+    <!-- SEÇÃO SOBRE -->
+    <section id="sobre">
+        <h2><i class="fas fa-user"></i> Sobre Mim</h2>
+        <div class="sobre-box">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Felipe Prado">
             </div>
-        </section>
-
-        <section id="habilidades">
-            <h2>Habilidades Técnicas</h2>
-            <div class="habilidades-container">
-                <div class="habilidade">
-                    <i class="fab fa-html5"></i>
-                    <h3>HTML5</h3>
-                    <p>Domínio de HTML5 para construção de páginas semânticas, acessíveis e bem estruturadas.</p>
-                </div>
-                <div class="habilidade">
-                    <i class="fab fa-css3-alt"></i>
-                    <h3>CSS3</h3>
-                    <p>Proficiência em estilização de layouts modernos e responsivos, utilizando técnicas avançadas como Flexbox e Grid.</p>
-                </div>
-                <div class="habilidade">
-                    <i class="fab fa-js"></i>
-                    <h3>JavaScript</h3>
-                    <p>Experiência no desenvolvimento de aplicações dinâmicas e interativas, utilizando recursos avançados da linguagem.</p>
-                </div>
-                <div class="habilidade">
-                    <i class="fab fa-react"></i>
-                    <h3>React</h3>
-                    <p>Experiência com React para criação de interfaces dinâmicas e escaláveis, utilizando hooks, context API e Redux.</p>
-                </div>
-                <div class="habilidade">
-                    <i class="fab fa-java"></i>
-                    <h3>Java</h3>
-                    <p>Habilidade na construção de sistemas robustos, com foco em OOP (Programação Orientada a Objetos) e frameworks como Spring.</p>
-                </div>
-                <div class="habilidade">
-                    <i class="fab fa-python"></i>
-                    <h3>Python</h3>
-                    <p>Conhecimento em Python para automação de processos, análise de dados e desenvolvimento de aplicações web e scripts.</p>
-                </div>
-                <div class="habilidade">
-                    <i class="fab fa-node"></i>
-                    <h3>Node.js</h3>
-                    <p>Habilidade em construir servidores web e APIs RESTful utilizando Node.js e Express.js.</p>
-                </div>
-                <div class="habilidade">
-                    <i class="fas fa-database"></i>
-                    <h3>MongoDB</h3>
-                    <p>Experiência com bancos de dados NoSQL, utilizando MongoDB para modelagem de dados e implementação de queries eficientes.</p>
-                </div>
-                <div class="habilidade">
-                     <i class="fab fa-git-alt"></i>
-                    <h3>Git</h3>
-                    <p>Experiência com controle de versão utilizando Git para gerenciamento de projetos e colaboração em equipe.</p>
-                </div>
-                <div class="habilidade">
-                    <i class="fab fa-github"></i>
-                    <h3>GitHub</h3>
-                    <p>Domínio do GitHub para hospedagem de repositórios, colaboração em projetos open source e gerenciamento de issues e pull requests.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="projetos">
-            <h2>Projetos</h2>
-            <div class="projeto">
-                <h3>Food Explorer</h3>
+            <div class="sobre-text">
+                <h3>Desenvolvedor Full Stack</h3>
                 <p>
-                    O Food Explorer é uma aplicação web que permite 
-                    aos usuários buscar, explorar e salvar receitas de diferentes 
-                    tipos de alimentos. A ideia central é proporcionar uma experiência 
-                    rica onde o usuário pode visualizar informações detalhadas sobre 
-                    ingredientes, passos de preparação e categorização das receitas.
+                    Sou desenvolvedor apaixonado por tecnologia, focado em frontend e backend.
+                    Atualmente curso Análise e Desenvolvimento de Sistemas e busco oportunidades
+                    para crescer profissionalmente e aplicar meus conhecimentos em projetos reais.
                 </p>
-                <div class="projeto-imagem">
-                    <img src="assets/meuportifolio.png" alt="Food Explorer">
-                </div>
-                <a href="https://github.com/FelipePrado200/Food-Explorer-FrontEnd" target="_blank">Visualizar Projeto</a>
-            </div>
-            <div class="projeto">
-                <h3>Rocket Notes</h3>
                 <p>
-                    Rocketnotes é uma aplicação de notas criada para ajudar você a 
-                    organizar suas ideias e informações de maneira eficiente. Com funcionalidades 
-                    práticas como criação, pesquisa e exclusão de notas, a plataforma é ideal para 
-                    simplificar seu dia a dia.
+                    Tenho experiência em desenvolvimento web com JavaScript, React, Node.js
+                    e outras tecnologias modernas. Sempre em busca de novos desafios e
+                    aprendizados no mundo da programação.
                 </p>
-                <div class="projeto-imagem">
-                    <img src="assets/rocketnotesportifolio.webp" alt="RocketNotes">
+                <div class="sobre-info">
+                    <p><i class="fas fa-map-marker-alt"></i> São Paulo, Brasil</p>
+                    <p><i class="fas fa-envelope"></i> felipe@example.com</p>
+                    <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
                 </div>
-                <a href="https://github.com/FelipePrado200/RocketNotes" target="_blank">Visualizar Projeto</a>
             </div>
+        </div>
+    </section>
 
-            <div class="projeto">
-                <h3>Bank System</h3>
-                <p>Este projeto implementa um sistema bancário em Python, onde um usuário pode criar uma conta bancária, realizar depósitos, efetuar saques e consultar o saldo.</p>
-                <div class="projeto-imagem">
-                    <img src="assets/banksystem.jpg" alt="Bank System">
+    <!-- SEÇÃO HABILIDADES -->
+    <section id="habilidades">
+        <h2><i class="fas fa-code"></i> Habilidades Técnicas</h2>
+        <div class="grid">
+            <div class="card" data-tooltip="HTML5 - Linguagem de marcação">
+                <i class="fab fa-html5"></i>
+                <span>HTML5</span>
+                <div class="skill-bar">
+                    <div class="skill-level" style="width: 95%"></div>
                 </div>
-                <a href="https://github.com/FelipePrado200/Sistema-Banc-rio-" target="_blank">Visualizar Projeto</a>
             </div>
+            <div class="card" data-tooltip="CSS3 - Estilização">
+                <i class="fab fa-css3-alt"></i>
+                <span>CSS3</span>
+                <div class="skill-bar">
+                    <div class="skill-level" style="width: 90%"></div>
+                </div>
+            </div>
+            <div class="card" data-tooltip="JavaScript - Linguagem de programação">
+                <i class="fab fa-js"></i>
+                <span>JavaScript</span>
+                <div class="skill-bar">
+                    <div class="skill-level" style="width: 85%"></div>
+                </div>
+            </div>
+            <div class="card" data-tooltip="React - Biblioteca JavaScript">
+                <i class="fab fa-react"></i>
+                <span>React</span>
+                <div class="skill-bar">
+                    <div class="skill-level" style="width: 80%"></div>
+                </div>
+            </div>
+            <div class="card" data-tooltip="Node.js - Ambiente de execução">
+                <i class="fab fa-node"></i>
+                <span>Node.js</span>
+                <div class="skill-bar">
+                    <div class="skill-level" style="width: 75%"></div>
+                </div>
+            </div>
+            <div class="card" data-tooltip="Java - Linguagem de programação">
+                <i class="fab fa-java"></i>
+                <span>Java</span>
+                <div class="skill-bar">
+                    <div class="skill-level" style="width: 70%"></div>
+                </div>
+            </div>
+            <div class="card" data-tooltip="Python - Linguagem de programação">
+                <i class="fab fa-python"></i>
+                <span>Python</span>
+                <div class="skill-bar">
+                    <div class="skill-level" style="width: 75%"></div>
+                </div>
+            </div>
+            <div class="card" data-tooltip="MongoDB - Banco de dados NoSQL">
+                <i class="fas fa-database"></i>
+                <span>MongoDB</span>
+                <div class="skill-bar">
+                    <div class="skill-level" style="width: 70%"></div>
+                </div>
+            </div>
+            <div class="card" data-tooltip="Git - Controle de versão">
+                <i class="fab fa-git-alt"></i>
+                <span>Git</span>
+                <div class="skill-bar">
+                    <div class="skill-level" style="width: 85%"></div>
+                </div>
+            </div>
+            <div class="card" data-tooltip="GitHub - Plataforma de desenvolvimento">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+                <div class="skill-bar">
+                    <div class="skill-level" style="width: 90%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="projeto">
+    <!-- SEÇÃO PROJETOS -->
+    <section id="projetos">
+        <h2><i class="fas fa-rocket"></i> Projetos</h2>
+        
+        <div class="projeto">
+            <div class="projeto-img">
+                <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="DevFlix">
+                <div class="projeto-tech">
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                </div>
+            </div>
+            <div class="projeto-content">
                 <h3>DevFlix</h3>
-                <p>DevFlix é uma plataforma de streaming de filmes desenvolvida como parte do meu portfólio. O projeto foi criado para demonstrar habilidades em desenvolvimento web, utilizando HTML, CSS e JavaScript. A aplicação simula uma experiência de streaming, com funcionalidades como login, registro, pesquisa de filmes, filtragem por gênero, e uma interface interativa para visualização de detalhes dos filmes.</p>
-                <div class="projeto-imagem">
-                    <img src="assets/readme.png" alt="Cpf Generator">
+                <p class="projeto-desc">Plataforma de streaming fictícia criada com HTML, CSS e JavaScript. Oferece interface moderna e responsiva para visualização de conteúdo de programação.</p>
+                <div class="projeto-features">
+                    <p><i class="fas fa-check"></i> Design responsivo</p>
+                    <p><i class="fas fa-check"></i> Player de vídeo customizado</p>
+                    <p><i class="fas fa-check"></i> Sistema de categorias</p>
                 </div>
-                <a href="https://felipeprado200.github.io/Devflix/" target="_blank">Visualizar Projeto</a>
+                <div class="projeto-links">
+                    <a href="https://felipeprado200.github.io/Devflix/" target="_blank" class="projeto-btn">
+                        <i class="fas fa-external-link-alt"></i> Ver projeto online
+                    </a>
+                    <a href="https://github.com/felipeprado200/Devflix" target="_blank" class="projeto-btn secundario">
+                        <i class="fab fa-github"></i> Código fonte
+                    </a>
+                </div>
             </div>
+        </div>
 
-            <div class="projeto">
-                <h3>Site Advocacia</h3>
-                <p>Esse site é um projeto Free lance que eu criei para um advogado.</p>
-                <div class="projeto-imagem">
-                    <img src="assets/freelance.png" alt="Cpf Generator">
+        <div class="projeto">
+            <div class="projeto-img">
+                <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Chronos Pomodoro">
+                <div class="projeto-tech">
+                    <span>React</span>
+                    <span>CSS Modules</span>
+                    <span>LocalStorage</span>
                 </div>
-                <a href="https://felipeprado200.github.io/site-matheus/" target="_blank">Visualizar Projeto</a>
             </div>
-            <div class="projeto">
+            <div class="projeto-content">
                 <h3>Chronos Pomodoro</h3>
-                <p>A Técnica Pomodoro é uma metodologia de produtividade criada por Francesco Cirillo, que consiste em dividir o trabalho em blocos de tempo (os famosos "Pomodoros") intercalados com pausas. O objetivo é manter o foco total por um período curto e garantir descansos para evitar o cansaço mental.</p>
-                <div class="projeto-imagem">
-                    <img src="assets/pomodoro.png" alt="Pomodoro app">
+                <p class="projeto-desc">Aplicação de produtividade baseada na técnica Pomodoro. Permite gerenciar tempo de trabalho e pausas, com notificações e histórico de sessões.</p>
+                <div class="projeto-features">
+                    <p><i class="fas fa-check"></i> Temporizador configurável</p>
+                    <p><i class="fas fa-check"></i> Notificações sonoras</p>
+                    <p><i class="fas fa-check"></i> Histórico de sessões</p>
                 </div>
-                <a href="https://chronos-pomodoro-lime.vercel.app/" target="_blank">Visualizar Projeto</a>
-            </div>
-            <div class="projeto">
-                <h3>My finances</h3>
-                <p>Projeto em desenvolvimento para controle de finanças</p>
-                <div class="projeto-imagem">
-                    <img src="assets/finances.png" alt="Pomodoro app">
+                <div class="projeto-links">
+                    <a href="https://chronos-pomodoro-lime.vercel.app/" target="_blank" class="projeto-btn">
+                        <i class="fas fa-external-link-alt"></i> Ver projeto online
+                    </a>
+                    <a href="https://github.com/felipeprado200/chronos-pomodoro" target="_blank" class="projeto-btn secundario">
+                        <i class="fab fa-github"></i> Código fonte
+                    </a>
                 </div>
-                <a href="https://github.com/FelipePrado200/my-finances" target="_blank">Visualizar Projeto</a>
             </div>
-            <div class="projeto">
-                <h3>The Blog</h3>
-                <p>Simulação de um blog.</p>
-                <div class="projeto-imagem">
-                    <img src="assets/theblog.png" alt="Pomodoro app">
-                </div>
-                <a href="https://github.com/FelipePrado200/The-blog" target="_blank">Visualizar Projeto</a>
-            </div>
-            <div class="projeto">
-                <h3>Pet Dev</h3>
-                <p>Dashboard de um petshop</p>
-                <div class="projeto-imagem">
-                    <img src="assets/petdev.png" alt="Pomodoro app">
-                </div>
-                <a href="https://github.com/FelipePrado200/petdev" target="_blank">Visualizar Projeto</a>
-            </div>
-       
-        </section>
+        </div>
 
-        <section id="formacao">
-            <h2>Formação</h2>
-            <ul>
-                <li><strong>Análise e Desenvolvimento de Sistemas</strong> – UniAmérica (2023 – 2025) - cursando</li>
-            </ul>
-            <h2>Cursos</h2>
-            <ul>
-                <li>Explorer (Rocketseat)</li>
-                <li>Java (Rocketseat)</li>
-                <li>NLW Unite (Rocketseat)</li>
-                <li>C sharp (Rocketseat)</li>
-                <li>Basic FrontEnd (UniAmérica)</li>
-                <li>Object-Oriented Developer (UniAmérica)</li>
-                <li>Programing Basics (UniAmérica)</li>
-                <li>FrontEnd Developer (UniAmérica)</li>
-                <li>BackEnd Developer (UniAmérica)</li>
-                <li>Full Stack Developer (UniAmérica)</li>
-                <li>DevOps Strategist (UniAmérica)</li>
-            </ul>
-        </section>
+        <div class="projeto">
+            <div class="projeto-img">
+                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80" alt="Task Manager">
+                <div class="projeto-tech">
+                    <span>Node.js</span>
+                    <span>Express</span>
+                    <span>MongoDB</span>
+                </div>
+            </div>
+            <div class="projeto-content">
+                <h3>Task Manager API</h3>
+                <p class="projeto-desc">API RESTful para gerenciamento de tarefas com autenticação de usuários, CRUD completo e deploy na nuvem.</p>
+                <div class="projeto-features">
+                    <p><i class="fas fa-check"></i> Autenticação JWT</p>
+                    <p><i class="fas fa-check"></i> CRUD completo</p>
+                    <p><i class="fas fa-check"></i> Deploy na nuvem</p>
+                </div>
+                <div class="projeto-links">
+                    <a href="https://taskmanager-api-example.vercel.app/" target="_blank" class="projeto-btn">
+                        <i class="fas fa-external-link-alt"></i> Ver documentação
+                    </a>
+                    <a href="https://github.com/felipeprado200/task-manager-api" target="_blank" class="projeto-btn secundario">
+                        <i class="fab fa-github"></i> Código fonte
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <section id="contatos">
-            <h2>Entre em Contato</h2>
-            <form class="contato-form" id="whatsappForm">
-                <div class="form-group">
-                    <label for="nome">Seu Nome</label>
-                    <input type="text" id="nome" name="nome" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Seu E-mail</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="mensagem">Sua Mensagem</label>
-                    <textarea id="mensagem" name="mensagem" required></textarea>
-                </div>
-                <button type="submit" class="btn-enviar">Enviar</button>
-            </form>
-        </section>
+    <!-- SEÇÃO FORMAÇÃO -->
+    <section id="formacao">
+        <h2><i class="fas fa-graduation-cap"></i> Formação Acadêmica</h2>
 
-        <footer>
+        <div class="formacao-timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2023 – 2025</div>
+                <div class="timeline-content">
+                    <h3>Análise e Desenvolvimento de Sistemas</h3>
+                    <p class="instituicao">UniAmérica • Cursando</p>
+                    <p>Formação focada em desenvolvimento de software, frontend, backend, bancos de dados e metodologias ágeis.</p>
+                    <div class="disciplinas">
+                        <span>Programação Web</span>
+                        <span>Banco de Dados</span>
+                        <span>Engenharia de Software</span>
+                        <span>Redes de Computadores</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2022 – 2023</div>
+                <div class="timeline-content">
+                    <h3>Curso Explorer</h3>
+                    <p class="instituicao">Rocketseat • Completo</p>
+                    <p>Formação full stack com foco em JavaScript, Node.js, React, React Native e banco de dados.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="cursos-title"><i class="fas fa-certificate"></i> Cursos e Certificações</h2>
+
+        <div class="cursos-grid">
+            <div class="curso-card">
+                <i class="fab fa-js"></i>
+                <h4>JavaScript Moderno</h4>
+                <p>Rocketseat • 40h</p>
+                <span class="curso-status completo">Completo</span>
+            </div>
+            
+            <div class="curso-card">
+                <i class="fab fa-react"></i>
+                <h4>React JS</h4>
+                <p>Rocketseat • 60h</p>
+                <span class="curso-status completo">Completo</span>
+            </div>
+            
+            <div class="curso-card">
+                <i class="fab fa-node"></i>
+                <h4>Node.js</h4>
+                <p>Rocketseat • 50h</p>
+                <span class="curso-status completo">Completo</span>
+            </div>
+            
+            <div class="curso-card">
+                <i class="fab fa-java"></i>
+                <h4>Java</h4>
+                <p>Rocketseat • 45h</p>
+                <span class="curso-status completo">Completo</span>
+            </div>
+            
+            <div class="curso-card">
+                <i class="fas fa-code"></i>
+                <h4>Full Stack</h4>
+                <p>UniAmérica • 80h</p>
+                <span class="curso-status completo">Completo</span>
+            </div>
+            
+            <div class="curso-card">
+                <i class="fas fa-server"></i>
+                <h4>DevOps</h4>
+                <p>UniAmérica • 60h</p>
+                <span class="curso-status completo">Completo</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO CONTATO -->
+    <section id="contato">
+        <h2><i class="fas fa-envelope"></i> Contato</h2>
+        
+        <div class="contato-container">
+            <div class="contato-info">
+                <h3>Vamos conversar!</h3>
+                <p>Estou sempre aberto a novas oportunidades e colaborações.</p>
+                
+                <div class="contato-detalhes">
+                    <div class="contato-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>felipe@example.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contato-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Telefone</h4>
+                            <p>(11) 99999-9999</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contato-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p>(11) 99999-9999</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contato-item">
+                        <i class="fab fa-linkedin"></i>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <p>/felipeprado</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://github.com/felipeprado200" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/felipeprado" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://instagram.com/felipeprado" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/felipeprado" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            
+            <div class="contato-form">
+                <h3>Envie uma mensagem</h3>
+                <form id="whatsappForm">
+                    <div class="form-group">
+                        <input type="text" id="nome" placeholder=" " required>
+                        <label for="nome">Nome completo</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder=" " required>
+                        <label for="email">E-mail</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="mensagem" placeholder=" " rows="5" required></textarea>
+                        <label for="mensagem">Sua mensagem</label>
+                    </div>
+                    
+                    <button type="submit" class="btn-enviar">
+                        <i class="fab fa-whatsapp"></i> Enviar via WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Felipe Prado</h3>
+                <p>Desenvolvedor Full Stack</p>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#sobre">Sobre</a>
+                <a href="#habilidades">Habilidades</a>
+                <a href="#projetos">Projetos</a>
+                <a href="#formacao">Formação</a>
+                <a href="#contato">Contato</a>
+            </div>
+            
+            <div class="footer-social">
+                <a href="https://github.com/felipeprado200" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/felipeprado" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://instagram.com/felipeprado" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
             <p>&copy; 2025 Felipe Rodrigues Prado. Todos os direitos reservados.</p>
-        </footer>
-    </div>
+            <p>Desenvolvido com <i class="fas fa-heart"></i> e muito código</p>
+        </div>
+    </footer>
+</div>
 
-    <script src="script.js"></script>
+<!-- JAVASCRIPT -->
+<script src="script.js"></script>
 </body>
 </html>

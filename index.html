@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="style.css">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/732/732212.png">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
 <body>
 
@@ -32,27 +32,27 @@
 </div>
 
 <!-- CONTEÚDO PRINCIPAL -->
-<div id="main-content" class="hidden">
+<main id="main-content">
     <!-- HEADER -->
     <header>
         <h1>Felipe Rodrigues Prado</h1>
         <nav>
             <ul>
-                <li><a href="#sobre"><i class="fas fa-user"></i> Sobre</a></li>
-                <li><a href="#habilidades"><i class="fas fa-code"></i> Habilidades</a></li>
-                <li><a href="#projetos"><i class="fas fa-rocket"></i> Projetos</a></li>
-                <li><a href="#formacao"><i class="fas fa-graduation-cap"></i> Formação</a></li>
-                <li><a href="#contato"><i class="fas fa-envelope"></i> Contato</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#formacao">Formação</a></li>
+                <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- SEÇÃO SOBRE -->
     <section id="sobre">
-        <h2><i class="fas fa-user"></i> Sobre Mim</h2>
+        <h2>Sobre Mim</h2>
         <div class="sobre-box">
             <div class="image-container">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Felipe Prado">
+                <img src="assets/myself.webp" alt="Felipe Prado">
             </div>
             <div class="sobre-text">
                 <h3>Desenvolvedor Full Stack</h3>
@@ -68,8 +68,8 @@
                 </p>
                 <div class="sobre-info">
                     <p><i class="fas fa-map-marker-alt"></i> São Paulo, Brasil</p>
-                    <p><i class="fas fa-envelope"></i> felipe@example.com</p>
-                    <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+                    <p><i class="fas fa-envelope"></i> felipe.prado@email.com</p>
+                    <p><i class="fas fa-phone"></i> (13) 98117-5814</p>
                 </div>
             </div>
         </div>
@@ -77,7 +77,7 @@
 
     <!-- SEÇÃO HABILIDADES -->
     <section id="habilidades">
-        <h2><i class="fas fa-code"></i> Habilidades Técnicas</h2>
+        <h2>Habilidades Técnicas</h2>
         <div class="grid">
             <div class="card" data-tooltip="HTML5 - Linguagem de marcação">
                 <i class="fab fa-html5"></i>
@@ -154,11 +154,11 @@
 
     <!-- SEÇÃO PROJETOS -->
     <section id="projetos">
-        <h2><i class="fas fa-rocket"></i> Projetos</h2>
+        <h2>Projetos</h2>
         
         <div class="projeto">
             <div class="projeto-img">
-                <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="DevFlix">
+                <img src="assets/readme.png" alt="DevFlix">
                 <div class="projeto-tech">
                     <span>HTML</span>
                     <span>CSS</span>
@@ -186,7 +186,7 @@
 
         <div class="projeto">
             <div class="projeto-img">
-                <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Chronos Pomodoro">
+                <img src="assets/pomodoro.png" alt="Chronos Pomodoro">
                 <div class="projeto-tech">
                     <span>React</span>
                     <span>CSS Modules</span>
@@ -211,39 +211,11 @@
                 </div>
             </div>
         </div>
-
-        <div class="projeto">
-            <div class="projeto-img">
-                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80" alt="Task Manager">
-                <div class="projeto-tech">
-                    <span>Node.js</span>
-                    <span>Express</span>
-                    <span>MongoDB</span>
-                </div>
-            </div>
-            <div class="projeto-content">
-                <h3>Task Manager API</h3>
-                <p class="projeto-desc">API RESTful para gerenciamento de tarefas com autenticação de usuários, CRUD completo e deploy na nuvem.</p>
-                <div class="projeto-features">
-                    <p><i class="fas fa-check"></i> Autenticação JWT</p>
-                    <p><i class="fas fa-check"></i> CRUD completo</p>
-                    <p><i class="fas fa-check"></i> Deploy na nuvem</p>
-                </div>
-                <div class="projeto-links">
-                    <a href="https://taskmanager-api-example.vercel.app/" target="_blank" class="projeto-btn">
-                        <i class="fas fa-external-link-alt"></i> Ver documentação
-                    </a>
-                    <a href="https://github.com/felipeprado200/task-manager-api" target="_blank" class="projeto-btn secundario">
-                        <i class="fab fa-github"></i> Código fonte
-                    </a>
-                </div>
-            </div>
-        </div>
     </section>
 
     <!-- SEÇÃO FORMAÇÃO -->
     <section id="formacao">
-        <h2><i class="fas fa-graduation-cap"></i> Formação Acadêmica</h2>
+        <h2>Formação Acadêmica</h2>
 
         <div class="formacao-timeline">
             <div class="timeline-item">
@@ -260,38 +232,15 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="timeline-item">
-                <div class="timeline-date">2022 – 2023</div>
-                <div class="timeline-content">
-                    <h3>Curso Explorer</h3>
-                    <p class="instituicao">Rocketseat • Completo</p>
-                    <p>Formação full stack com foco em JavaScript, Node.js, React, React Native e banco de dados.</p>
-                </div>
-            </div>
-        </div> <!-- FECHAMENTO QUE ESTAVA FALTANDO -->
-
-        <h2 class="cursos-title"><i class="fas fa-certificate"></i> Cursos e Certificações</h2>
+        <h2>Cursos e Certificações</h2>
 
         <div class="cursos-grid">
             <div class="curso-card">
-                <i class="fab fa-js"></i>
-                <h4>JavaScript Moderno</h4>
-                <p>Rocketseat • 40h</p>
-                <span class="curso-status completo">Completo</span>
-            </div>
-            
-            <div class="curso-card">
-                <i class="fab fa-react"></i>
-                <h4>React JS</h4>
-                <p>Rocketseat • 60h</p>
-                <span class="curso-status completo">Completo</span>
-            </div>
-            
-            <div class="curso-card">
-                <i class="fab fa-node"></i>
-                <h4>Node.js</h4>
-                <p>Rocketseat • 50h</p>
+                <i class="fab fa-rocket"></i>
+                <h4>Explorer</h4>
+                <p>Rocketseat • 120h</p>
                 <span class="curso-status completo">Completo</span>
             </div>
             
@@ -304,6 +253,20 @@
             
             <div class="curso-card">
                 <i class="fas fa-code"></i>
+                <h4>NLW Unite</h4>
+                <p>Rocketseat • 8h</p>
+                <span class="curso-status completo">Completo</span>
+            </div>
+            
+            <div class="curso-card">
+                <i class="fab fa-microsoft"></i>
+                <h4>C#</h4>
+                <p>Rocketseat • 40h</p>
+                <span class="curso-status completo">Completo</span>
+            </div>
+            
+            <div class="curso-card">
+                <i class="fas fa-laptop-code"></i>
                 <h4>Full Stack</h4>
                 <p>UniAmérica • 80h</p>
                 <span class="curso-status completo">Completo</span>
@@ -320,7 +283,7 @@
 
     <!-- SEÇÃO CONTATO -->
     <section id="contato">
-        <h2><i class="fas fa-envelope"></i> Contato</h2>
+        <h2>Contato</h2>
         
         <div class="contato-container">
             <div class="contato-info">
@@ -332,7 +295,7 @@
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h4>Email</h4>
-                            <p>felipe@example.com</p>
+                            <p>felipe.prado@email.com</p>
                         </div>
                     </div>
                     
@@ -340,7 +303,7 @@
                         <i class="fas fa-phone"></i>
                         <div>
                             <h4>Telefone</h4>
-                            <p>(11) 99999-9999</p>
+                            <p>(13) 98117-5814</p>
                         </div>
                     </div>
                     
@@ -348,7 +311,7 @@
                         <i class="fab fa-whatsapp"></i>
                         <div>
                             <h4>WhatsApp</h4>
-                            <p>(11) 99999-9999</p>
+                            <p>(13) 98117-5814</p>
                         </div>
                     </div>
                     
@@ -364,8 +327,6 @@
                 <div class="social-links">
                     <a href="https://github.com/felipeprado200" target="_blank"><i class="fab fa-github"></i></a>
                     <a href="https://linkedin.com/in/felipeprado" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://instagram.com/felipeprado" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://twitter.com/felipeprado" target="_blank"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
             
@@ -414,7 +375,6 @@
             <div class="footer-social">
                 <a href="https://github.com/felipeprado200" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://linkedin.com/in/felipeprado" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://instagram.com/felipeprado" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
         
@@ -423,9 +383,9 @@
             <p>Desenvolvido com <i class="fas fa-heart"></i> e muito código</p>
         </div>
     </footer>
-</div>
+</main>
 
-<!-- JAVASCRIPT SIMPLIFICADO E FUNCIONAL -->
+<!-- JAVASCRIPT SIMPLIFICADO -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const welcomeScreen = document.getElementById("welcome-screen");
@@ -438,7 +398,6 @@ document.addEventListener("DOMContentLoaded", () => {
         
         setTimeout(() => {
             welcomeScreen.style.display = "none";
-            mainContent.classList.remove("hidden");
             mainContent.style.opacity = "1";
             mainContent.style.transition = "opacity 0.5s ease";
         }, 500);

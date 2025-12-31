@@ -586,117 +586,107 @@
             </div>
         </footer>
     </main>
-
-    <script>
-        // ===== TELA DE LOADING =====
-        document.addEventListener("DOMContentLoaded", () => {
-            console.log("DOM carregado!");
+<script>
+    // ===== TELA DE LOADING =====
+    document.addEventListener("DOMContentLoaded", () => {
+        console.log("DOM carregado!");
+        
+        const welcomeScreen = document.getElementById("welcome-screen");
+        const mainContent = document.getElementById("main-content");
+        
+        // Verificar se elementos existem
+        if (!welcomeScreen || !mainContent) {
+            console.error("Elementos não encontrados!");
+            return;
+        }
+        
+        console.log("Iniciando loading...");
+        
+        // Remove a tela de loading após 3 segundos
+        setTimeout(() => {
+            welcomeScreen.style.opacity = "0";
+            welcomeScreen.style.transition = "opacity 0.5s ease";
             
+            setTimeout(() => {
+                welcomeScreen.style.display = "none";
+                mainContent.style.opacity = "1";
+                mainContent.style.transition = "opacity 0.5s ease";
+                
+                console.log("Loading removido, conteúdo visível");
+            }, 500);
+        }, 3000);
+
+        // ===== FORMULÁRIO WHATSAPP =====
+        const whatsappForm = document.getElementById("whatsappForm");
+        if (whatsappForm) {
+            whatsappForm.addEventListener("submit", (event) => {
+                event.preventDefault();
+                
+                const nome = document.getElementById("nome")?.value || "";
+                const email = document.getElementById("email")?.value || "";
+                const mensagem = document.getElementById("mensagem")?.value || "";
+                
+                if (!nome || !email || !mensagem) {
+                    alert("Por favor, preencha todos os campos!");
+                    return;
+                }
+                
+                const numeroWhatsApp = "5513981175814";
+                const textoWhatsApp = `Olá, meu nome é ${nome}. Meu e-mail é ${email}. ${mensagem}`;
+                const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(textoWhatsApp)}`;
+                
+                window.open(url, "_blank");
+                whatsappForm.reset();
+            });
+        }
+
+        // ===== NAVEGAÇÃO SUAVE =====
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (!targetId || targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ===== HEADER SCROLL EFFECT =====
+        const header = document.querySelector('header');
+        if (header) {
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        }
+    });
+
+    // ===== FALLBACK CASO O DOMContentLoaded FALHE =====
+    window.addEventListener('load', function() {
+        console.log("Window loaded!");
+        
+        // Garante que o conteúdo apareça mesmo se algo der errado
+        setTimeout(() => {
             const welcomeScreen = document.getElementById("welcome-screen");
             const mainContent = document.getElementById("main-content");
             
-            // Verificar se elementos existem
-            if (!welcomeScreen || !mainContent) {
-                console.error("Elementos não encontrados!");
-                document.body.classList.add('loaded');
-                return;
+            if (welcomeScreen && mainContent) {
+                welcomeScreen.style.display = "none";
+                mainContent.style.opacity = "1";
+                mainContent.style.visibility = "visible";
             }
-            
-            console.log("Iniciando loading...");
-            
-            // Remove a tela de loading após 3 segundos
-            setTimeout(() => {
-                welcomeScreen.style.opacity = "0";
-                welcomeScreen.style.transition = "opacity 0.5s ease";
-                
-                setTimeout(() => {
-                    welcomeScreen.style.display = "none";
-                    mainContent.style.opacity = "1";
-                    mainContent.style.visibility = "visible";
-                    
-                    console.log("Loading removido, conteúdo visível");
-                }, 500);
-            }, 3000);
-
-            // ===== FORMULÁRIO WHATSAPP =====
-            const whatsappForm = document.getElementById("whatsappForm");
-            if (whatsappForm) {
-                whatsappForm.addEventListener("submit", (event) => {
-                    event.preventDefault();
-                    
-                    const nome = document.getElementById("nome")?.value || "";
-                    const email = document.getElementById("email")?.value || "";
-                    const mensagem = document.getElementById("mensagem")?.value || "";
-                    
-                    if (!nome || !email || !mensagem) {
-                        alert("Por favor, preencha todos os campos!");
-                        return;
-                    }
-                    
-                    const numeroWhatsApp = "5513981175814";
-                    const textoWhatsApp = `Olá, meu nome é ${nome}. Meu e-mail é ${email}. ${mensagem}`;
-                    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(textoWhatsApp)}`;
-                    
-                    window.open(url, "_blank");
-                    whatsappForm.reset();
-                });
-            }
-
-            // ===== NAVEGAÇÃO SUAVE =====
-            document.querySelectorAll('nav a').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if (!targetId || targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // ===== HEADER SCROLL EFFECT =====
-            const header = document.querySelector('header');
-            if (header) {
-                window.addEventListener('scroll', function() {
-                    if (window.scrollY > 100) {
-                        header.classList.add('scrolled');
-                    } else {
-                        header.classList.remove('scrolled');
-                    }
-                });
-            }
-        });
-
-        // ===== FALLBACK CASO O DOMContentLoaded FALHE =====
-        window.addEventListener('load', function() {
-            console.log("Window loaded!");
-            
-            // Garante que o conteúdo apareça mesmo se algo der errado
-            setTimeout(() => {
-                const welcomeScreen = document.getElementById("welcome-screen");
-                const mainContent = document.getElementById("main-content");
-                
-                if (welcomeScreen && mainContent) {
-                    welcomeScreen.style.display = "none";
-                    mainContent.style.opacity = "1";
-                    mainContent.style.visibility = "visible";
-                    document.body.classList.add('loaded');
-                }
-            }, 4000); // 4 segundos como fallback
-        });
-
-        // ===== FORÇAR EXIBIÇÃO EM CASO DE ERRO =====
-        window.addEventListener('error', function(e) {
-            console.error("Erro detectado:", e.message);
-            document.body.classList.add('loaded');
-            document.getElementById('main-content')?.style.display = 'block';
-            document.getElementById('welcome-screen')?.style.display = 'none';
-        });
-    </script>
+        }, 4000); // 4 segundos como fallback
+    });
+</script>
 </body>
 </html>
+

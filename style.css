@@ -8,7 +8,31 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* GARANTIR QUE O CONTEÚDO ESTEJA VISÍVEL */
+#main-content {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
 
+#main-content.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* FORÇAR DISPLAY BLOCK APÓS LOADING */
+body.loaded #main-content {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+/* SE TUDO FALHAR, ESTE É O FALLBACK ABSOLUTO */
+@media screen and (min-width: 1px) {
+    #main-content {
+        display: block;
+    }
+}
 :root {
     /* Cores principais */
     --primary-color: #6C63FF;
@@ -1017,3 +1041,4 @@ footer {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--gradient-accent);
 }
+

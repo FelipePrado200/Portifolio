@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,7 +37,31 @@
             </nav>
         </header>
 
-        <section id="sobre-mim">
+        <section id="inicio" class="hero-section">
+            <div class="hero-content">
+                <p class="sub-headline reveal">🚀 Transformando Ideias em Código</p>
+                <h1 class="headline reveal">Criando experiências digitais com <span>Design Impecável</span></h1>
+                <p class="hero-desc reveal">Olá! Sou Felipe Prado, Desenvolvedor Full Stack apaixonado por desenvolver soluções inovadoras, rápidas e esteticamente deslumbrantes.</p>
+                <div class="hero-botoes reveal">
+                    <a href="#projetos" class="btn-primary"><i class="fas fa-rocket"></i> Ver Meus Projetos</a>
+                    <a href="#contatos" class="btn-secondary"><i class="fas fa-envelope"></i> Falar Comigo</a>
+                </div>
+            </div>
+            <div class="hero-visual reveal">
+                <div class="glow-orb hero-orb"></div>
+                <div class="glass-panel">
+                    <div class="code-snippet">
+                        <span class="keyword">const</span> <span class="variable">developer</span> = {<br>
+                        &nbsp;&nbsp;name: <span class="string">'Felipe'</span>,<br>
+                        &nbsp;&nbsp;skills: [<span class="string">'React'</span>, <span class="string">'Next.js'</span>, <span class="string">'Node'</span>],<br>
+                        &nbsp;&nbsp;status: <span class="string">'Available for hire'</span><br>
+                        };
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre-mim" class="reveal">
             <h2>Sobre Mim</h2>
             <div class="sobre-container">
                 <div class="foto-container">
@@ -58,7 +82,7 @@
             </div>
         </section>
 
-        <section id="habilidades">
+        <section id="habilidades" class="reveal">
             <h2>Habilidades Técnicas</h2>
             <div class="habilidades-grid">
                 <div class="habilidade-card" data-tooltip="HTML5 - Linguagem de marcação">
@@ -152,7 +176,7 @@
             </div>
         </section>
 
-        <section id="projetos">
+        <section id="projetos" class="reveal">
             <h2>Projetos</h2>
             
             <div class="projetos-grid">
@@ -398,7 +422,7 @@
             </div>
         </section>
 
-        <section id="formacao">
+        <section id="formacao" class="reveal">
             <h2>Formação</h2>
             <div class="formacao-container">
                 <div class="formacao-card">
@@ -487,7 +511,7 @@
             </div>
         </section>
 
-        <section id="contatos">
+        <section id="contatos" class="reveal">
             <h2>Entre em Contato</h2>
             <div class="contato-container">
                 <div class="contato-info">
@@ -663,13 +687,36 @@
         const header = document.querySelector('header');
         if (header) {
             window.addEventListener('scroll', function() {
-                if (window.scrollY > 100) {
+                if (window.scrollY > 50) {
                     header.classList.add('scrolled');
                 } else {
                     header.classList.remove('scrolled');
                 }
             });
         }
+
+        // ===== SCROLL REVEAL ANIMATION =====
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+        
+        const revealOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        
+        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+        
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
     });
 
     // ===== FALLBACK CASO O DOMContentLoaded FALHE =====

@@ -12,12 +12,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Tela de Loading LINDA -->
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+
+    <!-- Tela de Loading Premium -->
     <div id="welcome-screen">
         <div class="welcome-content">
-            <h1>Bem-vindo ao meu Portfólio</h1>
-            <div class="loader">
-                <div class="loader-dot"></div>
+            <h1 class="glitch" data-text="Inicializando...">Inicializando...</h1>
+            <div class="premium-loader">
+                <svg viewBox="0 0 100 100" class="svg-loader">
+                    <defs>
+                        <linearGradient id="glow-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#36D1DC" />
+                            <stop offset="50%" stop-color="#6C63FF" />
+                            <stop offset="100%" stop-color="#FF6584" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" stroke="url(#glow-gradient)" stroke-width="3" fill="none" stroke-linecap="round" class="loader-ring"></circle>
+                </svg>
+                <div class="pulse-core"></div>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar"></div>
             </div>
         </div>
     </div>
@@ -85,7 +102,7 @@
         <section id="habilidades" class="reveal">
             <h2>Habilidades Técnicas</h2>
             <div class="habilidades-grid">
-                <div class="habilidade-card" data-tooltip="HTML5 - Linguagem de marcação">
+                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="HTML5 - Linguagem de marcação">
                     <i class="fab fa-html5"></i>
                     <h3>HTML5</h3>
                     <p>Domínio de HTML5 para construção de páginas semânticas, acessíveis e bem estruturadas.</p>
@@ -93,7 +110,7 @@
                         <div class="skill-level" style="width: 95%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tooltip="CSS3 - Estilização">
+                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="CSS3 - Estilização">
                     <i class="fab fa-css3-alt"></i>
                     <h3>CSS3</h3>
                     <p>Proficiência em estilização de layouts modernos e responsivos, utilizando técnicas avançadas.</p>
@@ -101,7 +118,7 @@
                         <div class="skill-level" style="width: 90%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tooltip="JavaScript - Linguagem de programação">
+                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="JavaScript - Linguagem de programação">
                     <i class="fab fa-js"></i>
                     <h3>JavaScript</h3>
                     <p>Experiência no desenvolvimento de aplicações dinâmicas e interativas.</p>
@@ -109,7 +126,7 @@
                         <div class="skill-level" style="width: 85%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tooltip="React - Biblioteca JavaScript">
+                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="React - Biblioteca JavaScript">
                     <i class="fab fa-react"></i>
                     <h3>React</h3>
                     <p>Experiência com React para criação de interfaces dinâmicas e escaláveis.</p>
@@ -117,7 +134,7 @@
                         <div class="skill-level" style="width: 80%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tooltip="Next.js - Framework React para produção">
+                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="Next.js - Framework React para produção">
                     <i class="fas fa-bolt"></i>
                     <h3>Next.js</h3>
                     <p>Experiência com Next.js para aplicações server-side rendering e produção.</p>
@@ -125,7 +142,7 @@
                         <div class="skill-level" style="width: 75%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tooltip="Node.js - Ambiente de execução">
+                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="Node.js - Ambiente de execução">
                     <i class="fab fa-node"></i>
                     <h3>Node.js</h3>
                     <p>Habilidade em construir servidores web e APIs RESTful.</p>
@@ -133,7 +150,7 @@
                         <div class="skill-level" style="width: 75%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tooltip="Java - Linguagem de programação">
+                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="Java - Linguagem de programação">
                     <i class="fab fa-java"></i>
                     <h3>Java</h3>
                     <p>Habilidade na construção de sistemas robustos, com foco em OOP.</p>
@@ -141,7 +158,7 @@
                         <div class="skill-level" style="width: 70%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tooltip="Python - Linguagem de programação">
+                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="Python - Linguagem de programação">
                     <i class="fab fa-python"></i>
                     <h3>Python</h3>
                     <p>Conhecimento em Python para automação de processos e análise de dados.</p>
@@ -149,7 +166,7 @@
                         <div class="skill-level" style="width: 75%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tooltip="MongoDB - Banco de dados NoSQL">
+                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="MongoDB - Banco de dados NoSQL">
                     <i class="fas fa-database"></i>
                     <h3>MongoDB</h3>
                     <p>Experiência com bancos de dados NoSQL, utilizando MongoDB.</p>
@@ -157,7 +174,7 @@
                         <div class="skill-level" style="width: 70%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tooltip="Git - Controle de versão">
+                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="Git - Controle de versão">
                     <i class="fab fa-git-alt"></i>
                     <h3>Git</h3>
                     <p>Experiência com controle de versão utilizando Git.</p>
@@ -165,7 +182,7 @@
                         <div class="skill-level" style="width: 85%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tooltip="GitHub - Plataforma de desenvolvimento">
+                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="GitHub - Plataforma de desenvolvimento">
                     <i class="fab fa-github"></i>
                     <h3>GitHub</h3>
                     <p>Domínio do GitHub para hospedagem de repositórios e colaboração.</p>
@@ -423,86 +440,89 @@
         </section>
 
         <section id="formacao" class="reveal">
-            <h2>Formação</h2>
-            <div class="formacao-container">
-                <div class="formacao-card">
-                    <h3>Análise e Desenvolvimento de Sistemas</h3>
-                    <p class="instituicao">UniAmérica • 2023 – 2025 • Finalizado</p>
-                    <p>Formação focada em desenvolvimento de software, frontend, backend, bancos de dados e metodologias ágeis.</p>
-                    <div class="disciplinas">
-                        <span>Programação Web</span>
-                        <span>Banco de Dados</span>
-                        <span>Engenharia de Software</span>
-                        <span>Redes de Computadores</span>
-                        <span>Desenvolvimento Mobile</span>
-                        <span>Gestão de Projetos</span>
+            <h2>Trilha de Aprendizado</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content formacao-card">
+                        <h3>Análise e Desenvolvimento de Sistemas</h3>
+                        <p class="instituicao">UniAmérica • 2023 – 2025 • Finalizado</p>
+                        <p>Formação sólida em desenvolvimento de software, arquitetura de soluções, frontend, backend, bancos de dados, metodologias ágeis e UX/UI.</p>
+                        <div class="disciplinas">
+                            <span>Programação Web</span>
+                            <span>Banco de Dados</span>
+                            <span>Engenharia de Software</span>
+                            <span>DevOps</span>
+                            <span>Integração de Sistemas</span>
+                            <span>Estrutura de Dados</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <h2 class="cursos-title">Cursos e Certificações</h2>
             <div class="cursos-grid">
-                <div class="curso-card">
+                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
                     <i class="fas fa-rocket"></i>
                     <h4>Explorer</h4>
                     <p>Rocketseat • 120h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card">
+                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
                     <i class="fab fa-java"></i>
                     <h4>Java</h4>
                     <p>Rocketseat • 45h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card">
+                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
                     <i class="fas fa-code"></i>
                     <h4>NLW Unite</h4>
                     <p>Rocketseat • 8h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card">
+                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
                     <i class="fab fa-microsoft"></i>
                     <h4>C#</h4>
                     <p>Rocketseat • 40h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card">
+                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
                     <i class="fas fa-laptop-code"></i>
                     <h4>Basic FrontEnd</h4>
                     <p>UniAmérica • 40h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card">
+                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
                     <i class="fas fa-object-group"></i>
-                    <h4>Object-Oriented Developer</h4>
+                    <h4>Object-Oriented</h4>
                     <p>UniAmérica • 60h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card">
+                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
                     <i class="fas fa-code"></i>
-                    <h4>Programming Basics</h4>
+                    <h4>Programming Basic</h4>
                     <p>UniAmérica • 50h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card">
+                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
                     <i class="fas fa-desktop"></i>
-                    <h4>FrontEnd Developer</h4>
+                    <h4>FrontEnd Dev</h4>
                     <p>UniAmérica • 80h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card">
+                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
                     <i class="fas fa-server"></i>
-                    <h4>BackEnd Developer</h4>
+                    <h4>BackEnd Dev</h4>
                     <p>UniAmérica • 80h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card">
+                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
                     <i class="fas fa-layer-group"></i>
-                    <h4>Full Stack Developer</h4>
+                    <h4>Full Stack Dev</h4>
                     <p>UniAmérica • 120h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card">
+                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
                     <i class="fas fa-infinity"></i>
                     <h4>DevOps Strategist</h4>
                     <p>UniAmérica • 60h</p>
@@ -612,34 +632,47 @@
         </footer>
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script>
-    // ===== TELA DE LOADING =====
-    document.addEventListener("DOMContentLoaded", () => {
-        console.log("DOM carregado!");
+    // ===== CUSTOM CURSOR =====
+    const cursorDot = document.querySelector("[data-cursor-dot]");
+    const cursorOutline = document.querySelector("[data-cursor-outline]");
+    
+    window.addEventListener("mousemove", function (e) {
+        const posX = e.clientX;
+        const posY = e.clientY;
         
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
+        
+        cursorOutline.animate({
+            left: `${posX}px`,
+            top: `${posY}px`
+        }, { duration: 500, fill: "forwards" });
+    });
+
+    // ===== TELA DE LOADING E ANIMAÇÃO DA PROGRESS BAR =====
+    document.addEventListener("DOMContentLoaded", () => {
         const welcomeScreen = document.getElementById("welcome-screen");
         const mainContent = document.getElementById("main-content");
+        const progressBar = document.querySelector(".progress-bar");
         
-        // Verificar se elementos existem
-        if (!welcomeScreen || !mainContent) {
-            console.error("Elementos não encontrados!");
-            return;
-        }
+        if (!welcomeScreen || !mainContent) return;
         
-        console.log("Iniciando loading...");
-        
-        // Remove a tela de loading após 3 segundos
+        // Simular progresso até 100%
+        setTimeout(() => {
+            if(progressBar) progressBar.style.width = "100%";
+        }, 100);
+
         setTimeout(() => {
             welcomeScreen.style.opacity = "0";
-            welcomeScreen.style.transition = "opacity 0.5s ease";
+            welcomeScreen.style.transition = "opacity 0.6s ease-in-out";
             
             setTimeout(() => {
                 welcomeScreen.style.display = "none";
                 mainContent.style.opacity = "1";
-                mainContent.style.transition = "opacity 0.5s ease";
-                
-                console.log("Loading removido, conteúdo visível");
-            }, 500);
+                mainContent.style.transition = "opacity 0.8s ease-in-out";
+            }, 600);
         }, 3000);
 
         // ===== FORMULÁRIO WHATSAPP =====
@@ -719,18 +752,19 @@
         });
     });
 
-    // ===== FALLBACK CASO O DOMContentLoaded FALHE =====
+    // Fallback de Loading
     window.addEventListener('load', function() {
-        console.log("Window loaded!");
-        
-        // Garante que o conteúdo apareça mesmo se algo der errado
         setTimeout(() => {
-            const welcomeScreen = document.getElementById("welcome-screen");
-            const mainContent = document.getElementById("main-content");
-            
-            if (welcomeScreen && mainContent) {
-                welcomeScreen.style.display = "none";
-                mainContent.style.opacity = "1";
+            const screen = document.getElementById("welcome-screen");
+            const main = document.getElementById("main-content");
+            if (screen && main) {
+                screen.style.display = "none";
+                main.style.opacity = "1";
+            }
+        }, 4000);
+    });
+    </script>
+</body>nContent.style.opacity = "1";
                 mainContent.style.visibility = "visible";
             }
         }, 4000); // 4 segundos como fallback

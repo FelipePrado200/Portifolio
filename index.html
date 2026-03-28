@@ -1,52 +1,81 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Felipe Prado — Desenvolvedor Full Stack apaixonado por criar experiências digitais inovadoras, rápidas e visualmente deslumbrantes.">
+    <meta name="author" content="Felipe Rodrigues Prado">
+    <meta name="theme-color" content="#050505">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Felipe Prado - Portfólio</title>
+
+    <title>Felipe Prado — Full Stack Developer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Mesh Gradient Background -->
+    <div class="mesh-bg" aria-hidden="true">
+        <div class="mesh-blob"></div>
+        <div class="mesh-blob"></div>
+        <div class="mesh-blob"></div>
+    </div>
+
     <!-- Custom Cursor -->
     <div class="cursor-dot" data-cursor-dot></div>
     <div class="cursor-outline" data-cursor-outline></div>
 
-    <!-- Tela de Loading Premium -->
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Loading Screen -->
     <div id="welcome-screen">
         <div class="welcome-content">
-            <h1 class="glitch" data-text="Inicializando...">Inicializando...</h1>
             <div class="premium-loader">
                 <svg viewBox="0 0 100 100" class="svg-loader">
                     <defs>
                         <linearGradient id="glow-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="var(--accent-color-2)" />
-                            <stop offset="50%" stop-color="var(--primary-color)" />
-                            <stop offset="100%" stop-color="var(--accent-color)" />
+                            <stop offset="0%" stop-color="#06b6d4" />
+                            <stop offset="50%" stop-color="#8b5cf6" />
+                            <stop offset="100%" stop-color="#ec4899" />
                         </linearGradient>
                     </defs>
-                    <circle cx="50" cy="50" r="45" stroke="url(#glow-gradient)" stroke-width="3" fill="none" stroke-linecap="round" class="loader-ring"></circle>
+                    <circle cx="50" cy="50" r="45" stroke="url(#glow-gradient)" stroke-width="2" fill="none" stroke-linecap="round" class="loader-ring"></circle>
                 </svg>
                 <div class="pulse-core"></div>
             </div>
+            <h1>Carregando experiência</h1>
             <div class="loading-progress">
                 <div class="progress-bar"></div>
             </div>
         </div>
     </div>
 
-    <!-- Conteúdo Principal -->
+    <!-- Main Content -->
     <main id="main-content">
         <header>
-            <h1>Felipe Rodrigues Prado</h1>
+            <h1>Felipe Prado</h1>
             <nav>
                 <ul>
-                    <li><a href="#sobre-mim">Sobre Mim</a></li>
-                    <li><a href="#habilidades">Habilidades</a></li>
+                    <li><a href="#sobre-mim">Sobre</a></li>
+                    <li><a href="#habilidades">Skills</a></li>
                     <li><a href="#projetos">Projetos</a></li>
                     <li><a href="#formacao">Formação</a></li>
                     <li><a href="#contatos">Contato</a></li>
@@ -54,35 +83,46 @@
             </nav>
         </header>
 
+        <!-- Hero Section -->
         <section id="inicio" class="hero-section">
             <div class="hero-content">
-                <p class="sub-headline reveal">🚀 Transformando Ideias em Código</p>
+                <p class="sub-headline reveal">Full Stack Developer</p>
                 <h1 class="headline reveal">Criando experiências digitais com <span>Design Impecável</span></h1>
                 <p class="hero-desc reveal">Olá! Sou Felipe Prado, Desenvolvedor Full Stack apaixonado por desenvolver soluções inovadoras, rápidas e esteticamente deslumbrantes.</p>
                 <div class="hero-botoes reveal">
-                    <a href="#projetos" class="btn-primary"><i class="fas fa-rocket"></i> Ver Meus Projetos</a>
+                    <a href="#projetos" class="btn-primary"><i class="fas fa-rocket"></i> Ver Projetos</a>
                     <a href="#contatos" class="btn-secondary"><i class="fas fa-envelope"></i> Falar Comigo</a>
                 </div>
             </div>
             <div class="hero-visual reveal">
                 <div class="glow-orb hero-orb"></div>
                 <div class="glass-panel">
+                    <div class="terminal-header">
+                        <div class="terminal-dot"></div>
+                        <div class="terminal-dot"></div>
+                        <div class="terminal-dot"></div>
+                        <span class="terminal-title">developer.js</span>
+                    </div>
                     <div class="code-snippet">
-                        <span class="keyword">const</span> <span class="variable">developer</span> = {<br>
-                        &nbsp;&nbsp;name: <span class="string">'Felipe'</span>,<br>
-                        &nbsp;&nbsp;skills: [<span class="string">'React'</span>, <span class="string">'Next.js'</span>, <span class="string">'Node'</span>],<br>
-                        &nbsp;&nbsp;status: <span class="string">'Available for hire'</span><br>
-                        };
+                        <span class="line-number">1</span><span class="keyword">const</span> <span class="variable">developer</span> = {<br>
+                        <span class="line-number">2</span>&nbsp;&nbsp;name: <span class="string">'Felipe Prado'</span>,<br>
+                        <span class="line-number">3</span>&nbsp;&nbsp;role: <span class="string">'Full Stack Dev'</span>,<br>
+                        <span class="line-number">4</span>&nbsp;&nbsp;skills: [<span class="string">'React'</span>, <span class="string">'Next.js'</span>, <span class="string">'Node'</span>],<br>
+                        <span class="line-number">5</span>&nbsp;&nbsp;status: <span class="string">'Available for hire'</span>,<br>
+                        <span class="line-number">6</span>&nbsp;&nbsp;<span class="comment">// Let's build something amazing</span><br>
+                        <span class="line-number">7</span>};
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- About Me -->
         <section id="sobre-mim" class="reveal">
             <h2>Sobre Mim</h2>
+            <p class="section-subtitle">Conheça um pouco da minha trajetória</p>
             <div class="sobre-container">
                 <div class="foto-container">
-                    <img src="assets/myself.webp" alt="Minha Foto">
+                    <img src="assets/myself.webp" alt="Felipe Prado — Desenvolvedor Full Stack">
                 </div>
                 <div class="descricao">
                     <div class="text">
@@ -99,103 +139,107 @@
             </div>
         </section>
 
+        <!-- Skills -->
         <section id="habilidades" class="reveal">
             <h2>Habilidades Técnicas</h2>
+            <p class="section-subtitle">Tecnologias que domino e utilizo no dia a dia</p>
             <div class="habilidades-grid">
-                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="HTML5 - Linguagem de marcação">
+                <div class="habilidade-card">
                     <i class="fab fa-html5"></i>
                     <h3>HTML5</h3>
                     <p>Domínio de HTML5 para construção de páginas semânticas, acessíveis e bem estruturadas.</p>
                     <div class="skill-bar">
-                        <div class="skill-level" style="width: 95%"></div>
+                        <div class="skill-level" data-width="95%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="CSS3 - Estilização">
+                <div class="habilidade-card">
                     <i class="fab fa-css3-alt"></i>
                     <h3>CSS3</h3>
                     <p>Proficiência em estilização de layouts modernos e responsivos, utilizando técnicas avançadas.</p>
                     <div class="skill-bar">
-                        <div class="skill-level" style="width: 90%"></div>
+                        <div class="skill-level" data-width="90%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="JavaScript - Linguagem de programação">
+                <div class="habilidade-card">
                     <i class="fab fa-js"></i>
                     <h3>JavaScript</h3>
                     <p>Experiência no desenvolvimento de aplicações dinâmicas e interativas.</p>
                     <div class="skill-bar">
-                        <div class="skill-level" style="width: 85%"></div>
+                        <div class="skill-level" data-width="85%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="React - Biblioteca JavaScript">
+                <div class="habilidade-card">
                     <i class="fab fa-react"></i>
                     <h3>React</h3>
                     <p>Experiência com React para criação de interfaces dinâmicas e escaláveis.</p>
                     <div class="skill-bar">
-                        <div class="skill-level" style="width: 80%"></div>
+                        <div class="skill-level" data-width="80%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="Next.js - Framework React para produção">
+                <div class="habilidade-card">
                     <i class="fas fa-bolt"></i>
                     <h3>Next.js</h3>
                     <p>Experiência com Next.js para aplicações server-side rendering e produção.</p>
                     <div class="skill-bar">
-                        <div class="skill-level" style="width: 75%"></div>
+                        <div class="skill-level" data-width="75%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="Node.js - Ambiente de execução">
+                <div class="habilidade-card">
                     <i class="fab fa-node"></i>
                     <h3>Node.js</h3>
                     <p>Habilidade em construir servidores web e APIs RESTful.</p>
                     <div class="skill-bar">
-                        <div class="skill-level" style="width: 75%"></div>
+                        <div class="skill-level" data-width="75%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="Java - Linguagem de programação">
+                <div class="habilidade-card">
                     <i class="fab fa-java"></i>
                     <h3>Java</h3>
                     <p>Habilidade na construção de sistemas robustos, com foco em OOP.</p>
                     <div class="skill-bar">
-                        <div class="skill-level" style="width: 70%"></div>
+                        <div class="skill-level" data-width="70%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="Python - Linguagem de programação">
+                <div class="habilidade-card">
                     <i class="fab fa-python"></i>
                     <h3>Python</h3>
                     <p>Conhecimento em Python para automação de processos e análise de dados.</p>
                     <div class="skill-bar">
-                        <div class="skill-level" style="width: 75%"></div>
+                        <div class="skill-level" data-width="75%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="MongoDB - Banco de dados NoSQL">
+                <div class="habilidade-card">
                     <i class="fas fa-database"></i>
                     <h3>MongoDB</h3>
                     <p>Experiência com bancos de dados NoSQL, utilizando MongoDB.</p>
                     <div class="skill-bar">
-                        <div class="skill-level" style="width: 70%"></div>
+                        <div class="skill-level" data-width="70%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="Git - Controle de versão">
+                <div class="habilidade-card">
                     <i class="fab fa-git-alt"></i>
                     <h3>Git</h3>
                     <p>Experiência com controle de versão utilizando Git.</p>
                     <div class="skill-bar">
-                        <div class="skill-level" style="width: 85%"></div>
+                        <div class="skill-level" data-width="85%"></div>
                     </div>
                 </div>
-                <div class="habilidade-card" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" data-tooltip="GitHub - Plataforma de desenvolvimento">
+                <div class="habilidade-card">
                     <i class="fab fa-github"></i>
                     <h3>GitHub</h3>
                     <p>Domínio do GitHub para hospedagem de repositórios e colaboração.</p>
                     <div class="skill-bar">
-                        <div class="skill-level" style="width: 90%"></div>
+                        <div class="skill-level" data-width="90%"></div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Projects -->
         <section id="projetos" class="reveal">
             <h2>Projetos</h2>
-            
+            <p class="section-subtitle">Alguns dos meus trabalhos mais recentes</p>
+
             <div class="projetos-grid">
                 <!-- Food Explorer -->
                 <div class="projeto-card">
@@ -364,7 +408,7 @@
                         <img src="assets/finances.png" alt="My Finances">
                         <div class="projeto-tech">
                             <span>Next.js</span>
-                            <span>Typecript</span>
+                            <span>TypeScript</span>
                             <span>Node.js</span>
                             <span>PostgreSQL</span>
                         </div>
@@ -390,9 +434,9 @@
                     <div class="projeto-imagem">
                         <img src="assets/theblog.png" alt="The Blog">
                         <div class="projeto-tech">
-                            <span>Next</span>
-                            <span>Tailwind css</span>
-                            <span>Typecript</span>
+                            <span>Next.js</span>
+                            <span>Tailwind CSS</span>
+                            <span>TypeScript</span>
                         </div>
                     </div>
                     <div class="projeto-conteudo">
@@ -416,9 +460,9 @@
                     <div class="projeto-imagem">
                         <img src="assets/petdev.png" alt="Pet Dev">
                         <div class="projeto-tech">
-                            <span>Next</span>
-                            <span>Tailwind css</span>
-                            <span>Typecript</span>
+                            <span>Next.js</span>
+                            <span>Tailwind CSS</span>
+                            <span>TypeScript</span>
                         </div>
                     </div>
                     <div class="projeto-conteudo">
@@ -439,8 +483,10 @@
             </div>
         </section>
 
+        <!-- Education -->
         <section id="formacao" class="reveal">
             <h2>Trilha de Aprendizado</h2>
+            <p class="section-subtitle">Minha jornada de formação e certificações</p>
             <div class="timeline-container">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
@@ -462,67 +508,67 @@
 
             <h2 class="cursos-title">Cursos e Certificações</h2>
             <div class="cursos-grid">
-                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                <div class="curso-card">
                     <i class="fas fa-rocket"></i>
                     <h4>Explorer</h4>
                     <p>Rocketseat • 120h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                <div class="curso-card">
                     <i class="fab fa-java"></i>
                     <h4>Java</h4>
                     <p>Rocketseat • 45h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                <div class="curso-card">
                     <i class="fas fa-code"></i>
                     <h4>NLW Unite</h4>
                     <p>Rocketseat • 8h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                <div class="curso-card">
                     <i class="fab fa-microsoft"></i>
                     <h4>C#</h4>
                     <p>Rocketseat • 40h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                <div class="curso-card">
                     <i class="fas fa-laptop-code"></i>
                     <h4>Basic FrontEnd</h4>
                     <p>UniAmérica • 40h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                <div class="curso-card">
                     <i class="fas fa-object-group"></i>
                     <h4>Object-Oriented</h4>
                     <p>UniAmérica • 60h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                <div class="curso-card">
                     <i class="fas fa-code"></i>
                     <h4>Programming Basic</h4>
                     <p>UniAmérica • 50h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                <div class="curso-card">
                     <i class="fas fa-desktop"></i>
                     <h4>FrontEnd Dev</h4>
                     <p>UniAmérica • 80h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                <div class="curso-card">
                     <i class="fas fa-server"></i>
                     <h4>BackEnd Dev</h4>
                     <p>UniAmérica • 80h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                <div class="curso-card">
                     <i class="fas fa-layer-group"></i>
                     <h4>Full Stack Dev</h4>
                     <p>UniAmérica • 120h</p>
                     <span class="curso-status">Completo</span>
                 </div>
-                <div class="curso-card" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                <div class="curso-card">
                     <i class="fas fa-infinity"></i>
                     <h4>DevOps Strategist</h4>
                     <p>UniAmérica • 60h</p>
@@ -531,13 +577,15 @@
             </div>
         </section>
 
+        <!-- Contact -->
         <section id="contatos" class="reveal">
             <h2>Entre em Contato</h2>
+            <p class="section-subtitle">Estou sempre aberto a novas oportunidades</p>
             <div class="contato-container">
                 <div class="contato-info">
                     <h3>Vamos conversar!</h3>
-                    <p>Estou sempre aberto a novas oportunidades e colaborações.</p>
-                    
+                    <p>Estou disponível para projetos freelancer, oportunidades de emprego ou apenas para trocar uma ideia sobre tecnologia.</p>
+
                     <div class="contato-detalhes">
                         <div class="contato-item">
                             <i class="fas fa-envelope"></i>
@@ -546,7 +594,7 @@
                                 <p>felipeendz@gmail.com</p>
                             </div>
                         </div>
-                        
+
                         <div class="contato-item">
                             <i class="fas fa-phone"></i>
                             <div>
@@ -554,7 +602,7 @@
                                 <p>(13) 98117-5814</p>
                             </div>
                         </div>
-                        
+
                         <div class="contato-item">
                             <i class="fab fa-whatsapp"></i>
                             <div>
@@ -562,7 +610,7 @@
                                 <p>(13) 98117-5814</p>
                             </div>
                         </div>
-                        
+
                         <div class="contato-item">
                             <i class="fab fa-linkedin"></i>
                             <div>
@@ -571,13 +619,13 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="social-links">
-                        <a href="https://github.com/FelipePrado200" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/felipe-prado013" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/FelipePrado200" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/felipe-prado013" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="contato-form">
                     <h3>Envie uma mensagem</h3>
                     <form id="whatsappForm">
@@ -585,17 +633,17 @@
                             <input type="text" id="nome" placeholder=" " required>
                             <label for="nome">Nome completo</label>
                         </div>
-                        
+
                         <div class="form-group">
                             <input type="email" id="email" placeholder=" " required>
                             <label for="email">E-mail</label>
                         </div>
-                        
+
                         <div class="form-group">
                             <textarea id="mensagem" placeholder=" " rows="5" required></textarea>
                             <label for="mensagem">Sua mensagem</label>
                         </div>
-                        
+
                         <button type="submit" class="btn-enviar">
                             <i class="fab fa-whatsapp"></i> Enviar via WhatsApp
                         </button>
@@ -604,13 +652,14 @@
             </div>
         </section>
 
+        <!-- Footer -->
         <footer>
             <div class="footer-content">
                 <div class="footer-logo">
                     <h3>Felipe Prado</h3>
                     <p>Desenvolvedor Full Stack</p>
                 </div>
-                
+
                 <div class="footer-links">
                     <a href="#sobre-mim">Sobre</a>
                     <a href="#habilidades">Habilidades</a>
@@ -618,13 +667,13 @@
                     <a href="#formacao">Formação</a>
                     <a href="#contatos">Contato</a>
                 </div>
-                
+
                 <div class="footer-social">
-                    <a href="https://github.com/FelipePrado200" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/felipe-prado013" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/FelipePrado200" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/felipe-prado013" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <p>&copy; 2025 Felipe Rodrigues Prado. Todos os direitos reservados.</p>
                 <p>Desenvolvido com <i class="fas fa-heart"></i> e muito código</p>
@@ -632,80 +681,128 @@
         </footer>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script>
+    // ============================================================
+    // DIGITAL AURORA — Interactive Scripts
+    // ============================================================
+
     // ===== CUSTOM CURSOR =====
     const cursorDot = document.querySelector("[data-cursor-dot]");
     const cursorOutline = document.querySelector("[data-cursor-outline]");
-    
-    window.addEventListener("mousemove", function (e) {
-        const posX = e.clientX;
-        const posY = e.clientY;
-        
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
-        
-        cursorOutline.animate({
-            left: `${posX}px`,
-            top: `${posY}px`
-        }, { duration: 500, fill: "forwards" });
-    });
 
-    // ===== TELA DE LOADING E ANIMAÇÃO DA PROGRESS BAR =====
+    if (cursorDot && cursorOutline) {
+        window.addEventListener("mousemove", (e) => {
+            cursorDot.style.left = `${e.clientX}px`;
+            cursorDot.style.top = `${e.clientY}px`;
+
+            cursorOutline.animate({
+                left: `${e.clientX}px`,
+                top: `${e.clientY}px`
+            }, { duration: 400, fill: "forwards" });
+        });
+
+        // Hover effect on interactive elements
+        const hoverTargets = document.querySelectorAll('a, button, .habilidade-card, .curso-card, .projeto-card');
+        hoverTargets.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorDot.classList.add('hovering');
+                cursorOutline.classList.add('hovering');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorDot.classList.remove('hovering');
+                cursorOutline.classList.remove('hovering');
+            });
+        });
+    }
+
+    // ===== LOADING SCREEN =====
     document.addEventListener("DOMContentLoaded", () => {
         const welcomeScreen = document.getElementById("welcome-screen");
         const mainContent = document.getElementById("main-content");
         const progressBar = document.querySelector(".progress-bar");
-        
+
         if (!welcomeScreen || !mainContent) return;
-        
-        // Simular progresso até 100%
-        setTimeout(() => {
-            if(progressBar) progressBar.style.width = "100%";
-        }, 100);
 
+        // Animated progress
+        let progress = 0;
+        const loadInterval = setInterval(() => {
+            progress += Math.random() * 15 + 5;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(loadInterval);
+            }
+            if (progressBar) progressBar.style.width = `${progress}%`;
+        }, 200);
+
+        // Transition out
         setTimeout(() => {
-            welcomeScreen.style.opacity = "0";
-            welcomeScreen.style.transition = "opacity 0.6s ease-in-out";
-            
+            clearInterval(loadInterval);
+            if (progressBar) progressBar.style.width = "100%";
+
             setTimeout(() => {
-                welcomeScreen.style.display = "none";
-                mainContent.style.opacity = "1";
-                mainContent.style.transition = "opacity 0.8s ease-in-out";
-            }, 600);
-        }, 3000);
+                welcomeScreen.style.opacity = "0";
+                welcomeScreen.style.transition = "opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
 
-        // ===== FORMULÁRIO WHATSAPP =====
+                setTimeout(() => {
+                    welcomeScreen.style.display = "none";
+                    mainContent.style.opacity = "1";
+                    mainContent.style.transition = "opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+                }, 800);
+            }, 400);
+        }, 2500);
+
+        // ===== SCROLL PROGRESS BAR =====
+        const scrollProgressEl = document.getElementById("scrollProgress");
+        if (scrollProgressEl) {
+            window.addEventListener("scroll", () => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                scrollProgressEl.style.width = `${scrollPercent}%`;
+            });
+        }
+
+        // ===== BACK TO TOP BUTTON =====
+        const backToTop = document.getElementById("backToTop");
+        if (backToTop) {
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 500) {
+                    backToTop.classList.add("visible");
+                } else {
+                    backToTop.classList.remove("visible");
+                }
+            });
+            backToTop.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        }
+
+        // ===== WHATSAPP FORM =====
         const whatsappForm = document.getElementById("whatsappForm");
         if (whatsappForm) {
             whatsappForm.addEventListener("submit", (event) => {
                 event.preventDefault();
-                
                 const nome = document.getElementById("nome")?.value || "";
                 const email = document.getElementById("email")?.value || "";
                 const mensagem = document.getElementById("mensagem")?.value || "";
-                
                 if (!nome || !email || !mensagem) {
                     alert("Por favor, preencha todos os campos!");
                     return;
                 }
-                
                 const numeroWhatsApp = "5513981175814";
                 const textoWhatsApp = `Olá, meu nome é ${nome}. Meu e-mail é ${email}. ${mensagem}`;
                 const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(textoWhatsApp)}`;
-                
                 window.open(url, "_blank");
                 whatsappForm.reset();
             });
         }
 
-        // ===== NAVEGAÇÃO SUAVE =====
-        document.querySelectorAll('nav a').forEach(anchor => {
+        // ===== SMOOTH NAVIGATION =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 if (!targetId || targetId === '#') return;
-                
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
@@ -719,41 +816,46 @@
         // ===== HEADER SCROLL EFFECT =====
         const header = document.querySelector('header');
         if (header) {
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 50);
             });
         }
 
         // ===== SCROLL REVEAL ANIMATION =====
         const revealElements = document.querySelectorAll('.reveal');
-        
-        const revealCallback = (entries, observer) => {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                     observer.unobserve(entry.target);
                 }
             });
-        };
-        
-        const revealOptions = {
-            threshold: 0.15,
-            rootMargin: "0px 0px -50px 0px"
-        };
-        
-        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
-        
-        revealElements.forEach(el => {
-            revealObserver.observe(el);
-        });
+        }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ===== SKILL BAR ANIMATION =====
+        const skillBars = document.querySelectorAll('.skill-level');
+        const skillObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    const width = bar.getAttribute('data-width');
+                    if (width) {
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 200);
+                    }
+                    observer.unobserve(bar);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skillBars.forEach(bar => skillObserver.observe(bar));
     });
 
-    // Fallback de Loading
-    window.addEventListener('load', function() {
+    // ===== LOADING FALLBACK =====
+    window.addEventListener('load', () => {
         setTimeout(() => {
             const screen = document.getElementById("welcome-screen");
             const main = document.getElementById("main-content");
@@ -766,4 +868,3 @@
     </script>
 </body>
 </html>
-

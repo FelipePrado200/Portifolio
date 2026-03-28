@@ -929,9 +929,6 @@ section h2::after {
     transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.skill-level.animated {
-    /* Width is set inline; this class triggers the animation */
-}
 
 /* Icon colors */
 .fa-html5 { color: #E34F26; }
@@ -1678,7 +1675,7 @@ footer::before {
 }
 
 /* ============================================================
-   RESPONSIVE
+   RESPONSIVE — Complete Mobile-First Coverage
    ============================================================ */
 
 /* Hide custom cursor on touch devices */
@@ -1686,22 +1683,49 @@ footer::before {
     .cursor-dot, .cursor-outline {
         display: none !important;
     }
-    body, .btn-primary, .btn-secondary, .projeto-btn, .btn-enviar,
-    .habilidade-card, .curso-card, .social-links a, .footer-social a {
-        cursor: auto;
+    body, a, button, .btn-primary, .btn-secondary, .projeto-btn, .btn-enviar,
+    .habilidade-card, .curso-card, .social-links a, .footer-social a,
+    .back-to-top, .projeto-card, input, textarea {
+        cursor: auto !important;
     }
 }
 
+/* === LARGE DESKTOP (1200px) === */
+@media (max-width: 1200px) {
+    .hero-section {
+        padding: 8rem 4% 4rem;
+        gap: 3rem;
+    }
+
+    .glass-panel {
+        max-width: 400px;
+        padding: 1.8rem 2rem;
+    }
+
+    .code-snippet {
+        font-size: 0.85rem;
+    }
+
+    .projetos-grid {
+        gap: 1.2rem;
+    }
+}
+
+/* === TABLET LANDSCAPE (992px) === */
 @media (max-width: 992px) {
+    /* Hero */
     .hero-section {
         flex-direction: column;
         text-align: center;
         padding-top: 10rem;
+        padding-bottom: 4rem;
         gap: 3rem;
+        min-height: auto;
     }
 
     .hero-content {
         margin: 0 auto;
+        max-width: 100%;
     }
 
     .sub-headline {
@@ -1721,10 +1745,22 @@ footer::before {
         justify-content: center;
     }
 
-    .glass-panel {
-        transform: none;
+    .hero-visual {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
     }
 
+    .glass-panel {
+        max-width: 100%;
+    }
+
+    .hero-orb {
+        width: 350px;
+        height: 350px;
+    }
+
+    /* Projects — 2 columns */
     .projetos-grid {
         grid-template-columns: 1fr 1fr;
     }
@@ -1733,13 +1769,62 @@ footer::before {
     .projetos-grid .projeto-card:nth-child(5) {
         grid-column: span 1;
     }
+
+    /* Skills */
+    .habilidades-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    }
+
+    /* Contact — stack */
+    .contato-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* About */
+    .sobre-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .foto-container {
+        justify-content: center;
+    }
+
+    .contato p {
+        justify-content: center;
+    }
+
+    /* Timeline */
+    .timeline-container {
+        padding-left: 2.5rem;
+    }
+
+    .timeline-dot {
+        left: -2.5rem;
+    }
+
+    /* Footer */
+    .footer-content {
+        text-align: center;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+
+    .footer-links {
+        align-items: center;
+    }
 }
 
+/* === TABLET PORTRAIT (768px) === */
 @media (max-width: 768px) {
+    /* Header — compact pill */
     header {
         width: calc(100% - 16px);
-        padding: 0.6rem 1rem;
+        padding: 0.6rem 1.2rem;
         top: 8px;
+        gap: 0;
     }
 
     header h1 {
@@ -1747,25 +1832,116 @@ footer::before {
     }
 
     nav ul {
-        gap: 0.2rem;
+        gap: 0.15rem;
     }
 
     nav a {
-        padding: 0.4rem 0.6rem;
-        font-size: 0.8rem;
+        padding: 0.35rem 0.55rem;
+        font-size: 0.78rem;
     }
 
+    nav a::after {
+        display: none;
+    }
+
+    /* Sections */
     section {
-        padding: 6rem 1.5rem 3rem;
+        padding: 5rem 1.5rem 3rem;
     }
 
-    .sobre-container,
-    .contato-form {
+    section h2 {
+        font-size: clamp(1.6rem, 5vw, 2.2rem);
+        margin-bottom: 0.8rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 2.5rem;
+    }
+
+    /* Hero */
+    .hero-section {
+        padding-top: 8rem;
+    }
+
+    .headline {
+        font-size: clamp(2rem, 7vw, 3rem);
+    }
+
+    .hero-desc {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .btn-primary, .btn-secondary {
+        padding: 0.8rem 1.6rem;
+        font-size: 0.9rem;
+    }
+
+    /* Glass Panel / Code */
+    .glass-panel {
+        padding: 1.5rem;
+    }
+
+    .code-snippet {
+        font-size: 0.8rem;
+        line-height: 1.8;
+    }
+
+    .code-snippet .line-number {
+        margin-right: 1rem;
+    }
+
+    .terminal-header {
+        margin-bottom: 1rem;
+        padding-bottom: 0.8rem;
+    }
+
+    /* About */
+    .sobre-container {
         padding: 2rem 1.5rem;
     }
 
+    .foto-container img {
+        max-width: 200px;
+        height: 200px;
+    }
+
+    .foto-container::after {
+        width: 220px;
+        height: 220px;
+    }
+
+    .descricao .text p {
+        font-size: 0.95rem;
+    }
+
+    /* Skills */
+    .habilidades-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .habilidade-card {
+        padding: 1.5rem 1.2rem;
+    }
+
+    .habilidade-card i {
+        font-size: 2.2rem;
+    }
+
+    .habilidade-card h3 {
+        font-size: 1rem;
+    }
+
+    .habilidade-card p {
+        font-size: 0.8rem;
+    }
+
+    /* Projects — 1 column */
     .projetos-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
     .projetos-grid .projeto-card:nth-child(1),
@@ -1773,29 +1949,243 @@ footer::before {
         grid-column: span 1;
     }
 
-    .habilidades-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    .projeto-imagem {
+        height: 200px;
     }
 
-    .cursos-grid {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    /* Timeline */
+    .formacao-card {
+        padding: 1.8rem;
     }
+
+    .formacao-card h3 {
+        font-size: 1.2rem;
+    }
+
+    /* Courses */
+    .cursos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 0.8rem;
+    }
+
+    .curso-card {
+        padding: 1.2rem 1rem;
+    }
+
+    .curso-card i {
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .curso-card h4 {
+        font-size: 0.95rem;
+    }
+
+    /* Contact */
+    .contato-form {
+        padding: 2rem 1.5rem;
+    }
+
+    .contato-info h3 {
+        font-size: 1.5rem;
+    }
+
+    .contato-item {
+        padding: 0.8rem;
+    }
+
+    .contato-item i {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+    }
+
+    /* Footer */
+    footer {
+        padding: 3rem 1.5rem 1.5rem;
+        margin-top: 4rem;
+    }
+
+    /* Back to top */
+    .back-to-top {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Loading */
+    .premium-loader {
+        width: 80px;
+        height: 80px;
+    }
+
+    .welcome-content h1 {
+        font-size: clamp(1.4rem, 4vw, 2rem);
+    }
+
+    /* Mesh background — smaller for performance */
+    .mesh-blob:nth-child(1) { width: 350px; height: 350px; }
+    .mesh-blob:nth-child(2) { width: 300px; height: 300px; }
+    .mesh-blob:nth-child(3) { width: 250px; height: 250px; }
 }
 
-@media (max-width: 480px) {
+/* === MOBILE LARGE (576px) === */
+@media (max-width: 576px) {
+    /* Header stacks vertically */
     header {
         flex-direction: column;
         border-radius: var(--radius-lg);
-        gap: 0.5rem;
+        gap: 0.4rem;
+        padding: 0.6rem 1rem;
     }
 
     nav ul {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 0.2rem;
     }
 
-    .cursos-grid {
-        grid-template-columns: 1fr 1fr;
+    nav a {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    /* Sections */
+    section {
+        padding: 4.5rem 1rem 2.5rem;
+    }
+
+    /* Hero */
+    .hero-section {
+        padding: 7rem 1rem 3rem;
+    }
+
+    .headline {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
+    }
+
+    .sub-headline {
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+    }
+
+    .hero-desc {
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    .hero-botoes {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+        padding: 0.85rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* Code Panel */
+    .glass-panel {
+        padding: 1.2rem;
+        border-radius: var(--radius-lg);
+    }
+
+    .code-snippet {
+        font-size: 0.72rem;
+        line-height: 1.7;
+    }
+
+    .code-snippet .line-number {
+        margin-right: 0.6rem;
+        font-size: 0.65rem;
+    }
+
+    .terminal-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    .terminal-title {
+        font-size: 0.65rem;
+    }
+
+    /* About */
+    .sobre-container {
+        padding: 1.5rem 1rem;
+        gap: 2rem;
+    }
+
+    .foto-container img {
+        max-width: 160px;
+        height: 160px;
+    }
+
+    .foto-container::after {
+        width: 180px;
+        height: 180px;
+    }
+
+    .descricao .text p {
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    .contato p {
+        font-size: 0.85rem;
+        flex-wrap: wrap;
+    }
+
+    /* Skills — 2 columns still */
+    .habilidades-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+
+    .habilidade-card {
+        padding: 1.2rem 0.8rem;
+        gap: 0.6rem;
+    }
+
+    .habilidade-card i {
+        font-size: 2rem;
+    }
+
+    .habilidade-card h3 {
+        font-size: 0.9rem;
+    }
+
+    .habilidade-card p {
+        font-size: 0.75rem;
+        display: none; /* Hide descriptions on very small screens for cleaner look */
+    }
+
+    .skill-bar {
+        margin-top: 0.5rem;
+    }
+
+    /* Projects */
+    .projeto-imagem {
+        height: 180px;
+    }
+
+    .projeto-conteudo {
+        padding: 1.2rem;
+    }
+
+    .projeto-conteudo h3 {
+        font-size: 1.15rem;
+    }
+
+    .projeto-desc {
+        font-size: 0.85rem;
+    }
+
+    .projeto-features p {
+        font-size: 0.8rem;
     }
 
     .projeto-links {
@@ -1805,6 +2195,314 @@ footer::before {
     .projeto-btn {
         width: 100%;
         justify-content: center;
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .projeto-tech span {
+        font-size: 0.68rem;
+        padding: 0.2rem 0.5rem;
+    }
+
+    /* Timeline */
+    .timeline-container {
+        padding-left: 2rem;
+    }
+
+    .timeline-dot {
+        left: -2rem;
+        width: 12px;
+        height: 12px;
+    }
+
+    .timeline-container::before {
+        width: 1.5px;
+    }
+
+    .formacao-card {
+        padding: 1.5rem 1.2rem;
+    }
+
+    .formacao-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .formacao-card p {
+        font-size: 0.85rem;
+    }
+
+    .disciplinas span {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.7rem;
+    }
+
+    /* Courses */
+    .cursos-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+    }
+
+    .curso-card {
+        padding: 1rem 0.8rem;
+    }
+
+    .curso-card i {
+        font-size: 1.4rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .curso-card h4 {
+        font-size: 0.85rem;
+    }
+
+    .curso-card p {
+        font-size: 0.75rem;
+    }
+
+    .curso-status {
+        font-size: 0.65rem;
+        padding: 0.15rem 0.6rem;
+    }
+
+    /* Contact */
+    .contato-info h3 {
+        font-size: 1.3rem;
+    }
+
+    .contato-info > p {
+        font-size: 0.9rem;
+    }
+
+    .contato-item {
+        padding: 0.6rem;
+    }
+
+    .contato-item h4 {
+        font-size: 0.85rem;
+    }
+
+    .contato-item p {
+        font-size: 0.8rem;
+    }
+
+    .contato-form {
+        padding: 1.5rem 1.2rem;
+    }
+
+    .contato-form h3 {
+        font-size: 1.2rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .form-group label {
+        font-size: 0.85rem;
+        top: 0.8rem;
+    }
+
+    .btn-enviar {
+        padding: 0.85rem;
+        font-size: 0.9rem;
+    }
+
+    .social-links a {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    /* Footer */
+    footer {
+        padding: 2.5rem 1rem 1.5rem;
+    }
+
+    .footer-content {
+        gap: 1.5rem;
+    }
+
+    .footer-logo h3 {
+        font-size: 1.1rem;
+    }
+
+    .footer-links a {
+        font-size: 0.85rem;
+    }
+
+    .footer-bottom p {
+        font-size: 0.8rem;
+    }
+}
+
+/* === MOBILE SMALL (400px) === */
+@media (max-width: 400px) {
+    header h1 {
+        font-size: 0.9rem;
+    }
+
+    nav a {
+        padding: 0.25rem 0.4rem;
+        font-size: 0.7rem;
+    }
+
+    section {
+        padding: 4rem 0.8rem 2rem;
+    }
+
+    .hero-section {
+        padding: 6.5rem 0.8rem 2.5rem;
+    }
+
+    .headline {
+        font-size: 1.6rem;
+    }
+
+    .hero-desc {
+        font-size: 0.85rem;
+    }
+
+    .glass-panel {
+        padding: 1rem;
+    }
+
+    .code-snippet {
+        font-size: 0.65rem;
+    }
+
+    .habilidades-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+    }
+
+    .habilidade-card {
+        padding: 1rem 0.6rem;
+    }
+
+    .habilidade-card i {
+        font-size: 1.6rem;
+    }
+
+    .habilidade-card h3 {
+        font-size: 0.8rem;
+    }
+
+    .sobre-container {
+        padding: 1.2rem 0.8rem;
+    }
+
+    .foto-container img {
+        max-width: 130px;
+        height: 130px;
+    }
+
+    .foto-container::after {
+        width: 150px;
+        height: 150px;
+    }
+
+    .cursos-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+    }
+
+    .curso-card {
+        padding: 0.8rem 0.6rem;
+    }
+
+    .formacao-card {
+        padding: 1.2rem 1rem;
+    }
+
+    .contato-item i {
+        width: 34px;
+        height: 34px;
+        font-size: 0.9rem;
+        border-radius: 10px;
+    }
+
+    .contato-form {
+        padding: 1.2rem 1rem;
+    }
+
+    .back-to-top {
+        bottom: 1rem;
+        right: 1rem;
+        width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+    }
+
+    .loading-progress {
+        width: 200px;
+    }
+
+    .mesh-blob:nth-child(1) { width: 250px; height: 250px; }
+    .mesh-blob:nth-child(2) { width: 200px; height: 200px; }
+    .mesh-blob:nth-child(3) { width: 150px; height: 150px; }
+}
+
+/* === LANDSCAPE PHONES === */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-section {
+        min-height: auto;
+        padding-top: 5rem;
+        padding-bottom: 2rem;
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .sub-headline {
+        justify-content: flex-start;
+    }
+
+    .sub-headline::before {
+        display: inline-block;
+    }
+
+    .hero-botoes {
+        justify-content: flex-start;
+    }
+
+    .hero-desc {
+        margin-left: 0;
+    }
+
+    #welcome-screen {
+        height: 100vh;
+    }
+
+    .premium-loader {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* === REDUCED MOTION — Accessibility === */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+
+    .mesh-blob {
+        animation: none;
+    }
+
+    .scroll-progress {
+        transition: none;
+    }
+
+    .skill-level {
+        transition: none;
     }
 }
 

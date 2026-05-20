@@ -61,7 +61,7 @@
                 </svg>
                 <div class="pulse-core"></div>
             </div>
-            <h1>Carregando experiência</h1>
+            <h1 data-translate="loading.text">Carregando experiência</h1>
             <div class="loading-progress">
                 <div class="progress-bar"></div>
             </div>
@@ -74,12 +74,16 @@
             <h1>Felipe Prado</h1>
             <nav>
                 <ul>
-                    <li><a href="#sobre-mim">Sobre</a></li>
-                    <li><a href="#habilidades">Skills</a></li>
-                    <li><a href="#projetos">Projetos</a></li>
-                    <li><a href="#formacao">Formação</a></li>
-                    <li><a href="#contatos">Contato</a></li>
+                    <li><a href="#sobre-mim" data-translate="nav.about">Sobre</a></li>
+                    <li><a href="#habilidades" data-translate="nav.skills">Skills</a></li>
+                    <li><a href="#projetos" data-translate="nav.projects">Projetos</a></li>
+                    <li><a href="#formacao" data-translate="nav.education">Formação</a></li>
+                    <li><a href="#contatos" data-translate="nav.contact">Contato</a></li>
                 </ul>
+                <button id="langToggle" class="lang-toggle" aria-label="Alternar idioma">
+                    <span id="langFlag">🇧🇷</span>
+                    <span id="langText">PT</span>
+                </button>
             </nav>
         </header>
 
@@ -87,11 +91,11 @@
         <section id="inicio" class="hero-section">
             <div class="hero-content">
                 <p class="sub-headline reveal">Full Stack Developer</p>
-                <h1 class="headline reveal">Criando experiências digitais com <span>Design Impecável</span></h1>
-                <p class="hero-desc reveal">Olá! Sou Felipe Prado, Desenvolvedor Full Stack apaixonado por desenvolver soluções inovadoras, rápidas e esteticamente deslumbrantes.</p>
+                <h1 class="headline reveal" data-translate="hero.title">Criando experiências digitais com <span data-translate="hero.titleSpan">Design Impecável</span></h1>
+                <p class="hero-desc reveal" data-translate="hero.description">Olá! Sou Felipe Prado, Desenvolvedor Full Stack apaixonado por desenvolver soluções inovadoras, rápidas e esteticamente deslumbrantes.</p>
                 <div class="hero-botoes reveal">
-                    <a href="#projetos" class="btn-primary"><i class="fas fa-rocket"></i> Ver Projetos</a>
-                    <a href="#contatos" class="btn-secondary"><i class="fas fa-envelope"></i> Falar Comigo</a>
+                    <a href="#projetos" class="btn-primary"><i class="fas fa-rocket"></i> <span data-translate="hero.button1">Ver Projetos</span></a>
+                    <a href="#contatos" class="btn-secondary"><i class="fas fa-envelope"></i> <span data-translate="hero.button2">Falar Comigo</span></a>
                 </div>
             </div>
             <div class="hero-visual reveal">
@@ -118,8 +122,8 @@
 
         <!-- About Me -->
         <section id="sobre-mim" class="reveal">
-            <h2>Sobre Mim</h2>
-            <p class="section-subtitle">Conheça um pouco da minha trajetória</p>
+            <h2 data-translate="about.title">Sobre Mim</h2>
+            <p class="section-subtitle" data-translate="about.subtitle">Conheça um pouco da minha trajetória</p>
             <div class="sobre-container">
                 <div class="foto-container">
                     <img src="assets/myself.webp" alt="Felipe Prado — Desenvolvedor Full Stack">
@@ -141,8 +145,8 @@
 
         <!-- Skills -->
         <section id="habilidades" class="reveal">
-            <h2>Habilidades Técnicas</h2>
-            <p class="section-subtitle">Tecnologias que domino e utilizo no dia a dia</p>
+            <h2 data-translate="skills.title">Habilidades Técnicas</h2>
+            <p class="section-subtitle" data-translate="skills.subtitle">Tecnologias que domino e utilizo no dia a dia</p>
             <div class="habilidades-grid">
                 <div class="habilidade-card">
                     <i class="fab fa-html5"></i>
@@ -237,8 +241,8 @@
 
         <!-- Projects -->
         <section id="projetos" class="reveal">
-            <h2>Projetos</h2>
-            <p class="section-subtitle">Alguns dos meus trabalhos mais recentes</p>
+            <h2 data-translate="projects.title">Projetos</h2>
+            <p class="section-subtitle" data-translate="projects.subtitle">Alguns dos meus trabalhos mais recentes</p>
 
             <div class="projetos-grid">
                 <!-- Food Explorer -->
@@ -518,8 +522,8 @@
 
         <!-- Education -->
         <section id="formacao" class="reveal">
-            <h2>Trilha de Aprendizado</h2>
-            <p class="section-subtitle">Minha jornada de formação e certificações</p>
+            <h2 data-translate="education.title">Trilha de Aprendizado</h2>
+            <p class="section-subtitle" data-translate="education.subtitle">Minha jornada de formação e certificações</p>
             <div class="timeline-container">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
@@ -612,8 +616,8 @@
 
         <!-- Contact -->
         <section id="contatos" class="reveal">
-            <h2>Entre em Contato</h2>
-            <p class="section-subtitle">Estou sempre aberto a novas oportunidades</p>
+            <h2 data-translate="contact.title">Entre em Contato</h2>
+            <p class="section-subtitle" data-translate="contact.subtitle">Estou sempre aberto a novas oportunidades</p>
             <div class="contato-container">
                 <div class="contato-info">
                     <h3>Vamos conversar!</h3>
@@ -715,6 +719,118 @@
     </main>
 
     <script>
+    // ============================================================
+    // TRANSLATION SYSTEM — Multilingual Support
+    // ============================================================
+
+    const translations = {
+        pt: {
+            'loading.text': 'Carregando experiência',
+            'nav.about': 'Sobre',
+            'nav.skills': 'Skills',
+            'nav.projects': 'Projetos',
+            'nav.education': 'Formação',
+            'nav.contact': 'Contato',
+            'hero.title': 'Criando experiências digitais com',
+            'hero.titleSpan': 'Design Impecável',
+            'hero.description': 'Olá! Sou Felipe Prado, Desenvolvedor Full Stack apaixonado por desenvolver soluções inovadoras, rápidas e esteticamente deslumbrantes.',
+            'hero.button1': 'Ver Projetos',
+            'hero.button2': 'Falar Comigo',
+            'about.title': 'Sobre Mim',
+            'about.subtitle': 'Conheça um pouco da minha trajetória',
+            'skills.title': 'Habilidades Técnicas',
+            'skills.subtitle': 'Tecnologias que domino e utilizo no dia a dia',
+            'projects.title': 'Projetos',
+            'projects.subtitle': 'Alguns dos meus trabalhos mais recentes',
+            'education.title': 'Trilha de Aprendizado',
+            'education.subtitle': 'Minha jornada de formação e certificações',
+            'contact.title': 'Entre em Contato',
+            'contact.subtitle': 'Estou sempre aberto a novas oportunidades',
+            'button.viewProject': 'Ver projeto',
+            'button.code': 'Código',
+            'contact.sendMessage': 'Enviar uma mensagem',
+            'contact.conversation': 'Vamos conversar!',
+            'contact.available': 'Estou disponível para projetos freelancer, oportunidades de emprego ou apenas para trocar uma ideia sobre tecnologia.',
+            'button.sendWhatsApp': 'Enviar via WhatsApp'
+        },
+        en: {
+            'loading.text': 'Loading experience',
+            'nav.about': 'About',
+            'nav.skills': 'Skills',
+            'nav.projects': 'Projects',
+            'nav.education': 'Education',
+            'nav.contact': 'Contact',
+            'hero.title': 'Creating digital experiences with',
+            'hero.titleSpan': 'Impeccable Design',
+            'hero.description': 'Hi! I\'m Felipe Prado, a Full Stack Developer passionate about developing innovative, fast and visually stunning solutions.',
+            'hero.button1': 'View Projects',
+            'hero.button2': 'Contact Me',
+            'about.title': 'About Me',
+            'about.subtitle': 'Learn a little about my journey',
+            'skills.title': 'Technical Skills',
+            'skills.subtitle': 'Technologies I master and use daily',
+            'projects.title': 'Projects',
+            'projects.subtitle': 'Some of my most recent work',
+            'education.title': 'Learning Path',
+            'education.subtitle': 'My journey of education and certifications',
+            'contact.title': 'Get In Touch',
+            'contact.subtitle': 'I\'m always open to new opportunities',
+            'button.viewProject': 'View project',
+            'button.code': 'Code',
+            'contact.sendMessage': 'Send a message',
+            'contact.conversation': 'Let\'s talk!',
+            'contact.available': 'I\'m available for freelance projects, employment opportunities or just to exchange ideas about technology.',
+            'button.sendWhatsApp': 'Send via WhatsApp'
+        }
+    };
+
+    let currentLanguage = localStorage.getItem('language') || 'pt';
+
+    function setLanguage(lang) {
+        if (!translations[lang]) lang = 'pt';
+        currentLanguage = lang;
+        localStorage.setItem('language', lang);
+
+        // Update all elements with data-translate attribute
+        document.querySelectorAll('[data-translate]').forEach(el => {
+            const key = el.getAttribute('data-translate');
+            if (translations[lang][key]) {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = translations[lang][key];
+                } else {
+                    el.textContent = translations[lang][key];
+                }
+            }
+        });
+
+        // Update language toggle button
+        const langToggle = document.getElementById('langToggle');
+        const langText = document.getElementById('langText');
+        const langFlag = document.getElementById('langFlag');
+        if (langToggle) {
+            langText.textContent = lang.toUpperCase();
+            langFlag.textContent = lang === 'pt' ? '🇧🇷' : '🇺🇸';
+        }
+
+        // Update HTML lang attribute
+        document.documentElement.lang = lang;
+    }
+
+    function toggleLanguage() {
+        const newLang = currentLanguage === 'pt' ? 'en' : 'pt';
+        setLanguage(newLang);
+    }
+
+    // Initialize language on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        setLanguage(currentLanguage);
+
+        const langToggle = document.getElementById('langToggle');
+        if (langToggle) {
+            langToggle.addEventListener('click', toggleLanguage);
+        }
+    });
+
     // ============================================================
     // DIGITAL AURORA — Interactive Scripts
     // ============================================================

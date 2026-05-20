@@ -431,6 +431,56 @@ nav a:hover::after {
     transform: translateX(-50%) scaleX(1);
 }
 
+/* === LANGUAGE TOGGLE === */
+.lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.8rem;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 100px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    font-size: 0.85rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.lang-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-aurora);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.lang-toggle:hover {
+    color: var(--text-primary);
+    border-color: var(--aurora-violet);
+    background: rgba(139, 92, 246, 0.2);
+}
+
+.lang-toggle:active {
+    transform: scale(0.95);
+}
+
+#langFlag {
+    font-size: 1.1rem;
+}
+
+#langText {
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+}
+
 /* ============================================================
    HERO SECTION
    ============================================================ */

@@ -392,6 +392,12 @@ header h1 {
     white-space: nowrap;
 }
 
+nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 nav ul {
     display: flex;
     list-style: none;

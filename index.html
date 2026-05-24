@@ -130,14 +130,14 @@
                 </div>
                 <div class="descricao">
                     <div class="text">
-                        <p>
+                        <p data-translate="about.text">
                             Olá! Sou Felipe Rodrigues Prado, um desenvolvedor apaixonado por tecnologia e inovação. Com 22 anos e residente de São Paulo, venho aprimorando minhas habilidades em desenvolvimento de software. No momento, estou cursando Análise e Desenvolvimento de Sistemas, focando principalmente em frontend, backend e análise de sistemas. Busco sempre aplicar meus conhecimentos em projetos reais e estou em busca de novas oportunidades para crescer ainda mais profissionalmente.
                         </p>
                     </div>
                     <div class="contato">
-                        <p><i class="fas fa-phone"></i> <strong>Celular:</strong> (13) 98117-5814</p>
-                        <p><i class="fas fa-envelope"></i> <strong>E-mail:</strong> <a href="mailto:felipeendz@gmail.com">felipeendz@gmail.com</a></p>
-                        <p><i class="fab fa-linkedin"></i> <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/felipe-prado013" target="_blank">linkedin.com/in/felipe-prado013</a></p>
+                        <p><i class="fas fa-phone"></i> <strong data-translate="about.phone">Celular:</strong> (13) 98117-5814</p>
+                        <p><i class="fas fa-envelope"></i> <strong data-translate="about.email">E-mail:</strong> <a href="mailto:felipeendz@gmail.com">felipeendz@gmail.com</a></p>
+                        <p><i class="fab fa-linkedin"></i> <strong data-translate="about.linkedin">LinkedIn:</strong> <a href="https://www.linkedin.com/in/felipe-prado013" target="_blank">linkedin.com/in/felipe-prado013</a></p>
                     </div>
                 </div>
             </div>
@@ -543,7 +543,7 @@
                 </div>
             </div>
 
-            <h2 class="cursos-title">Cursos e Certificações</h2>
+            <h2 class="cursos-title" data-translate="courses.title">Cursos e Certificações</h2>
             <div class="cursos-grid">
                 <div class="curso-card">
                     <i class="fas fa-rocket"></i>
@@ -627,7 +627,7 @@
                         <div class="contato-item">
                             <i class="fas fa-envelope"></i>
                             <div>
-                                <h4>Email</h4>
+                                <h4 data-translate="contact.email.label">Email</h4>
                                 <p>felipeendz@gmail.com</p>
                             </div>
                         </div>
@@ -635,7 +635,7 @@
                         <div class="contato-item">
                             <i class="fas fa-phone"></i>
                             <div>
-                                <h4>Telefone</h4>
+                                <h4 data-translate="contact.phone.label">Telefone</h4>
                                 <p>(13) 98117-5814</p>
                             </div>
                         </div>
@@ -643,7 +643,7 @@
                         <div class="contato-item">
                             <i class="fab fa-whatsapp"></i>
                             <div>
-                                <h4>WhatsApp</h4>
+                                <h4 data-translate="contact.whatsapp.label">WhatsApp</h4>
                                 <p>(13) 98117-5814</p>
                             </div>
                         </div>
@@ -651,7 +651,7 @@
                         <div class="contato-item">
                             <i class="fab fa-linkedin"></i>
                             <div>
-                                <h4>LinkedIn</h4>
+                                <h4 data-translate="contact.linkedin.label">LinkedIn</h4>
                                 <p>/felipe-prado013</p>
                             </div>
                         </div>
@@ -664,24 +664,24 @@
                 </div>
 
                 <div class="contato-form">
-                    <h3>Envie uma mensagem</h3>
+                    <h3 data-translate="contact.sendMessage">Envie uma mensagem</h3>
                     <form id="whatsappForm">
                         <div class="form-group">
                             <input type="text" id="nome" placeholder=" " required>
-                            <label for="nome">Nome completo</label>
+                            <label for="nome" data-translate="form.name">Nome completo</label>
                         </div>
 
                         <div class="form-group">
                             <input type="email" id="email" placeholder=" " required>
-                            <label for="email">E-mail</label>
+                            <label for="email" data-translate="form.email">E-mail</label>
                         </div>
 
                         <div class="form-group">
                             <textarea id="mensagem" placeholder=" " rows="5" required></textarea>
-                            <label for="mensagem">Sua mensagem</label>
+                            <label for="mensagem" data-translate="form.message">Sua mensagem</label>
                         </div>
 
-                        <button type="submit" class="btn-enviar">
+                        <button type="submit" class="btn-enviar" data-translate="button.send">
                             <i class="fab fa-whatsapp"></i> Enviar via WhatsApp
                         </button>
                     </form>
@@ -698,11 +698,11 @@
                 </div>
 
                 <div class="footer-links">
-                    <a href="#sobre-mim">Sobre</a>
-                    <a href="#habilidades">Habilidades</a>
-                    <a href="#projetos">Projetos</a>
-                    <a href="#formacao">Formação</a>
-                    <a href="#contatos">Contato</a>
+                    <a href="#sobre-mim" data-translate="footer.about">Sobre</a>
+                    <a href="#habilidades" data-translate="footer.skills">Habilidades</a>
+                    <a href="#projetos" data-translate="footer.projects">Projetos</a>
+                    <a href="#formacao" data-translate="footer.education">Formação</a>
+                    <a href="#contatos" data-translate="footer.contact">Contato</a>
                 </div>
 
                 <div class="footer-social">
@@ -712,8 +712,8 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2025 Felipe Rodrigues Prado. Todos os direitos reservados.</p>
-                <p>Desenvolvido com <i class="fas fa-heart"></i> e muito código</p>
+                <p data-translate="footer.copyright">&copy; 2025 Felipe Rodrigues Prado. Todos os direitos reservados.</p>
+                <p><span data-translate="footer.developed">Desenvolvido com</span> <i class="fas fa-heart"></i> e muito código</p>
             </div>
         </footer>
     </main>
@@ -738,20 +738,43 @@
             'hero.button2': 'Falar Comigo',
             'about.title': 'Sobre Mim',
             'about.subtitle': 'Conheça um pouco da minha trajetória',
+            'about.text': 'Olá! Sou Felipe Rodrigues Prado, um desenvolvedor apaixonado por tecnologia e inovação. Com 22 anos e residente de São Paulo, venho aprimorando minhas habilidades em desenvolvimento de software. No momento, estou cursando Análise e Desenvolvimento de Sistemas, focando principalmente em frontend, backend e análise de sistemas. Busco sempre aplicar meus conhecimentos em projetos reais e estou em busca de novas oportunidades para crescer ainda mais profissionalmente.',
+            'about.phone': 'Celular:',
+            'about.email': 'E-mail:',
+            'about.linkedin': 'LinkedIn:',
             'skills.title': 'Habilidades Técnicas',
             'skills.subtitle': 'Tecnologias que domino e utilizo no dia a dia',
             'projects.title': 'Projetos',
             'projects.subtitle': 'Alguns dos meus trabalhos mais recentes',
             'education.title': 'Trilha de Aprendizado',
             'education.subtitle': 'Minha jornada de formação e certificações',
+            'education.course': 'Análise e Desenvolvimento de Sistemas',
+            'education.university': 'UniAmérica • 2023 – 2025 • Finalizado',
+            'education.description': 'Formação sólida em desenvolvimento de software, arquitetura de soluções, frontend, backend, bancos de dados, metodologias ágeis e UX/UI.',
+            'courses.title': 'Cursos e Certificações',
+            'courses.completed': 'Completo',
             'contact.title': 'Entre em Contato',
             'contact.subtitle': 'Estou sempre aberto a novas oportunidades',
-            'button.viewProject': 'Ver projeto',
-            'button.code': 'Código',
             'contact.sendMessage': 'Enviar uma mensagem',
             'contact.conversation': 'Vamos conversar!',
             'contact.available': 'Estou disponível para projetos freelancer, oportunidades de emprego ou apenas para trocar uma ideia sobre tecnologia.',
-            'button.sendWhatsApp': 'Enviar via WhatsApp'
+            'contact.email.label': 'Email',
+            'contact.phone.label': 'Telefone',
+            'contact.whatsapp.label': 'WhatsApp',
+            'contact.linkedin.label': 'LinkedIn',
+            'form.name': 'Nome completo',
+            'form.email': 'E-mail',
+            'form.message': 'Sua mensagem',
+            'button.send': 'Enviar via WhatsApp',
+            'button.viewProject': 'Ver projeto',
+            'button.code': 'Código',
+            'footer.about': 'Sobre',
+            'footer.skills': 'Habilidades',
+            'footer.projects': 'Projetos',
+            'footer.education': 'Formação',
+            'footer.contact': 'Contato',
+            'footer.copyright': '© 2025 Felipe Rodrigues Prado. Todos os direitos reservados.',
+            'footer.developed': 'Desenvolvido com'
         },
         en: {
             'loading.text': 'Loading experience',
@@ -767,20 +790,43 @@
             'hero.button2': 'Contact Me',
             'about.title': 'About Me',
             'about.subtitle': 'Learn a little about my journey',
+            'about.text': 'Hello! I\'m Felipe Rodrigues Prado, a developer passionate about technology and innovation. At 22 years old and a resident of São Paulo, I\'ve been improving my software development skills. Currently, I\'m taking a course in Systems Analysis and Development, focusing mainly on frontend, backend and systems analysis. I always seek to apply my knowledge to real projects and I\'m looking for new opportunities to grow even more professionally.',
+            'about.phone': 'Phone:',
+            'about.email': 'Email:',
+            'about.linkedin': 'LinkedIn:',
             'skills.title': 'Technical Skills',
             'skills.subtitle': 'Technologies I master and use daily',
             'projects.title': 'Projects',
             'projects.subtitle': 'Some of my most recent work',
             'education.title': 'Learning Path',
             'education.subtitle': 'My journey of education and certifications',
+            'education.course': 'Analysis and Systems Development',
+            'education.university': 'UniAmerica • 2023 – 2025 • Completed',
+            'education.description': 'Solid training in software development, solution architecture, frontend, backend, databases, agile methodologies and UX/UI.',
+            'courses.title': 'Courses and Certifications',
+            'courses.completed': 'Completed',
             'contact.title': 'Get In Touch',
             'contact.subtitle': 'I\'m always open to new opportunities',
-            'button.viewProject': 'View project',
-            'button.code': 'Code',
             'contact.sendMessage': 'Send a message',
             'contact.conversation': 'Let\'s talk!',
             'contact.available': 'I\'m available for freelance projects, employment opportunities or just to exchange ideas about technology.',
-            'button.sendWhatsApp': 'Send via WhatsApp'
+            'contact.email.label': 'Email',
+            'contact.phone.label': 'Phone',
+            'contact.whatsapp.label': 'WhatsApp',
+            'contact.linkedin.label': 'LinkedIn',
+            'form.name': 'Full name',
+            'form.email': 'Email',
+            'form.message': 'Your message',
+            'button.send': 'Send via WhatsApp',
+            'button.viewProject': 'View project',
+            'button.code': 'Code',
+            'footer.about': 'About',
+            'footer.skills': 'Skills',
+            'footer.projects': 'Projects',
+            'footer.education': 'Education',
+            'footer.contact': 'Contact',
+            'footer.copyright': '© 2025 Felipe Rodrigues Prado. All rights reserved.',
+            'footer.developed': 'Developed with'
         }
     };
 
@@ -800,6 +846,13 @@
                 } else {
                     el.textContent = translations[lang][key];
                 }
+            }
+        });
+
+        // Update course status
+        document.querySelectorAll('.curso-status').forEach(el => {
+            if (el.textContent === 'Completo' || el.textContent === 'Completed') {
+                el.textContent = translations[lang]['courses.completed'];
             }
         });
 

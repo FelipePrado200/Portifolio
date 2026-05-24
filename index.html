@@ -34,6 +34,7 @@
         <div class="mesh-blob"></div>
         <div class="mesh-blob"></div>
         <div class="mesh-blob"></div>
+        <canvas id="tech-canvas"></canvas>
     </div>
 
     <!-- Custom Cursor -->
@@ -126,7 +127,7 @@
             <p class="section-subtitle" data-translate="about.subtitle">Conheça um pouco da minha trajetória</p>
             <div class="sobre-container">
                 <div class="foto-container">
-                    <img src="assets/myself.webp" alt="Felipe Prado — Desenvolvedor Full Stack">
+                    <img src="assets/Felipe wallpaper.png" alt="Felipe Prado — Desenvolvedor Full Stack">
                 </div>
                 <div class="descricao">
                     <div class="text">
@@ -151,7 +152,7 @@
                 <div class="habilidade-card">
                     <i class="fab fa-html5"></i>
                     <h3>HTML5</h3>
-                    <p>Domínio de HTML5 para construção de páginas semânticas, acessíveis e bem estruturadas.</p>
+                    <p data-translate="skills.html.desc">Domínio de HTML5 para construção de páginas semânticas, acessíveis e bem estruturadas.</p>
                     <div class="skill-bar">
                         <div class="skill-level" data-width="95%"></div>
                     </div>
@@ -159,7 +160,7 @@
                 <div class="habilidade-card">
                     <i class="fab fa-css3-alt"></i>
                     <h3>CSS3</h3>
-                    <p>Proficiência em estilização de layouts modernos e responsivos, utilizando técnicas avançadas.</p>
+                    <p data-translate="skills.css.desc">Proficiência em estilização de layouts modernos e responsivos, utilizando técnicas avançadas.</p>
                     <div class="skill-bar">
                         <div class="skill-level" data-width="90%"></div>
                     </div>
@@ -167,7 +168,7 @@
                 <div class="habilidade-card">
                     <i class="fab fa-js"></i>
                     <h3>JavaScript</h3>
-                    <p>Experiência no desenvolvimento de aplicações dinâmicas e interativas.</p>
+                    <p data-translate="skills.js.desc">Experiência no desenvolvimento de aplicações dinâmicas e interativas.</p>
                     <div class="skill-bar">
                         <div class="skill-level" data-width="85%"></div>
                     </div>
@@ -175,7 +176,7 @@
                 <div class="habilidade-card">
                     <i class="fab fa-react"></i>
                     <h3>React</h3>
-                    <p>Experiência com React para criação de interfaces dinâmicas e escaláveis.</p>
+                    <p data-translate="skills.react.desc">Experiência com React para criação de interfaces dinâmicas e escaláveis.</p>
                     <div class="skill-bar">
                         <div class="skill-level" data-width="80%"></div>
                     </div>
@@ -183,7 +184,7 @@
                 <div class="habilidade-card">
                     <i class="fas fa-bolt"></i>
                     <h3>Next.js</h3>
-                    <p>Experiência com Next.js para aplicações server-side rendering e produção.</p>
+                    <p data-translate="skills.next.desc">Experiência com Next.js para aplicações server-side rendering e produção.</p>
                     <div class="skill-bar">
                         <div class="skill-level" data-width="75%"></div>
                     </div>
@@ -191,7 +192,7 @@
                 <div class="habilidade-card">
                     <i class="fab fa-node"></i>
                     <h3>Node.js</h3>
-                    <p>Habilidade em construir servidores web e APIs RESTful.</p>
+                    <p data-translate="skills.node.desc">Habilidade em construir servidores web e APIs RESTful.</p>
                     <div class="skill-bar">
                         <div class="skill-level" data-width="75%"></div>
                     </div>
@@ -199,7 +200,7 @@
                 <div class="habilidade-card">
                     <i class="fab fa-java"></i>
                     <h3>Java</h3>
-                    <p>Habilidade na construção de sistemas robustos, com foco em OOP.</p>
+                    <p data-translate="skills.java.desc">Habilidade na construção de sistemas robustos, com foco em OOP.</p>
                     <div class="skill-bar">
                         <div class="skill-level" data-width="70%"></div>
                     </div>
@@ -207,7 +208,7 @@
                 <div class="habilidade-card">
                     <i class="fab fa-python"></i>
                     <h3>Python</h3>
-                    <p>Conhecimento em Python para automação de processos e análise de dados.</p>
+                    <p data-translate="skills.python.desc">Conhecimento em Python para automação de processos e análise de dados.</p>
                     <div class="skill-bar">
                         <div class="skill-level" data-width="75%"></div>
                     </div>
@@ -215,7 +216,7 @@
                 <div class="habilidade-card">
                     <i class="fas fa-database"></i>
                     <h3>MongoDB</h3>
-                    <p>Experiência com bancos de dados NoSQL, utilizando MongoDB.</p>
+                    <p data-translate="skills.mongodb.desc">Experiência com bancos de dados NoSQL, utilizando MongoDB.</p>
                     <div class="skill-bar">
                         <div class="skill-level" data-width="70%"></div>
                     </div>
@@ -223,7 +224,7 @@
                 <div class="habilidade-card">
                     <i class="fab fa-git-alt"></i>
                     <h3>Git</h3>
-                    <p>Experiência com controle de versão utilizando Git.</p>
+                    <p data-translate="skills.git.desc">Experiência com controle de versão utilizando Git.</p>
                     <div class="skill-bar">
                         <div class="skill-level" data-width="85%"></div>
                     </div>
@@ -231,7 +232,7 @@
                 <div class="habilidade-card">
                     <i class="fab fa-github"></i>
                     <h3>GitHub</h3>
-                    <p>Domínio do GitHub para hospedagem de repositórios e colaboração.</p>
+                    <p data-translate="skills.github.desc">Domínio do GitHub para hospedagem de repositórios e colaboração.</p>
                     <div class="skill-bar">
                         <div class="skill-level" data-width="90%"></div>
                     </div>
@@ -257,15 +258,15 @@
                     </div>
                     <div class="projeto-conteudo">
                         <h3>Food Explorer</h3>
-                        <p class="projeto-desc">Aplicação web que permite aos usuários buscar, explorar e salvar receitas de diferentes tipos de alimentos.</p>
+                        <p class="projeto-desc" data-translate="projects.foodexplorer.desc">Aplicação web que permite aos usuários buscar, explorar e salvar receitas de diferentes tipos de alimentos.</p>
                         <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> Sistema de autenticação</p>
-                            <p><i class="fas fa-check"></i> Busca avançada</p>
-                            <p><i class="fas fa-check"></i> Favoritos</p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.foodexplorer.f1">Sistema de autenticação</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.foodexplorer.f2">Busca avançada</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.foodexplorer.f3">Favoritos</span></p>
                         </div>
                         <div class="projeto-links">
                             <a href="https://github.com/FelipePrado200/Food-Explorer-FrontEnd" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
                             </a>
                         </div>
                     </div>
@@ -283,15 +284,15 @@
                     </div>
                     <div class="projeto-conteudo">
                         <h3>Rocket Notes</h3>
-                        <p class="projeto-desc">Aplicação de notas para organizar ideias e informações de maneira eficiente.</p>
+                        <p class="projeto-desc" data-translate="projects.rocketnotes.desc">Aplicação de notas para organizar ideias e informações de maneira eficiente.</p>
                         <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> CRUD completo</p>
-                            <p><i class="fas fa-check"></i> Sistema de tags</p>
-                            <p><i class="fas fa-check"></i> Busca em tempo real</p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.rocketnotes.f1">CRUD completo</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.rocketnotes.f2">Sistema de tags</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.rocketnotes.f3">Busca em tempo real</span></p>
                         </div>
                         <div class="projeto-links">
                             <a href="https://github.com/FelipePrado200/RocketNotes" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
                             </a>
                         </div>
                     </div>
@@ -308,15 +309,15 @@
                     </div>
                     <div class="projeto-conteudo">
                         <h3>Bank System</h3>
-                        <p class="projeto-desc">Sistema bancário em Python com criação de conta, depósitos, saques e consulta de saldo.</p>
+                        <p class="projeto-desc" data-translate="projects.banksystem.desc">Sistema bancário em Python com criação de conta, depósitos, saques e consulta de saldo.</p>
                         <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> Sistema de transações</p>
-                            <p><i class="fas fa-check"></i> Extrato bancário</p>
-                            <p><i class="fas fa-check"></i> Validações de segurança</p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.banksystem.f1">Sistema de transações</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.banksystem.f2">Extrato bancário</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.banksystem.f3">Validações de segurança</span></p>
                         </div>
                         <div class="projeto-links">
                             <a href="https://github.com/FelipePrado200/Sistema-Banc-rio-" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
                             </a>
                         </div>
                     </div>
@@ -334,18 +335,18 @@
                     </div>
                     <div class="projeto-conteudo">
                         <h3>DevFlix</h3>
-                        <p class="projeto-desc">Plataforma de streaming de filmes desenvolvida para demonstrar habilidades em desenvolvimento web.</p>
+                        <p class="projeto-desc" data-translate="projects.devflix.desc">Plataforma de streaming de filmes desenvolvida para demonstrar habilidades em desenvolvimento web.</p>
                         <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> Interface responsiva</p>
-                            <p><i class="fas fa-check"></i> Filtro por gênero</p>
-                            <p><i class="fas fa-check"></i> Player de vídeo</p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.devflix.f1">Interface responsiva</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.devflix.f2">Filtro por gênero</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.devflix.f3">Player de vídeo</span></p>
                         </div>
                         <div class="projeto-links">
                             <a href="https://felipeprado200.github.io/Devflix/" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
                             </a>
                             <a href="https://github.com/FelipePrado200/Devflix" target="_blank" class="projeto-btn secundario">
-                                <i class="fab fa-github"></i> Código
+                                <i class="fab fa-github"></i> <span data-translate="button.code">Código</span>
                             </a>
                         </div>
                     </div>
@@ -362,16 +363,16 @@
                         </div>
                     </div>
                     <div class="projeto-conteudo">
-                        <h3>Site Advocacia</h3>
-                        <p class="projeto-desc">Site freelancer desenvolvido para um advogado, com design profissional e responsivo.</p>
+                        <h3 data-translate="projects.advocacia.title">Site Advocacia</h3>
+                        <p class="projeto-desc" data-translate="projects.advocacia.desc">Site freelancer desenvolvido para um advogado, com design profissional e responsivo.</p>
                         <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> Design profissional</p>
-                            <p><i class="fas fa-check"></i> Totalmente responsivo</p>
-                            <p><i class="fas fa-check"></i> Formulário de contato</p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.advocacia.f1">Design profissional</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.advocacia.f2">Totalmente responsivo</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.advocacia.f3">Formulário de contato</span></p>
                         </div>
                         <div class="projeto-links">
                             <a href="https://felipeprado200.github.io/site-matheus/" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
                             </a>
                         </div>
                     </div>
@@ -389,18 +390,18 @@
                     </div>
                     <div class="projeto-conteudo">
                         <h3>Chronos Pomodoro</h3>
-                        <p class="projeto-desc">Aplicação de produtividade baseada na Técnica Pomodoro para gerenciamento de tempo.</p>
+                        <p class="projeto-desc" data-translate="projects.pomodoro.desc">Aplicação de produtividade baseada na Técnica Pomodoro para gerenciamento de tempo.</p>
                         <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> Temporizador configurável</p>
-                            <p><i class="fas fa-check"></i> Histórico de sessões</p>
-                            <p><i class="fas fa-check"></i> Notificações</p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.pomodoro.f1">Temporizador configurável</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.pomodoro.f2">Histórico de sessões</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.pomodoro.f3">Notificações</span></p>
                         </div>
                         <div class="projeto-links">
                             <a href="https://chronos-pomodoro-lime.vercel.app/" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
                             </a>
                             <a href="https://github.com/FelipePrado200/chronos-pomodoro" target="_blank" class="projeto-btn secundario">
-                                <i class="fab fa-github"></i> Código
+                                <i class="fab fa-github"></i> <span data-translate="button.code">Código</span>
                             </a>
                         </div>
                     </div>
@@ -419,18 +420,18 @@
                     </div>
                     <div class="projeto-conteudo">
                         <h3>My Finances</h3>
-                        <p class="projeto-desc">Sistema de controle financeiro pessoal para gerenciamento de receitas e despesas.</p>
+                        <p class="projeto-desc" data-translate="projects.finances.desc">Sistema de controle financeiro pessoal para gerenciamento de receitas e despesas.</p>
                         <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> Dashboard de gastos</p>
-                            <p><i class="fas fa-check"></i> Categorização</p>
-                            <p><i class="fas fa-check"></i> Relatórios</p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.finances.f1">Dashboard de gastos</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.finances.f2">Categorização</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.finances.f3">Relatórios</span></p>
                         </div>
                         <div class="projeto-links">
                             <a href="https://my-finances-liard.vercel.app/" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
                             </a>
                             <a href="https://github.com/FelipePrado200/my-finances" target="_blank" class="projeto-btn secundario">
-                                <i class="fab fa-github"></i> Código
+                                <i class="fab fa-github"></i> <span data-translate="button.code">Código</span>
                             </a>
                         </div>
                     </div>
@@ -449,18 +450,18 @@
                     </div>
                     <div class="projeto-conteudo">
                         <h3>Leon On</h3>
-                        <p class="projeto-desc">Espaço seguro e anônimo para acolher sua mente. Plataforma de suporte emocional com IA que oferece apoio inteligente 24 horas por dia.</p>
+                        <p class="projeto-desc" data-translate="projects.leonon.desc">Espaço seguro e anônimo para acolher sua mente. Plataforma de suporte emocional com IA que oferece apoio inteligente 24 horas por dia.</p>
                         <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> Suporte 24/7</p>
-                            <p><i class="fas fa-check"></i> Conversas anônimas</p>
-                            <p><i class="fas fa-check"></i> IA inteligente</p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.leonon.f1">Suporte 24/7</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.leonon.f2">Conversas anônimas</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.leonon.f3">IA inteligente</span></p>
                         </div>
                         <div class="projeto-links">
                             <a href="https://lean-on-swart.vercel.app/" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
                             </a>
                             <a href="https://github.com/FelipePrado200/LeonOn" target="_blank" class="projeto-btn secundario">
-                                <i class="fab fa-github"></i> Código
+                                <i class="fab fa-github"></i> <span data-translate="button.code">Código</span>
                             </a>
                         </div>
                     </div>
@@ -478,15 +479,15 @@
                     </div>
                     <div class="projeto-conteudo">
                         <h3>The Blog</h3>
-                        <p class="projeto-desc">Simulação de um blog moderno com sistema de posts e comentários.</p>
+                        <p class="projeto-desc" data-translate="projects.theblog.desc">Simulação de um blog moderno com sistema de posts e comentários.</p>
                         <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> Layout moderno</p>
-                            <p><i class="fas fa-check"></i> Sistema de posts</p>
-                            <p><i class="fas fa-check"></i> Comentários</p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.theblog.f1">Layout moderno</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.theblog.f2">Sistema de posts</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.theblog.f3">Comentários</span></p>
                         </div>
                         <div class="projeto-links">
                             <a href="https://github.com/FelipePrado200/The-blog" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
                             </a>
                         </div>
                     </div>
@@ -504,15 +505,15 @@
                     </div>
                     <div class="projeto-conteudo">
                         <h3>Pet Dev</h3>
-                        <p class="projeto-desc">Dashboard para petshop com controle de clientes, serviços e agendamentos.</p>
+                        <p class="projeto-desc" data-translate="projects.petdev.desc">Dashboard para petshop com controle de clientes, serviços e agendamentos.</p>
                         <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> Dashboard interativo</p>
-                            <p><i class="fas fa-check"></i> Agendamentos</p>
-                            <p><i class="fas fa-check"></i> Controle de clientes</p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.petdev.f1">Dashboard interativo</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.petdev.f2">Agendamentos</span></p>
+                            <p><i class="fas fa-check"></i> <span data-translate="projects.petdev.f3">Controle de clientes</span></p>
                         </div>
                         <div class="projeto-links">
                             <a href="https://github.com/FelipePrado200/petdev" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> Ver projeto
+                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
                             </a>
                         </div>
                     </div>
@@ -528,16 +529,16 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content formacao-card">
-                        <h3>Análise e Desenvolvimento de Sistemas</h3>
-                        <p class="instituicao">UniAmérica • 2023 – 2025 • Finalizado</p>
-                        <p>Formação sólida em desenvolvimento de software, arquitetura de soluções, frontend, backend, bancos de dados, metodologias ágeis e UX/UI.</p>
+                        <h3 data-translate="education.course">Análise e Desenvolvimento de Sistemas</h3>
+                        <p class="instituicao" data-translate="education.university">UniAmérica • 2023 – 2025 • Finalizado</p>
+                        <p data-translate="education.description">Formação sólida em desenvolvimento de software, arquitetura de soluções, frontend, backend, bancos de dados, metodologias ágeis e UX/UI.</p>
                         <div class="disciplinas">
-                            <span>Programação Web</span>
-                            <span>Banco de Dados</span>
-                            <span>Engenharia de Software</span>
-                            <span>DevOps</span>
-                            <span>Integração de Sistemas</span>
-                            <span>Estrutura de Dados</span>
+                            <span data-translate="education.d1">Programação Web</span>
+                            <span data-translate="education.d2">Banco de Dados</span>
+                            <span data-translate="education.d3">Engenharia de Software</span>
+                            <span data-translate="education.d4">DevOps</span>
+                            <span data-translate="education.d5">Integração de Sistemas</span>
+                            <span data-translate="education.d6">Estrutura de Dados</span>
                         </div>
                     </div>
                 </div>
@@ -744,13 +745,87 @@
             'about.linkedin': 'LinkedIn:',
             'skills.title': 'Habilidades Técnicas',
             'skills.subtitle': 'Tecnologias que domino e utilizo no dia a dia',
+            
+            // skills desc
+            'skills.html.desc': 'Domínio de HTML5 para construção de páginas semânticas, acessíveis e bem estruturadas.',
+            'skills.css.desc': 'Proficiência em estilização de layouts modernos e responsivos, utilizando técnicas avançadas.',
+            'skills.js.desc': 'Experiência no desenvolvimento de aplicações dinâmicas e interativas.',
+            'skills.react.desc': 'Experiência com React para criação de interfaces dinâmicas e escaláveis.',
+            'skills.next.desc': 'Experiência com Next.js para aplicações server-side rendering e produção.',
+            'skills.node.desc': 'Habilidade em construir servidores web e APIs RESTful.',
+            'skills.java.desc': 'Habilidade na construção de sistemas robustos, com foco em OOP.',
+            'skills.python.desc': 'Conhecimento em Python para automação de processos e análise de dados.',
+            'skills.mongodb.desc': 'Experiência com bancos de dados NoSQL, utilizando MongoDB.',
+            'skills.git.desc': 'Experiência com controle de versão utilizando Git.',
+            'skills.github.desc': 'Domínio do GitHub para hospedagem de repositórios e colaboração.',
+
             'projects.title': 'Projetos',
             'projects.subtitle': 'Alguns dos meus trabalhos mais recentes',
+
+            // projects details
+            'projects.foodexplorer.desc': 'Aplicação web que permite aos usuários buscar, explorar e salvar receitas de diferentes tipos de alimentos.',
+            'projects.foodexplorer.f1': 'Sistema de autenticação',
+            'projects.foodexplorer.f2': 'Busca avançada',
+            'projects.foodexplorer.f3': 'Favoritos',
+
+            'projects.rocketnotes.desc': 'Aplicação de notas para organizar ideias e informações de maneira eficiente.',
+            'projects.rocketnotes.f1': 'CRUD completo',
+            'projects.rocketnotes.f2': 'Sistema de tags',
+            'projects.rocketnotes.f3': 'Busca em tempo real',
+
+            'projects.banksystem.desc': 'Sistema bancário em Python com criação de conta, depósitos, saques e consulta de saldo.',
+            'projects.banksystem.f1': 'Sistema de transações',
+            'projects.banksystem.f2': 'Extrato bancário',
+            'projects.banksystem.f3': 'Validações de segurança',
+
+            'projects.devflix.desc': 'Plataforma de streaming de filmes desenvolvida para demonstrar habilidades em desenvolvimento web.',
+            'projects.devflix.f1': 'Interface responsiva',
+            'projects.devflix.f2': 'Filtro por gênero',
+            'projects.devflix.f3': 'Player de vídeo',
+
+            'projects.advocacia.title': 'Site Advocacia',
+            'projects.advocacia.desc': 'Site freelancer desenvolvido para um advogado, com design profissional e responsivo.',
+            'projects.advocacia.f1': 'Design profissional',
+            'projects.advocacia.f2': 'Totalmente responsivo',
+            'projects.advocacia.f3': 'Formulário de contato',
+
+            'projects.pomodoro.desc': 'Aplicação de produtividade baseada na Técnica Pomodoro para gerenciamento de tempo.',
+            'projects.pomodoro.f1': 'Temporizador configurável',
+            'projects.pomodoro.f2': 'Histórico de sessões',
+            'projects.pomodoro.f3': 'Notificações',
+
+            'projects.finances.desc': 'Sistema de controle financeiro pessoal para gerenciamento de receitas e despesas.',
+            'projects.finances.f1': 'Dashboard de gastos',
+            'projects.finances.f2': 'Categorização',
+            'projects.finances.f3': 'Relatórios',
+
+            'projects.leonon.desc': 'Espaço seguro e anônimo para acolher sua mente. Plataforma de suporte emocional com IA que oferece apoio inteligente 24 horas por dia.',
+            'projects.leonon.f1': 'Suporte 24/7',
+            'projects.leonon.f2': 'Conversas anônimas',
+            'projects.leonon.f3': 'IA inteligente',
+
+            'projects.theblog.desc': 'Simulação de um blog moderno com sistema de posts e comentários.',
+            'projects.theblog.f1': 'Layout moderno',
+            'projects.theblog.f2': 'Sistema de posts',
+            'projects.theblog.f3': 'Comentários',
+
+            'projects.petdev.desc': 'Dashboard para petshop com controle de clientes, serviços e agendamentos.',
+            'projects.petdev.f1': 'Dashboard interativo',
+            'projects.petdev.f2': 'Agendamentos',
+            'projects.petdev.f3': 'Controle de clientes',
+
             'education.title': 'Trilha de Aprendizado',
             'education.subtitle': 'Minha jornada de formação e certificações',
             'education.course': 'Análise e Desenvolvimento de Sistemas',
             'education.university': 'UniAmérica • 2023 – 2025 • Finalizado',
             'education.description': 'Formação sólida em desenvolvimento de software, arquitetura de soluções, frontend, backend, bancos de dados, metodologias ágeis e UX/UI.',
+            'education.d1': 'Programação Web',
+            'education.d2': 'Banco de Dados',
+            'education.d3': 'Engenharia de Software',
+            'education.d4': 'DevOps',
+            'education.d5': 'Integração de Sistemas',
+            'education.d6': 'Estrutura de Dados',
+
             'courses.title': 'Cursos e Certificações',
             'courses.completed': 'Completo',
             'contact.title': 'Entre em Contato',
@@ -796,13 +871,87 @@
             'about.linkedin': 'LinkedIn:',
             'skills.title': 'Technical Skills',
             'skills.subtitle': 'Technologies I master and use daily',
+            
+            // skills desc
+            'skills.html.desc': 'HTML5 mastery for building semantic, accessible, and well-structured pages.',
+            'skills.css.desc': 'Proficiency in styling modern and responsive layouts using advanced techniques.',
+            'skills.js.desc': 'Experience in developing dynamic and interactive applications.',
+            'skills.react.desc': 'Experience with React for creating dynamic and scalable interfaces.',
+            'skills.next.desc': 'Experience with Next.js for server-side rendering and production applications.',
+            'skills.node.desc': 'Ability to build web servers and RESTful APIs.',
+            'skills.java.desc': 'Ability to build robust systems, focusing on OOP.',
+            'skills.python.desc': 'Knowledge of Python for process automation and data analysis.',
+            'skills.mongodb.desc': 'Experience with NoSQL databases using MongoDB.',
+            'skills.git.desc': 'Experience with version control using Git.',
+            'skills.github.desc': 'GitHub mastery for hosting repositories and collaboration.',
+
             'projects.title': 'Projects',
             'projects.subtitle': 'Some of my most recent work',
+
+            // projects details
+            'projects.foodexplorer.desc': 'Web application that allows users to search, explore, and save recipes for different types of food.',
+            'projects.foodexplorer.f1': 'Authentication system',
+            'projects.foodexplorer.f2': 'Advanced search',
+            'projects.foodexplorer.f3': 'Favorites',
+
+            'projects.rocketnotes.desc': 'Note-taking application to efficiently organize ideas and information.',
+            'projects.rocketnotes.f1': 'Full CRUD',
+            'projects.rocketnotes.f2': 'Tag system',
+            'projects.rocketnotes.f3': 'Real-time search',
+
+            'projects.banksystem.desc': 'Banking system in Python with account creation, deposits, withdrawals, and balance inquiries.',
+            'projects.banksystem.f1': 'Transaction system',
+            'projects.banksystem.f2': 'Bank statement',
+            'projects.banksystem.f3': 'Security validations',
+
+            'projects.devflix.desc': 'Movie streaming platform developed to demonstrate web development skills.',
+            'projects.devflix.f1': 'Responsive interface',
+            'projects.devflix.f2': 'Filter by genre',
+            'projects.devflix.f3': 'Video player',
+
+            'projects.advocacia.title': 'Lawyer Website',
+            'projects.advocacia.desc': 'Freelance website developed for an attorney, with a professional and responsive design.',
+            'projects.advocacia.f1': 'Professional design',
+            'projects.advocacia.f2': 'Fully responsive',
+            'projects.advocacia.f3': 'Contact form',
+
+            'projects.pomodoro.desc': 'Productivity application based on the Pomodoro Technique for time management.',
+            'projects.pomodoro.f1': 'Configurable timer',
+            'projects.pomodoro.f2': 'Session history',
+            'projects.pomodoro.f3': 'Notifications',
+
+            'projects.finances.desc': 'Personal financial control system for managing income and expenses.',
+            'projects.finances.f1': 'Expense dashboard',
+            'projects.finances.f2': 'Categorization',
+            'projects.finances.f3': 'Reports',
+
+            'projects.leonon.desc': 'A safe and anonymous space to welcome your mind. Emotional support platform with AI offering smart support 24 hours a day.',
+            'projects.leonon.f1': '24/7 support',
+            'projects.leonon.f2': 'Anonymous conversations',
+            'projects.leonon.f3': 'Smart AI',
+
+            'projects.theblog.desc': 'Simulation of a modern blog with a post and comment system.',
+            'projects.theblog.f1': 'Modern layout',
+            'projects.theblog.f2': 'Post system',
+            'projects.theblog.f3': 'Comments',
+
+            'projects.petdev.desc': 'Petshop dashboard with customer control, services, and appointments.',
+            'projects.petdev.f1': 'Interactive dashboard',
+            'projects.petdev.f2': 'Appointments',
+            'projects.petdev.f3': 'Customer control',
+
             'education.title': 'Learning Path',
             'education.subtitle': 'My journey of education and certifications',
             'education.course': 'Analysis and Systems Development',
             'education.university': 'UniAmerica • 2023 – 2025 • Completed',
             'education.description': 'Solid training in software development, solution architecture, frontend, backend, databases, agile methodologies and UX/UI.',
+            'education.d1': 'Web Programming',
+            'education.d2': 'Database',
+            'education.d3': 'Software Engineering',
+            'education.d4': 'DevOps',
+            'education.d5': 'Systems Integration',
+            'education.d6': 'Data Structures',
+
             'courses.title': 'Courses and Certifications',
             'courses.completed': 'Completed',
             'contact.title': 'Get In Touch',
@@ -887,6 +1036,242 @@
     // ============================================================
     // DIGITAL AURORA — Interactive Scripts
     // ============================================================
+
+    // ===== TECH PLEXUS BACKGROUND =====
+    class TechPlexus {
+        constructor() {
+            this.canvas = document.getElementById('tech-canvas');
+            if (!this.canvas) return;
+            this.ctx = this.canvas.getContext('2d');
+            this.particles = [];
+            this.packets = [];
+            this.mouse = { x: null, y: null, radius: 180 };
+            this.colors = [
+                'rgba(6, 182, 212, ',   // Cyan
+                'rgba(139, 92, 246, ',  // Violet
+                'rgba(236, 72, 153, '   // Magenta
+            ];
+            
+            this.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            
+            if (this.reducedMotion) return;
+            
+            this.init();
+            this.animate();
+            
+            window.addEventListener('resize', () => this.handleResize());
+            window.addEventListener('mousemove', (e) => {
+                this.mouse.x = e.clientX;
+                this.mouse.y = e.clientY;
+            });
+            window.addEventListener('mouseleave', () => {
+                this.mouse.x = null;
+                this.mouse.y = null;
+            });
+        }
+        
+        init() {
+            this.resizeCanvas();
+            this.createParticles();
+        }
+        
+        resizeCanvas() {
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight;
+        }
+        
+        handleResize() {
+            this.resizeCanvas();
+            this.createParticles();
+            this.packets = [];
+        }
+        
+        createParticles() {
+            this.particles = [];
+            const area = this.canvas.width * this.canvas.height;
+            const particleCount = Math.min(Math.floor(area / 15000), window.innerWidth < 768 ? 40 : 100);
+            
+            const types = ['circle', 'ring', 'square', 'plus'];
+            
+            for (let i = 0; i < particleCount; i++) {
+                this.particles.push({
+                    x: Math.random() * this.canvas.width,
+                    y: Math.random() * this.canvas.height,
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4,
+                    size: Math.random() * 2.5 + 1,
+                    type: types[Math.floor(Math.random() * types.length)],
+                    colorIndex: Math.floor(Math.random() * this.colors.length),
+                    pulseSpeed: Math.random() * 0.02 + 0.005,
+                    pulseTime: Math.random() * Math.PI * 2,
+                    alpha: Math.random() * 0.4 + 0.2
+                });
+            }
+        }
+        
+        drawParticle(p) {
+            const opacity = p.alpha * (0.6 + 0.4 * Math.sin(p.pulseTime));
+            this.ctx.fillStyle = this.colors[p.colorIndex] + opacity + ')';
+            this.ctx.strokeStyle = this.colors[p.colorIndex] + opacity + ')';
+            this.ctx.lineWidth = 1;
+            
+            this.ctx.beginPath();
+            if (p.type === 'circle') {
+                this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                this.ctx.fill();
+            } else if (p.type === 'ring') {
+                this.ctx.arc(p.x, p.y, p.size + 1.5, 0, Math.PI * 2);
+                this.ctx.stroke();
+            } else if (p.type === 'square') {
+                this.ctx.fillRect(p.x - p.size, p.y - p.size, p.size * 2, p.size * 2);
+            } else if (p.type === 'plus') {
+                const s = p.size + 1;
+                this.ctx.moveTo(p.x - s, p.y);
+                this.ctx.lineTo(p.x + s, p.y);
+                this.ctx.moveTo(p.x, p.y - s);
+                this.ctx.lineTo(p.x, p.y + s);
+                this.ctx.stroke();
+            }
+        }
+        
+        spawnPacket(fromIndex) {
+            if (this.packets.length > 8) return;
+            const from = this.particles[fromIndex];
+            
+            const targets = [];
+            for (let i = 0; i < this.particles.length; i++) {
+                if (i === fromIndex) continue;
+                const to = this.particles[i];
+                const dx = to.x - from.x;
+                const dy = to.y - from.y;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+                if (dist < 130) {
+                    targets.push(i);
+                }
+            }
+            
+            if (targets.length > 0) {
+                const targetIndex = targets[Math.floor(Math.random() * targets.length)];
+                this.packets.push({
+                    from: fromIndex,
+                    to: targetIndex,
+                    progress: 0,
+                    speed: Math.random() * 0.015 + 0.01,
+                    colorIndex: from.colorIndex
+                });
+            }
+        }
+        
+        animate() {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            
+            for (let i = 0; i < this.particles.length; i++) {
+                const p = this.particles[i];
+                p.pulseTime += p.pulseSpeed;
+                
+                p.x += p.vx;
+                p.y += p.vy;
+                
+                if (this.mouse.x !== null) {
+                    const dx = this.mouse.x - p.x;
+                    const dy = this.mouse.y - p.y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < this.mouse.radius) {
+                        const force = (this.mouse.radius - dist) / this.mouse.radius;
+                        p.x += (dx / dist) * force * 0.3;
+                        p.y += (dy / dist) * force * 0.3;
+                    }
+                }
+                
+                if (p.x < -10) p.x = this.canvas.width + 10;
+                if (p.x > this.canvas.width + 10) p.x = -10;
+                if (p.y < -10) p.y = this.canvas.height + 10;
+                if (p.y > this.canvas.height + 10) p.y = -10;
+                
+                this.drawParticle(p);
+                
+                if (Math.random() < 0.001) {
+                    this.spawnPacket(i);
+                }
+            }
+            
+            for (let i = 0; i < this.particles.length; i++) {
+                const p1 = this.particles[i];
+                for (let j = i + 1; j < this.particles.length; j++) {
+                    const p2 = this.particles[j];
+                    const dx = p2.x - p1.x;
+                    const dy = p2.y - p1.y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    
+                    if (dist < 130) {
+                        const alpha = (1 - (dist / 130)) * 0.12;
+                        this.ctx.strokeStyle = `rgba(139, 92, 246, ${alpha})`;
+                        this.ctx.lineWidth = 0.5;
+                        this.ctx.beginPath();
+                        this.ctx.moveTo(p1.x, p1.y);
+                        this.ctx.lineTo(p2.x, p2.y);
+                        this.ctx.stroke();
+                    }
+                }
+            }
+            
+            if (this.mouse.x !== null) {
+                for (let i = 0; i < this.particles.length; i++) {
+                    const p = this.particles[i];
+                    const dx = p.x - this.mouse.x;
+                    const dy = p.y - this.mouse.y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    
+                    if (dist < this.mouse.radius) {
+                        const alpha = (1 - (dist / this.mouse.radius)) * 0.18;
+                        this.ctx.strokeStyle = `rgba(6, 182, 212, ${alpha})`;
+                        this.ctx.lineWidth = 0.7;
+                        this.ctx.beginPath();
+                        this.ctx.moveTo(this.mouse.x, this.mouse.y);
+                        this.ctx.lineTo(p.x, p.y);
+                        this.ctx.stroke();
+                    }
+                }
+            }
+            
+            for (let i = this.packets.length - 1; i >= 0; i--) {
+                const pkt = this.packets[i];
+                pkt.progress += pkt.speed;
+                
+                const pFrom = this.particles[pkt.from];
+                const pTo = this.particles[pkt.to];
+                
+                if (pFrom && pTo) {
+                    const px = pFrom.x + (pTo.x - pFrom.x) * pkt.progress;
+                    const py = pFrom.y + (pTo.y - pFrom.y) * pkt.progress;
+                    
+                    this.ctx.fillStyle = this.colors[pkt.colorIndex] + '0.8)';
+                    this.ctx.beginPath();
+                    this.ctx.arc(px, py, 2, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    
+                    this.ctx.shadowColor = this.colors[pkt.colorIndex] + '1)';
+                    this.ctx.shadowBlur = 6;
+                    this.ctx.beginPath();
+                    this.ctx.arc(px, py, 3, 0, Math.PI * 2);
+                    this.ctx.fillStyle = this.colors[pkt.colorIndex] + '0.3)';
+                    this.ctx.fill();
+                    this.ctx.shadowBlur = 0;
+                }
+                
+                if (pkt.progress >= 1) {
+                    this.packets.splice(i, 1);
+                }
+            }
+            
+            requestAnimationFrame(() => this.animate());
+        }
+    }
+
+    // Initialize TechPlexus background
+    document.addEventListener("DOMContentLoaded", () => {
+        new TechPlexus();
+    });
 
     // ===== CUSTOM CURSOR =====
     const cursorDot = document.querySelector("[data-cursor-dot]");

@@ -1009,6 +1009,10 @@ section h2::after {
 .fa-git-alt { color: #F05032; }
 .fa-github { color: #FFFFFF; }
 .fa-bolt { color: var(--text-primary); }
+.fa-shield-halved { color: #ec4899; }
+.fa-network-wired { color: #06b6d4; }
+.fa-key { color: #facc15; }
+.fa-linux { color: #f89820; }
 
 /* ============================================================
    PROJECTS — Bento Grid

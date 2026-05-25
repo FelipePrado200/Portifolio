@@ -23,6 +23,17 @@
 </head>
 <body>
 
+    <!-- Video Background -->
+    <div class="video-bg" aria-hidden="true">
+        <video muted playsinline id="bgVideo1" class="active">
+            <source src="assets/background.mp4" type="video/mp4">
+        </video>
+        <video muted playsinline id="bgVideo2">
+            <source src="assets/background.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -1486,16 +1497,28 @@
             });
         }
 
-        // ===== SCROLL REVEAL ANIMATION =====
+        // ===== SCROLL REVEAL ANIMATION (WITH STAGGER) =====
         const revealElements = document.querySelectorAll('.reveal');
+        
+        let delayCounter = 0;
+        let delayTimer = null;
+
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    // Apply a dynamic delay for a cascading effect
+                    entry.target.style.transitionDelay = `${delayCounter * 0.15}s`;
                     entry.target.classList.add('active');
                     observer.unobserve(entry.target);
+                    
+                    delayCounter++;
+                    if (delayTimer) clearTimeout(delayTimer);
+                    delayTimer = setTimeout(() => {
+                        delayCounter = 0;
+                    }, 100);
                 }
             });
-        }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
         revealElements.forEach(el => revealObserver.observe(el));
 
@@ -1525,11 +1548,41 @@
             const screen = document.getElementById("welcome-screen");
             const main = document.getElementById("main-content");
             if (screen && main) {
-                screen.style.display = "none";
+                screen.style.opacity = "0";
                 main.style.opacity = "1";
+                
+                // Wait for the CSS transition to finish before hiding from DOM
+                setTimeout(() => {
+                    screen.style.display = "none";
+                }, 800);
             }
-        }, 4000);
+        }, 1500); // Reduced from 4000 to 1500 for a snappier load
     });
+    // ===== SEAMLESS VIDEO LOOP =====
+    const video1 = document.getElementById('bgVideo1');
+    const video2 = document.getElementById('bgVideo2');
+    
+    if (video1 && video2) {
+        let activeVideo = 1;
+        const fadeTime = 1.5; // Start fade 1.5 seconds before video ends
+        
+        // Start first video
+        video1.play().catch(e => console.log("Autoplay prevented:", e));
+        
+        const checkTime = (currentVid, nextVid, num) => {
+            if (activeVideo === num && currentVid.duration - currentVid.currentTime <= fadeTime) {
+                activeVideo = num === 1 ? 2 : 1;
+                nextVid.currentTime = 0;
+                nextVid.play().catch(e => console.log("Autoplay prevented:", e));
+                
+                nextVid.classList.add('active');
+                currentVid.classList.remove('active');
+            }
+        };
+
+        video1.addEventListener('timeupdate', () => checkTime(video1, video2, 1));
+        video2.addEventListener('timeupdate', () => checkTime(video2, video1, 2));
+    }
     </script>
 </body>
 </html>

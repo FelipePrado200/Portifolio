@@ -328,15 +328,83 @@ main, .foot-site { position: relative; z-index: 1; }
 .pal-foot { padding: 10px 18px; border-top: 1px solid var(--line); font: 400 .72rem var(--font-mono); color: var(--ink-faint); }
 .pal-empty { padding: 20px; text-align: center; font: 400 .8125rem var(--font-mono); color: var(--ink-faint); }
 
+/* ---------- boot: tela de carregamento ---------- */
+#boot { display: none; }
+html.js #boot { display: block; position: fixed; inset: 0; z-index: 200; background: var(--void); will-change: clip-path, opacity; }
+html.booting, html.booting body { overflow: hidden; }
+#boot .boot-aura { position: absolute; left: 50%; top: 52%; width: 86vmin; height: 86vmin; margin: -43vmin 0 0 -43vmin; border-radius: 50%; background: conic-gradient(from 210deg, #8be9ff, #b7a4ff 90deg, #ffc2ee 150deg, #8affd8 240deg, #8be9ff); opacity: .1; filter: blur(130px); animation: drift 22s cubic-bezier(.45, 0, .55, 1) infinite alternate; }
+#boot .boot-guides { position: absolute; inset: 0; }
+#boot .boot-guides .shell { height: 100%; display: grid; grid-template-columns: repeat(4, 1fr); }
+#boot .boot-guides b { border-left: 1px solid rgba(255, 255, 255, .05); }
+#boot .boot-guides b:last-child { border-right: 1px solid rgba(255, 255, 255, .05); }
+@media (max-width: 767px) { #boot .boot-guides b:nth-child(n+3) { display: none; } #boot .boot-guides .shell { grid-template-columns: repeat(2, 1fr); } #boot .boot-guides b:nth-child(2) { border-right: 1px solid rgba(255, 255, 255, .05); } }
+
+#boot .boot-in { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding-block: 28px 32px; transition: opacity .5s var(--ease-glide), transform .5s var(--ease-glide), filter .5s var(--ease-glide); }
+#boot .boot-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+#boot .boot-tag { font: 400 .72rem var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
+#boot .boot-mid { display: grid; gap: 40px; padding-block: 40px; }
+@media (min-width: 900px) { #boot .boot-mid { grid-template-columns: 1.1fr .9fr; align-items: end; gap: 56px; } }
+#boot .boot-log { display: flex; flex-direction: column; gap: 9px; font: 400 .8125rem/1.5 var(--font-mono); color: var(--ink-faint); min-height: 118px; }
+#boot .boot-log p { display: flex; align-items: center; gap: 12px; opacity: 0; transform: translateX(-8px); animation: bootLine .7s var(--ease-igloo) forwards; }
+#boot .boot-log p.done { color: var(--ink-muted); }
+#boot .boot-log i { flex: none; width: 1.15em; font-style: normal; color: var(--cyan); opacity: .35; transition: opacity .5s var(--ease-glide); }
+#boot .boot-log p.done i { opacity: 1; }
+@keyframes bootLine { to { opacity: 1; transform: none; } }
+#boot .boot-count { display: flex; align-items: flex-end; gap: 10px; justify-content: flex-start; }
+@media (min-width: 900px) { #boot .boot-count { justify-content: flex-end; } }
+#boot .boot-count b { font: 200 clamp(3.5rem, 11vw, 8rem)/.82 var(--font-display); letter-spacing: -.06em; font-variant-numeric: tabular-nums; }
+#boot .boot-count span { font: 400 .8125rem var(--font-mono); color: var(--ink-faint); padding-bottom: .5em; }
+#boot .boot-rail { position: relative; height: 1px; background: rgba(255, 255, 255, .1); overflow: hidden; }
+#boot .boot-rail i { position: absolute; inset: 0 auto 0 0; width: 0%; background: linear-gradient(90deg, var(--cyan), var(--violet) 55%, var(--rose)); box-shadow: 0 0 14px rgba(139, 233, 255, .55); transition: width .5s var(--ease-glide); }
+#boot .boot-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 18px; font: 400 .72rem var(--font-mono); color: var(--ink-faint); }
+
+#boot .boot-sweep { position: absolute; left: 0; right: 0; top: 100%; height: 1px; z-index: 3; background: linear-gradient(90deg, transparent, var(--ice-soft), transparent); box-shadow: 0 0 24px rgba(155, 216, 255, .8); opacity: 0; }
+html.js #boot.out { animation: bootOut 1s var(--ease-igloo) forwards; }
+html.js #boot.out .boot-in { opacity: 0; transform: translateY(-16px); filter: blur(8px); }
+html.js #boot.out .boot-sweep { animation: bootSweep 1s var(--ease-igloo) forwards; }
+@keyframes bootOut { 0% { clip-path: inset(0 0 0 0); } 100% { clip-path: inset(0 0 100% 0); } }
+@keyframes bootSweep { 0% { top: 100%; opacity: 0; } 18% { opacity: 1; } 100% { top: 0%; opacity: 0; } }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition-duration: .001ms !important; transition-delay: 0s !important; }
   .js .fx, .js .rv, .js .crystal, .js .hero-win .code .ln { opacity: 1; transform: none; filter: none; }
   .js .word > span { transform: none; }
+  #boot .boot-log p { opacity: 1; transform: none; }
+  html.js #boot.out { opacity: 0; transition: opacity .3s linear; }
 }
 </style>
 
 <body>
+<script>document.documentElement.classList.add('js', 'booting');</script>
+<div id="boot" role="status" aria-label="Carregando o portfólio">
+  <div class="boot-aura" aria-hidden="true"></div>
+  <div class="boot-guides" aria-hidden="true"><div class="shell"><b></b><b></b><b></b><b></b></div></div>
+  <div class="shell boot-in">
+    <div class="boot-top">
+      <span class="logo"><span class="pr">~/</span>felipe-prado<i class="caret"></i></span>
+      <span class="boot-tag">build · local</span>
+    </div>
+    <div class="boot-mid">
+      <div class="boot-log" id="bootLog"></div>
+      <div class="boot-count"><b class="iridescent" id="bootNum">00</b><span>%</span></div>
+    </div>
+    <div>
+      <div class="boot-rail"><i id="bootRail"></i></div>
+      <div class="boot-foot"><span id="bootMsg">compilando interface</span><span>são paulo · br</span></div>
+    </div>
+  </div>
+  <div class="boot-sweep" aria-hidden="true"></div>
+</div>
+<script>
+/* rede de seguranca: se o script principal falhar, a pagina nunca fica presa no boot */
+setTimeout(function () {
+  var b = document.getElementById('boot');
+  document.documentElement.classList.remove('booting');
+  if (b && b.parentNode) b.parentNode.removeChild(b);
+  if (document.body) document.body.classList.add('is-in');
+}, 9000);
+</script>
 <div class="bg grain" aria-hidden="true">
   <canvas id="field"></canvas>
   <div class="glow"></div>
@@ -703,7 +771,65 @@ main, .foot-site { position: relative; z-index: 1; }
   }
 
   /* ---------- entrada, reveal, magnetico, parallax ---------- */
-  requestAnimationFrame(function () { requestAnimationFrame(function () { document.body.classList.add('is-in'); }); });
+  /* ---------- boot: sequencia de carregamento ---------- */
+  (function () {
+    var boot = $('boot'), railEl = $('bootRail'), numEl = $('bootNum'), logEl = $('bootLog'), msgEl = $('bootMsg');
+    var started = false, ended = false;
+    function enter() { requestAnimationFrame(function () { requestAnimationFrame(function () { document.body.classList.add('is-in'); }); }); }
+    if (!boot || !railEl || !numEl || !logEl) { root.classList.remove('booting'); enter(); return; }
+
+    var STEPS = [
+      { t: 'resolve  módulos do portfólio', p: 22, d: 260 },
+      { t: 'load     Inter Tight · JetBrains Mono', p: 44, d: 620 },
+      { t: 'boot     campo de partículas · webgl', p: 66, d: 1020 },
+      { t: 'mount    sobre · serviços · projetos', p: 86, d: 1420 },
+      { t: 'ready    felipe-prado.dev', p: 100, d: 1820 }
+    ];
+    var target = 0, shown = 0, timers = [];
+
+    function tick() {
+      shown += (target - shown) * .12;
+      if (target - shown < .4) shown = target;
+      numEl.textContent = shown < 10 ? '0' + Math.round(shown) : String(Math.round(shown));
+      railEl.style.width = shown + '%';
+      if (!ended) requestAnimationFrame(tick);
+    }
+
+    function finish() {
+      if (ended) return;
+      ended = true;
+      timers.forEach(clearTimeout);
+      target = 100; shown = 100;
+      numEl.textContent = '100'; railEl.style.width = '100%';
+      if (msgEl) msgEl.textContent = 'pronto';
+      setTimeout(function () {
+        boot.classList.add('out');
+        root.classList.remove('booting');
+        enter();
+        setTimeout(function () { if (boot.parentNode) boot.parentNode.removeChild(boot); }, reduce ? 320 : 1050);
+      }, reduce ? 0 : 280);
+    }
+
+    function start() {
+      if (started) return;
+      started = true;
+      if (reduce) { STEPS.forEach(function (s) { var p = document.createElement('p'); p.className = 'done'; p.innerHTML = '<i>&#10003;</i>' + esc(s.t); logEl.appendChild(p); }); finish(); return; }
+      requestAnimationFrame(tick);
+      STEPS.forEach(function (s, i) {
+        timers.push(setTimeout(function () {
+          var p = document.createElement('p');
+          p.innerHTML = '<i>&#9656;</i>' + esc(s.t);
+          logEl.appendChild(p);
+          target = s.p;
+          timers.push(setTimeout(function () { p.className = 'done'; p.querySelector('i').innerHTML = '&#10003;'; }, 420));
+          if (i === STEPS.length - 1) timers.push(setTimeout(finish, 560));
+        }, s.d));
+      });
+    }
+
+    start();
+    setTimeout(finish, 7000);
+  })();
   var rv = document.querySelectorAll('.rv');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (es) {

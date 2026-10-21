@@ -1,1626 +1,1137 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Felipe Prado — Desenvolvedor Full Stack apaixonado por criar experiências digitais inovadoras, rápidas e visualmente deslumbrantes.">
-    <meta name="author" content="Felipe Rodrigues Prado">
-    <meta name="theme-color" content="#050505">
+<title>Felipe Prado</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: preto absoluto como um terminal de luxo. Janelas de editor com gutter de linhas, sintaxe nas cores da aurora, barra de status fixa e paleta de comandos. */
+:root {
+  --void: #000000;
+  --ink: #f5f7fa;
+  --ink-muted: rgba(245, 247, 250, .66);
+  --ink-faint: rgba(245, 247, 250, .46);
+  --line: rgba(255, 255, 255, .1);
+  --glass: rgba(255, 255, 255, .035);
+  --win: rgba(7, 8, 10, .78);
+  --win-bar: rgba(255, 255, 255, .035);
+  --ice: #9bd8ff;
+  --ice-soft: #e3f5ff;
+  --cyan: #8be9ff;
+  --violet: #b7a4ff;
+  --rose: #ffc2ee;
+  --mint: #8affd8;
+  --ok: #3ddc84;
+  --font-display: "Inter Tight", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --ease-igloo: cubic-bezier(.16, 1, .3, 1);
+  --ease-glide: cubic-bezier(.25, 1, .5, 1);
+  --halo: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(139, 233, 255, .26), rgba(183, 164, 255, .11) 45%, transparent 70%);
+  --bar-h: 32px;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--void); scroll-behavior: smooth; scroll-padding-top: 24px; }
+body { background: var(--void); color: var(--ink); font: 400 1rem/1.75 var(--font-sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-x: hidden; padding-bottom: var(--bar-h); }
+h1, h2, h3, p, dl, dd, ul, ol { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 1px solid var(--cyan); outline-offset: 4px; border-radius: 10px; }
+::selection { background: rgba(139, 233, 255, .85); color: #000; }
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+.shell { width: 100%; max-width: 88rem; margin-inline: auto; position: relative; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 768px) { .shell { padding-left: max(48px, env(safe-area-inset-left, 0px)); padding-right: max(48px, env(safe-area-inset-right, 0px)); } }
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+.mono { font-family: var(--font-mono); }
+.eyebrow { font: 400 .75rem/1.4 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
+.path { font: 400 .8125rem/1.4 var(--font-mono); color: var(--ink-faint); display: flex; align-items: center; gap: 10px; }
+.path b { color: var(--cyan); font-weight: 400; }
+.iridescent { background: linear-gradient(120deg, var(--cyan) 0%, var(--violet) 45%, var(--rose) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.grain::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .07; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.caret { display: inline-block; width: .5em; height: 1em; margin-left: 4px; vertical-align: -.12em; background: var(--cyan); animation: blink 1.1s steps(2) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+/* entrada so com JS */
+.js .fx { opacity: 0; transform: translateY(24px); filter: blur(8px); }
+.js .is-in .fx { opacity: 1; transform: none; filter: none; transition: opacity 1.2s var(--ease-glide) var(--d, 0s), transform 1.2s var(--ease-glide) var(--d, 0s), filter 1.2s var(--ease-glide) var(--d, 0s); }
+.word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .3em; margin-bottom: -.3em; margin-right: .22em; }
+.word > span { display: inline-block; will-change: transform; }
+.js .word > span { transform: translateY(112%) rotate(2deg); }
+.js .is-in .word > span { transform: none; transition: transform 1.4s var(--ease-igloo) calc(.25s + var(--i) * .07s); }
+.js .rv { opacity: .35; transform: translateY(32px); filter: blur(6px); }
+.js .rv.on { opacity: 1; transform: none; filter: none; transition: opacity 1.2s var(--ease-igloo) var(--d, 0s), transform 1.2s var(--ease-igloo) var(--d, 0s), filter 1.2s var(--ease-igloo) var(--d, 0s); }
 
-    <title>Felipe Prado — Full Stack Developer</title>
-    <link rel="stylesheet" href="style.css?v=1.1">
-</head>
+/* ---------- janela de editor ---------- */
+.card { position: relative; isolation: isolate; overflow: hidden; min-width: 0; transition: border-color .9s var(--ease-igloo); }
+.card:hover { border-color: rgba(255, 255, 255, .22); }
+.card > .halo { position: absolute; inset: 0; z-index: -1; background: var(--halo); opacity: 0; transition: opacity .9s var(--ease-igloo); pointer-events: none; }
+.card:hover > .halo { opacity: 1; }
+.win { border: 1px solid var(--line); border-radius: 16px; background: var(--win); backdrop-filter: blur(24px) saturate(1.4); -webkit-backdrop-filter: blur(24px) saturate(1.4); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .07); display: flex; flex-direction: column; }
+.bar { display: flex; align-items: center; gap: 14px; padding: 10px 16px; border-bottom: 1px solid var(--line); background: var(--win-bar); font: 400 .75rem/1.4 var(--font-mono); color: var(--ink-faint); min-width: 0; }
+.dots { display: flex; gap: 6px; flex: none; }
+.dots i { width: 9px; height: 9px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .28); }
+.bar .file { color: var(--ink-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.bar .end { margin-left: auto; flex: none; }
+.code { font: 400 .8125rem/1.85 var(--font-mono); padding: 14px 0; overflow-x: auto; color: var(--ink-muted); }
+.ln { display: flex; min-width: max-content; }
+.ln em { flex: none; width: 3em; padding-right: 16px; text-align: right; font-style: normal; color: rgba(245, 247, 250, .28); user-select: none; }
+.ln span { white-space: pre; padding-right: 20px; }
+.k { color: var(--violet); } .s { color: var(--mint); } .v { color: var(--cyan); } .p { color: var(--ink); } .f { color: var(--rose); } .n { color: var(--ice); } .c { color: rgba(245, 247, 250, .4); }
+.cmd-line { font: 400 .8125rem/1.7 var(--font-mono); color: var(--ink-muted); }
+.cmd-line b { color: var(--cyan); font-weight: 400; margin-right: 8px; }
+
+/* ---------- botoes ---------- */
+.btn { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; gap: 12px; height: 56px; padding: 0 32px; border-radius: 999px; font: 500 .95rem var(--font-sans); letter-spacing: -.01em; border: 1px solid var(--line); background: var(--glass); cursor: pointer; color: var(--ink); transition: transform .6s var(--ease-igloo), background .6s var(--ease-igloo), border-color .6s var(--ease-igloo); will-change: transform; }
+.btn.solid { background: var(--ink); color: var(--void); border-color: var(--ink); }
+.btn.solid:hover { background: var(--ice-soft); }
+.btn:not(.solid):hover { border-color: rgba(255, 255, 255, .26); }
+.btn .halo { position: absolute; inset: 0; z-index: -1; background: var(--halo); opacity: 0; transition: opacity .6s var(--ease-igloo); }
+.btn:hover .halo { opacity: 1; }
+.btn .sheen { position: absolute; top: 0; bottom: 0; left: -50%; width: 50%; z-index: -1; transform: translateX(-100%); opacity: 0; background: linear-gradient(115deg, transparent 20%, rgba(196, 233, 255, .55) 45%, rgba(183, 164, 255, .4) 55%, transparent 80%); }
+.btn:hover .sheen { opacity: .4; animation: sheen 2.4s var(--ease-igloo) infinite; }
+@keyframes sheen { to { transform: translateX(320%); } }
+.btn svg { transition: transform .6s var(--ease-igloo); flex: none; }
+.btn:hover svg { transform: translateX(4px); }
+
+/* ---------- HERO ---------- */
+.hero { position: relative; overflow: hidden; min-height: clamp(720px, 100svh, 1000px); display: flex; flex-direction: column; background: transparent; }
+.aurora { position: absolute; inset: 0; z-index: -3; pointer-events: none; will-change: transform; }
+.aurora i { position: absolute; border-radius: 50%; animation: drift 22s cubic-bezier(.45, 0, .55, 1) infinite alternate; }
+.aurora i:nth-child(1) { left: 62%; top: 42%; width: 70vmin; height: 70vmin; margin: -35vmin 0 0 -35vmin; background: conic-gradient(from 210deg, #8be9ff, #b7a4ff 90deg, #ffc2ee 150deg, #8affd8 240deg, #8be9ff); opacity: .15; filter: blur(120px); }
+.aurora i:nth-child(2) { right: -10vmin; top: 8%; width: 38vmin; height: 38vmin; background: linear-gradient(120deg, #8be9ff, #b7a4ff 45%, #ffc2ee); opacity: .08; filter: blur(80px); animation-delay: -9s; }
+.aurora i:nth-child(3) { left: -12vmin; bottom: 4%; width: 34vmin; height: 34vmin; background: var(--ice); opacity: .07; filter: blur(80px); animation-delay: -4s; }
+@keyframes drift { to { transform: translate3d(6%, -4%, 0) scale(1.18) rotate(18deg); } }
+.vignette { position: absolute; inset: 0; z-index: -2; pointer-events: none; background: radial-gradient(ellipse 80% 60% at 55% 45%, transparent 0%, rgba(0, 0, 0, .3) 70%, rgba(0, 0, 0, .55) 100%); }
+.guides { position: absolute; inset: 0; pointer-events: none; }
+.guides .shell { height: 100%; display: grid; grid-template-columns: repeat(4, 1fr); }
+.guides b { border-left: 1px solid rgba(255, 255, 255, .05); }
+.guides b:last-child { border-right: 1px solid rgba(255, 255, 255, .05); }
+@media (max-width: 767px) { .guides b:nth-child(n+3) { display: none; } .guides .shell { grid-template-columns: repeat(2, 1fr); } .guides b:nth-child(2) { border-right: 1px solid rgba(255, 255, 255, .05); } }
+
+.top { position: relative; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 28px; }
+.logo { font: 400 .9375rem var(--font-mono); letter-spacing: -.02em; white-space: nowrap; color: var(--ink); }
+.logo .pr { color: var(--cyan); }
+.nav { display: none; gap: 2px; padding: 5px; border-radius: 999px; background: var(--glass); border: 1px solid var(--line); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+@media (min-width: 900px) { .nav { display: flex; } }
+.nav a { padding: 7px 16px; border-radius: 999px; font: 400 .8125rem var(--font-mono); color: var(--ink-muted); transition: color .6s var(--ease-igloo), background .6s var(--ease-igloo); }
+.nav a:hover { color: var(--ink); background: rgba(255, 255, 255, .06); }
+.kbd { display: inline-flex; align-items: center; gap: 10px; height: 40px; padding: 0 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--glass); font: 400 .75rem var(--font-mono); color: var(--ink-muted); cursor: pointer; transition: border-color .6s var(--ease-igloo), color .6s var(--ease-igloo); }
+.kbd:hover { border-color: rgba(255, 255, 255, .26); color: var(--ink); }
+.kbd kbd { font: inherit; padding: 2px 7px; border: 1px solid var(--line); border-radius: 6px; color: var(--ink); }
+.kbd .lbl { display: none; }
+@media (min-width: 560px) { .kbd .lbl { display: inline; } }
+
+
+.copy { position: relative; z-index: 10; margin-top: auto; display: grid; gap: 48px; padding-top: 120px; padding-bottom: 72px; will-change: transform; }
+@media (min-width: 1024px) { .copy { grid-template-columns: repeat(12, 1fr); align-items: end; gap: 32px; padding-bottom: 88px; } .copy .lead-col { grid-column: span 7; } .copy .win-col { grid-column: 9 / span 4; } }
+@media (min-width: 1500px) { .copy .win-col { grid-column: 9 / span 4; } }
+.prompt { display: flex; align-items: center; margin-bottom: 28px; font: 400 .8125rem var(--font-mono); color: var(--ink-faint); }
+.prompt b { color: var(--cyan); font-weight: 400; margin-right: 10px; }
+h1 { font: 200 clamp(2.5rem, 5.6vw, 5.5rem)/.96 var(--font-display); letter-spacing: -.05em; text-wrap: balance; }
+.sub { font-size: clamp(1.0625rem, 1.2vw, 1.25rem); line-height: 1.7; color: var(--ink-muted); max-width: 44ch; margin-top: 32px; }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
+.hero-win .code { padding-bottom: 8px; }
+.hero-win .ln { min-width: 0; }
+.js .hero-win .code .ln { opacity: 0; transform: translateX(-6px); }
+.js .is-in .hero-win .code .ln { animation: lineIn .6s var(--ease-igloo) forwards; animation-delay: calc(1s + var(--n) * .11s); }
+@keyframes lineIn { to { opacity: 1; transform: none; } }
+.hero-win .term { padding: 10px 16px 14px 20px; border-top: 1px solid var(--line); }
+.hero-win .foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 16px; border-top: 1px solid var(--line); background: var(--win-bar); font: 400 .72rem var(--font-mono); color: var(--ink-faint); }
+.hero-win .foot span:first-child { display: inline-flex; align-items: center; gap: 10px; color: var(--ink-muted); min-width: 0; }
+.dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 0 rgba(61, 220, 132, .6); animation: ping 2s infinite; }
+@keyframes ping { 70% { box-shadow: 0 0 0 10px rgba(61, 220, 132, 0); } 100% { box-shadow: 0 0 0 0 rgba(61, 220, 132, 0); } }
+.cue { position: absolute; z-index: 10; left: 50%; bottom: 20px; transform: translateX(-50%); display: none; flex-direction: column; align-items: center; gap: 10px; }
+@media (min-width: 1024px) { .cue { display: flex; } }
+.cue i { display: block; width: 1px; height: 32px; background: linear-gradient(to bottom, rgba(255, 255, 255, .6), transparent); animation: line 2.6s cubic-bezier(.65, 0, .35, 1) infinite; }
+@keyframes line { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+.hair { position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .22), transparent); }
+
+/* ---------- marquee ---------- */
+.marquee { overflow: hidden; border-block: 1px solid var(--line); padding-block: 22px; background: rgba(0, 0, 0, .55); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.track { display: flex; width: max-content; animation: marquee 48s linear infinite; }
+.marquee:hover .track { animation-play-state: paused; }
+.track span { display: inline-flex; align-items: center; gap: 28px; padding-right: 28px; font: 300 clamp(1.125rem, 2.2vw, 1.75rem) var(--font-mono); letter-spacing: -.03em; color: var(--ink-muted); white-space: nowrap; }
+.track span::after { content: "/"; color: var(--cyan); opacity: .7; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---------- secoes ---------- */
+.sec { position: relative; padding-block: clamp(96px, 12vw, 192px); }
+.sec.t0 { padding-top: 0; }
+.sec-head { margin-bottom: clamp(48px, 7vw, 96px); }
+h2 { margin-top: 24px; font: 200 clamp(2.369rem, 4.6vw, 3.557rem)/1.05 var(--font-display); letter-spacing: -.03em; text-wrap: balance; max-width: 20ch; }
+h3 { font: 300 1.5rem/1.15 var(--font-display); letter-spacing: -.02em; }
+
+/* sobre */
+.about { display: grid; gap: clamp(40px, 6vw, 96px); }
+@media (min-width: 900px) { .about { grid-template-columns: .9fr 1.1fr; align-items: center; } }
+.fetch { padding: 28px; display: grid; gap: 24px; }
+.fetch .id { display: flex; align-items: center; gap: 20px; }
+.avatar { flex: none; width: 88px; height: 88px; display: grid; place-items: center; border-radius: 20px; border: 1px solid var(--line); background: radial-gradient(circle at 30% 20%, rgba(139, 233, 255, .22), transparent 60%), radial-gradient(circle at 80% 90%, rgba(183, 164, 255, .2), transparent 60%); font: 200 2.25rem var(--font-display); letter-spacing: -.05em; }
+.fetch .who { font: 400 .9375rem var(--font-mono); min-width: 0; overflow-wrap: anywhere; }
+.fetch .who b { color: var(--cyan); font-weight: 400; }
+.fetch .who small { display: block; color: var(--ink-faint); font-size: .8125rem; }
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 6px 24px; font: 400 .8125rem/1.6 var(--font-mono); }
+.kv dt { color: var(--violet); }
+.kv dd { color: var(--ink-muted); min-width: 0; overflow-wrap: anywhere; }
+.about p.txt { color: var(--ink-muted); max-width: 58ch; margin-bottom: 20px; font-size: 1.0625rem; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--line); }
+.stats div { display: flex; flex-direction: column-reverse; gap: 8px; min-width: 0; }
+.stats dd { font: 200 clamp(2.369rem, 5vw, 4rem)/1 var(--font-display); letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
+.stats dt { font: 400 .72rem/1.4 var(--font-mono); letter-spacing: .06em; color: var(--ink-faint); }
+.stats dt::before { content: "// "; color: var(--cyan); }
+
+/* servicos */
+.services { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 680px) { .services { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1200px) { .services { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
+.svc-body { display: flex; flex-direction: column; gap: 14px; padding: 24px 22px 26px; flex: 1; }
+.svc-body .cm { font: 400 .8125rem/1.7 var(--font-mono); color: rgba(245, 247, 250, .5); }
+.svc-body .cm::before { content: "# "; color: var(--violet); }
+.svc-body h3 { font-size: 1.375rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
+.chip { padding: 4px 11px; border: 1px solid var(--line); border-radius: 8px; font: 400 .75rem var(--font-mono); color: var(--ink-muted); transition: background .6s var(--ease-igloo), color .6s var(--ease-igloo), border-color .6s var(--ease-igloo); }
+.chip:hover { background: var(--ink); color: var(--void); border-color: var(--ink); }
+
+/* projetos */
+.filters { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 36px; }
+.filters .cmd-line { margin-right: 12px; }
+.filter { padding: 8px 16px; border: 1px solid var(--line); border-radius: 999px; background: transparent; font: 400 .8125rem var(--font-mono); color: var(--ink-muted); cursor: pointer; transition: all .6s var(--ease-igloo); }
+.filter:hover { border-color: rgba(255, 255, 255, .26); color: var(--ink); }
+.filter[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--void); }
+.filter sup { font-size: .66rem; margin-left: 6px; opacity: .6; }
+.projects { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 760px) { .projects { grid-template-columns: repeat(12, 1fr); gap: 20px; } .proj { grid-column: span 6; } }
+@media (min-width: 1180px) { .proj { grid-column: span 4; } .proj.feat { grid-column: span 6; } }
+.proj { transition: opacity .5s var(--ease-igloo), transform .6s var(--ease-igloo), border-color .9s var(--ease-igloo); }
+.proj.out { opacity: 0; transform: scale(.97); }
+.proj.hide { display: none; }
+.proj .code { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); background: rgba(0, 0, 0, .35); }
+.proj .shot { position: absolute; inset: 0; z-index: 0; display: block; opacity: .9; filter: blur(26px) saturate(1.05); transition: opacity .8s var(--ease-igloo), filter .8s var(--ease-igloo); }
+.proj .code::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(5, 5, 8, .22), rgba(5, 5, 8, .62) 80%); pointer-events: none; }
+.proj .code > div.ln { position: relative; z-index: 2; }
+.proj:hover .shot, .proj:focus-within .shot { opacity: 1; filter: blur(18px) saturate(1.2); }
+.pbody { display: flex; flex-direction: column; gap: 12px; padding: 22px 24px 24px; flex: 1; }
+.pbody h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 1.5rem; }
+.pbody h3 small { font: 400 .72rem var(--font-mono); letter-spacing: .06em; color: var(--ink-faint); white-space: nowrap; }
+.pbody p { color: var(--ink-muted); font-size: .96rem; }
+.plinks { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); }
+.plinks a { font: 400 .8125rem var(--font-mono); color: var(--ink-muted); transition: color .6s var(--ease-igloo); }
+.plinks a b { color: var(--cyan); font-weight: 400; margin-right: 6px; }
+.plinks a:hover { color: var(--ink); }
+
+/* processo (commits) */
+.process { display: grid; grid-template-columns: 1fr; gap: 36px; }
+@media (min-width: 820px) { .process { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; } }
+.step { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 28px 28px 0 0; border-top: 1px solid rgba(255, 255, 255, .2); }
+.step::before { content: ""; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; border-radius: 50%; background: var(--void); border: 1px solid var(--cyan); }
+.commit { font: 400 .8125rem var(--font-mono); color: var(--cyan); }
+.commit span { color: var(--ink-faint); }
+.num { font: 200 clamp(2.75rem, 5vw, 3.75rem)/1 var(--font-display); letter-spacing: -.05em; color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, .28); }
+.step p.d { color: var(--ink-muted); font-size: .98rem; }
+
+/* formacao */
+.degree-body { display: grid; gap: 16px; padding: clamp(24px, 4vw, 44px); }
+.degree .meta-row { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; font: 400 .8rem var(--font-mono); color: var(--ink-faint); }
+.badge { padding: 3px 12px; border-radius: 999px; background: var(--ink); color: var(--void); font: 500 .72rem var(--font-mono); }
+.degree h3 { font-size: clamp(1.5rem, 3vw, 2.369rem); }
+.degree p { color: var(--ink-muted); max-width: 70ch; }
+.courses { margin-top: 24px; }
+.cgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 0; }
+.cgroup { padding: 20px 22px 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); min-width: 0; }
+.cgroup:last-child { border-right: 0; border-bottom: 0; }
+.cgroup h4 { margin: 0 0 14px; font: 400 .8125rem var(--font-mono); color: var(--violet); display: flex; justify-content: space-between; gap: 12px; }
+.cgroup h4 span { color: var(--ink-faint); }
+.crow { display: flex; align-items: baseline; gap: 10px; font: 400 .8125rem/2 var(--font-mono); color: var(--ink-muted); }
+.crow i { font-style: normal; color: var(--ok); flex: none; }
+.crow .lead { flex: 1; min-width: 8px; border-bottom: 1px dotted rgba(255, 255, 255, .2); transform: translateY(-4px); }
+.crow em { font-style: normal; color: var(--ice); flex: none; font-variant-numeric: tabular-nums; }
+
+/* contato */
+.contact { display: grid; gap: clamp(40px, 6vw, 96px); }
+@media (min-width: 900px) { .contact { grid-template-columns: 1.1fr .9fr; align-items: start; } }
+h2.big { font-size: clamp(2.75rem, 6vw, 4.75rem); max-width: 14ch; }
+.contact p.txt { color: var(--ink-muted); max-width: 44ch; margin-top: 24px; }
+.clist { margin-top: 40px; }
+.clist a { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); transition: padding .6s var(--ease-igloo), background .6s var(--ease-igloo); }
+.clist li:first-child a { border-top: 1px solid var(--line); }
+.clist a:hover { padding-inline: 14px; background: rgba(255, 255, 255, .03); }
+.clist small { display: block; font: 400 .72rem var(--font-mono); letter-spacing: .08em; color: var(--ink-faint); }
+.clist small::before { content: "$ "; color: var(--cyan); }
+.clist span { font: 400 .95rem var(--font-mono); overflow-wrap: anywhere; }
+.form-body { display: grid; gap: 14px; padding: clamp(20px, 3vw, 32px); }
+.field { position: relative; display: block; }
+.field input, .field textarea { width: 100%; padding: 24px 16px 10px; border: 1px solid var(--line); border-radius: 12px; background: rgba(0, 0, 0, .45); color: var(--ink); font: 400 .9375rem var(--font-mono); resize: vertical; transition: border-color .6s var(--ease-igloo), box-shadow .6s var(--ease-igloo); }
+.field input:focus, .field textarea:focus { outline: none; border-color: rgba(139, 233, 255, .6); box-shadow: 0 0 0 4px rgba(139, 233, 255, .1); }
+.field span { position: absolute; left: 17px; top: 18px; color: var(--ink-faint); font: 400 .875rem var(--font-mono); pointer-events: none; transform-origin: left; transition: transform .5s var(--ease-igloo), color .3s; }
+.field input:focus + span, .field input:not(:placeholder-shown) + span, .field textarea:focus + span, .field textarea:not(:placeholder-shown) + span { transform: translateY(-12px) scale(.78); color: var(--cyan); }
+.err { color: #ff8a8a; font: 400 .8125rem var(--font-mono); }
+.err[hidden] { display: none; }
+.form-body .btn { width: 100%; }
+
+.foot-site { border-top: 1px solid var(--line); padding-block: 40px 56px; color: var(--ink-faint); font: 400 .8125rem var(--font-mono); }
+.foot-site .shell { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; }
+.social { display: flex; gap: 8px; }
+.social a { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--ink-muted); transition: all .6s var(--ease-igloo); }
+.social a:hover { background: var(--ink); color: var(--void); border-color: var(--ink); }
+
+/* ---------- fundo global: campo de caracteres + brilho + grade ---------- */
+.bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; background: var(--void); }
+.bg canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.bg .glow { position: absolute; inset: -20%; background: radial-gradient(40% 35% at 85% 100%, rgba(183, 164, 255, .11), transparent 70%), radial-gradient(35% 30% at 10% 0%, rgba(139, 233, 255, .08), transparent 70%), radial-gradient(30% 25% at 50% 55%, rgba(255, 194, 238, .035), transparent 70%); animation: glow 26s cubic-bezier(.45, 0, .55, 1) infinite alternate; }
+@keyframes glow { to { transform: translate3d(-4%, 3%, 0) rotate(6deg); } }
+.bg-vig { position: absolute; inset: 0; background: radial-gradient(ellipse 120% 90% at 50% 50%, transparent 55%, rgba(0, 0, 0, .72) 100%); }
+main, .foot-site { position: relative; z-index: 1; }
+
+/* ---------- palco do computador + etapas guiadas pelo scroll ---------- */
+.stage { position: relative; }
+.rig { position: sticky; top: 0; height: 100vh; height: 100svh; margin-bottom: -100vh; margin-bottom: -100svh; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 1.4s var(--ease-igloo) .1s; }
+.rig.on { opacity: 1; }
+.rig canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.story { position: relative; z-index: 2; padding-top: clamp(96px, 12vw, 176px); padding-bottom: 60vh; padding-bottom: 60svh; }
+.sstep { min-height: 100vh; min-height: 100svh; display: flex; align-items: center; }
+.sstep[data-side="r"] { justify-content: flex-end; }
+.scard { width: min(100%, 440px); }
+.story .path { display: inline-flex; }
+.stage ~ * { position: relative; z-index: 2; }
+.scard .bar .commit { font-size: .75rem; }
+.sbody { display: grid; gap: 14px; padding: 28px 28px 32px; }
+.sbody h3 { font-size: clamp(1.75rem, 3vw, 2.369rem); }
+.sbody p { color: var(--ink-muted); }
+@media (max-width: 1023px) {
+  .hero .copy { padding-top: 50svh; }
+  .sstep { align-items: flex-end; padding-bottom: 8svh; }
+  .sstep[data-side="r"] { justify-content: flex-start; }
+  .scard { width: 100%; max-width: 520px; }
+}
+
+/* ---------- barra de status (como no editor) ---------- */
+.sbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: calc(var(--bar-h) + env(safe-area-inset-bottom, 0px)); padding: 0 max(16px, env(safe-area-inset-right, 0px)) env(safe-area-inset-bottom, 0px) max(16px, env(safe-area-inset-left, 0px)); background: rgba(0, 0, 0, .82); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 1px solid var(--line); font: 400 .72rem var(--font-mono); color: var(--ink-faint); }
+.sbar .l, .sbar .r { display: flex; align-items: center; gap: 18px; min-width: 0; }
+.sbar .br { display: inline-flex; align-items: center; gap: 7px; color: var(--ink-muted); }
+.sbar .pth { color: var(--ink-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sbar .ok { display: inline-flex; align-items: center; gap: 8px; color: var(--ink-muted); }
+@media (max-width: 719px) { .sbar .hide-s { display: none; } }
+
+/* ---------- paleta de comandos ---------- */
+.pal { width: min(92vw, 560px); padding: 0; margin: 12vh auto auto; border: 1px solid rgba(255, 255, 255, .16); border-radius: 18px; background: rgba(8, 9, 11, .92); backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px); color: var(--ink); overflow: hidden; }
+.pal::backdrop { background: rgba(0, 0, 0, .6); backdrop-filter: blur(6px); }
+.pal-q { display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-bottom: 1px solid var(--line); font: 400 .9375rem var(--font-mono); }
+.pal-q span { color: var(--cyan); }
+.pal-q input { flex: 1; min-width: 0; background: none; border: 0; outline: 0; color: var(--ink); font: inherit; }
+.pal-q input::placeholder { color: var(--ink-faint); }
+#pall { max-height: min(50vh, 380px); overflow-y: auto; padding: 8px; }
+#pall li[hidden] { display: none; }
+.pcmd { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 11px 12px; border: 0; border-radius: 10px; background: none; text-align: left; font: 400 .875rem var(--font-mono); color: var(--ink-muted); cursor: pointer; }
+.pcmd:hover, .pcmd:focus-visible { background: rgba(255, 255, 255, .07); color: var(--ink); outline: none; }
+.pcmd kbd { font: inherit; font-size: .72rem; color: var(--ink-faint); white-space: nowrap; }
+.pal-foot { padding: 10px 18px; border-top: 1px solid var(--line); font: 400 .72rem var(--font-mono); color: var(--ink-faint); }
+.pal-empty { padding: 20px; text-align: center; font: 400 .8125rem var(--font-mono); color: var(--ink-faint); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-duration: .001ms !important; transition-delay: 0s !important; }
+  .js .fx, .js .rv, .js .crystal, .js .hero-win .code .ln { opacity: 1; transform: none; filter: none; }
+  .js .word > span { transform: none; }
+}
+</style>
+
 <body>
+<div class="bg grain" aria-hidden="true">
+  <canvas id="field"></canvas>
+  <div class="glow"></div>
+  <div class="guides"><div class="shell"><b></b><b></b><b></b><b></b></div></div>
+  <i class="bg-vig"></i>
+</div>
+<main>
+<div class="stage" id="stage">
+  <div class="rig" id="rig" aria-hidden="true"><canvas id="pc"></canvas></div>
+  <section class="hero" id="top">
+    <div class="aurora" id="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
 
-    <!-- Video Background -->
-    <div class="video-bg" aria-hidden="true">
-        <video muted playsinline id="bgVideo1" class="active">
-            <source src="assets/background.mp4" type="video/mp4">
-        </video>
-        <video muted playsinline id="bgVideo2">
-            <source src="assets/background.mp4" type="video/mp4">
-        </video>
-        <div class="video-overlay"></div>
+    <div class="shell">
+      <header class="top fx" style="--d:.1s">
+        <a class="logo" href="#top" aria-label="Felipe Prado"><span class="pr">~/</span>felipe-prado<i class="caret"></i></a>
+        <nav class="nav" aria-label="Principal">
+          <a href="#sobre">sobre</a><a href="#servicos">serviços</a><a href="#projetos">projetos</a><a href="#formacao">formação</a><a href="#contato">contato</a>
+        </nav>
+        <button class="kbd" id="palBtn" type="button" aria-label="Abrir paleta de comandos"><span class="lbl">comandos</span><kbd id="kbdKey">Ctrl K</kbd></button>
+      </header>
     </div>
 
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-
-    <!-- Noise Overlay -->
-    <div class="noise-overlay"></div>
-
-    <!-- Mesh Gradient Background -->
-    <div class="mesh-bg" aria-hidden="true">
-        <div class="mesh-blob"></div>
-        <div class="mesh-blob"></div>
-        <div class="mesh-blob"></div>
-        <canvas id="tech-canvas"></canvas>
-    </div>
-
-    <!-- Custom Cursor -->
-    <div class="cursor-dot" data-cursor-dot></div>
-    <div class="cursor-outline" data-cursor-outline></div>
-
-    <!-- Back to Top -->
-    <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Loading Screen -->
-    <div id="welcome-screen">
-        <div class="welcome-content">
-            <div class="premium-loader">
-                <svg viewBox="0 0 100 100" class="svg-loader">
-                    <defs>
-                        <linearGradient id="glow-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#06b6d4" />
-                            <stop offset="50%" stop-color="#8b5cf6" />
-                            <stop offset="100%" stop-color="#ec4899" />
-                        </linearGradient>
-                    </defs>
-                    <circle cx="50" cy="50" r="45" stroke="url(#glow-gradient)" stroke-width="2" fill="none" stroke-linecap="round" class="loader-ring"></circle>
-                </svg>
-                <div class="pulse-core"></div>
-            </div>
-            <h1 data-translate="loading.text">Carregando experiência</h1>
-            <div class="loading-progress">
-                <div class="progress-bar"></div>
-            </div>
+    <div class="shell copy" id="copy">
+      <div class="lead-col">
+        <p class="prompt fx" style="--d:.2s"><b>felipe@dev:~$</b>whoami</p>
+        <h1 aria-label="Construo produtos web rápidos, seguros e bem acabados.">
+          <span class="word" aria-hidden="true"><span style="--i:0">Construo</span></span><span class="word" aria-hidden="true"><span style="--i:1">produtos</span></span><span class="word" aria-hidden="true"><span style="--i:2">web</span></span><span class="word" aria-hidden="true"><span style="--i:3">rápidos,</span></span><span class="word" aria-hidden="true"><span class="iridescent" style="--i:4">seguros</span></span><span class="word" aria-hidden="true"><span style="--i:5">e</span></span><span class="word" aria-hidden="true"><span style="--i:6">bem</span></span><span class="word" aria-hidden="true"><span style="--i:7">acabados.</span></span>
+        </h1>
+        <p class="sub fx" style="--d:.9s">Sou Felipe Prado, desenvolvedor Full Stack em São Paulo. Do front ao back, com um olhar a mais para segurança.</p>
+        <div class="ctas fx" style="--d:1.05s">
+          <a class="btn solid" href="#projetos"><i class="halo"></i><i class="sheen"></i><span>Ver projetos</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="btn" href="#contato"><i class="halo"></i><i class="sheen"></i><span>Falar comigo</span></a>
         </div>
+      </div>
+
     </div>
 
-    <!-- Main Content -->
-    <main id="main-content">
-        <header>
-            <h1>Felipe Prado</h1>
-            <nav>
-                <ul>
-                    <li><a href="#sobre-mim" data-translate="nav.about">Sobre</a></li>
-                    <li><a href="#habilidades" data-translate="nav.skills">Skills</a></li>
-                    <li><a href="#projetos" data-translate="nav.projects">Projetos</a></li>
-                    <li><a href="#formacao" data-translate="nav.education">Formação</a></li>
-                    <li><a href="#contatos" data-translate="nav.contact">Contato</a></li>
-                </ul>
-                <button id="langToggle" class="lang-toggle" aria-label="Alternar idioma">
-                    <span id="langFlag">🇧🇷</span>
-                    <span id="langText">PT</span>
-                </button>
-            </nav>
-        </header>
-
-        <!-- Hero Section -->
-        <section id="inicio" class="hero-section">
-            <div class="hero-content">
-                <p class="sub-headline reveal">Full Stack Developer</p>
-                <h1 class="headline reveal" data-translate="hero.title">Criando experiências digitais com <span data-translate="hero.titleSpan">Design Impecável</span></h1>
-                <p class="hero-desc reveal" data-translate="hero.description">Olá! Sou Felipe Prado, Desenvolvedor Full Stack apaixonado por desenvolver soluções inovadoras, rápidas e esteticamente deslumbrantes.</p>
-                <div class="hero-botoes reveal">
-                    <a href="#projetos" class="btn-primary"><i class="fas fa-rocket"></i> <span data-translate="hero.button1">Ver Projetos</span></a>
-                    <a href="#contatos" class="btn-secondary"><i class="fas fa-envelope"></i> <span data-translate="hero.button2">Falar Comigo</span></a>
-                </div>
-            </div>
-            <div class="hero-visual reveal">
-                <div class="glow-orb hero-orb"></div>
-                <div class="glass-panel">
-                    <div class="terminal-header">
-                        <div class="terminal-dot"></div>
-                        <div class="terminal-dot"></div>
-                        <div class="terminal-dot"></div>
-                        <span class="terminal-title">developer.js</span>
-                    </div>
-                    <div class="code-snippet">
-                        <span class="line-number">1</span><span class="keyword">const</span> <span class="variable">developer</span> = {<br>
-                        <span class="line-number">2</span>&nbsp;&nbsp;name: <span class="string">'Felipe Prado'</span>,<br>
-                        <span class="line-number">3</span>&nbsp;&nbsp;role: <span class="string">'Full Stack Dev'</span>,<br>
-                        <span class="line-number">4</span>&nbsp;&nbsp;skills: [<span class="string">'React'</span>, <span class="string">'Next.js'</span>, <span class="string">'Node'</span>],<br>
-                        <span class="line-number">5</span>&nbsp;&nbsp;status: <span class="string">'Available for hire'</span>,<br>
-                        <span class="line-number">6</span>&nbsp;&nbsp;<span class="comment">// Let's build something amazing</span><br>
-                        <span class="line-number">7</span>};
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Me -->
-        <section id="sobre-mim" class="reveal">
-            <h2 data-translate="about.title">Sobre Mim</h2>
-            <p class="section-subtitle" data-translate="about.subtitle">Conheça um pouco da minha trajetória</p>
-            <div class="sobre-container">
-                <div class="foto-container">
-                    <img src="assets/Felipe wallpaper.png" alt="Felipe Prado — Desenvolvedor Full Stack">
-                </div>
-                <div class="descricao">
-                    <div class="text">
-                        <p data-translate="about.text">
-                            Olá! Sou Felipe Rodrigues Prado, um desenvolvedor apaixonado por tecnologia e inovação. Com 22 anos e residente de São Paulo, venho aprimorando minhas habilidades em desenvolvimento de software. No momento, estou cursando Análise e Desenvolvimento de Sistemas, focando principalmente em frontend, backend e análise de sistemas. Busco sempre aplicar meus conhecimentos em projetos reais e estou em busca de novas oportunidades para crescer ainda mais profissionalmente.
-                        </p>
-                    </div>
-                    <div class="contato">
-                        <p><i class="fas fa-phone"></i> <strong data-translate="about.phone">Celular:</strong> (13) 98117-5814</p>
-                        <p><i class="fas fa-envelope"></i> <strong data-translate="about.email">E-mail:</strong> <a href="mailto:felipeendz@gmail.com">felipeendz@gmail.com</a></p>
-                        <p><i class="fab fa-linkedin"></i> <strong data-translate="about.linkedin">LinkedIn:</strong> <a href="https://www.linkedin.com/in/felipe-prado013" target="_blank">linkedin.com/in/felipe-prado013</a></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills -->
-        <section id="habilidades" class="reveal">
-            <h2 data-translate="skills.title">Habilidades Técnicas</h2>
-            <p class="section-subtitle" data-translate="skills.subtitle">Tecnologias que domino e utilizo no dia a dia</p>
-            <div class="habilidades-grid">
-                <div class="habilidade-card">
-                    <i class="fab fa-html5"></i>
-                    <h3>HTML5</h3>
-                    <p data-translate="skills.html.desc">Domínio de HTML5 para construção de páginas semânticas, acessíveis e bem estruturadas.</p>
-                    <div class="skill-bar">
-                        <div class="skill-level" data-width="95%"></div>
-                    </div>
-                </div>
-                <div class="habilidade-card">
-                    <i class="fab fa-css3-alt"></i>
-                    <h3>CSS3</h3>
-                    <p data-translate="skills.css.desc">Proficiência em estilização de layouts modernos e responsivos, utilizando técnicas avançadas.</p>
-                    <div class="skill-bar">
-                        <div class="skill-level" data-width="90%"></div>
-                    </div>
-                </div>
-                <div class="habilidade-card">
-                    <i class="fab fa-js"></i>
-                    <h3>JavaScript</h3>
-                    <p data-translate="skills.js.desc">Experiência no desenvolvimento de aplicações dinâmicas e interativas.</p>
-                    <div class="skill-bar">
-                        <div class="skill-level" data-width="85%"></div>
-                    </div>
-                </div>
-                <div class="habilidade-card">
-                    <i class="fab fa-react"></i>
-                    <h3>React</h3>
-                    <p data-translate="skills.react.desc">Experiência com React para criação de interfaces dinâmicas e escaláveis.</p>
-                    <div class="skill-bar">
-                        <div class="skill-level" data-width="80%"></div>
-                    </div>
-                </div>
-                <div class="habilidade-card">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Next.js</h3>
-                    <p data-translate="skills.next.desc">Experiência com Next.js para aplicações server-side rendering e produção.</p>
-                    <div class="skill-bar">
-                        <div class="skill-level" data-width="75%"></div>
-                    </div>
-                </div>
-                <div class="habilidade-card">
-                    <i class="fab fa-node"></i>
-                    <h3>Node.js</h3>
-                    <p data-translate="skills.node.desc">Habilidade em construir servidores web e APIs RESTful.</p>
-                    <div class="skill-bar">
-                        <div class="skill-level" data-width="75%"></div>
-                    </div>
-                </div>
-                <div class="habilidade-card">
-                    <i class="fab fa-java"></i>
-                    <h3>Java</h3>
-                    <p data-translate="skills.java.desc">Habilidade na construção de sistemas robustos, com foco em OOP.</p>
-                    <div class="skill-bar">
-                        <div class="skill-level" data-width="70%"></div>
-                    </div>
-                </div>
-                <div class="habilidade-card">
-                    <i class="fab fa-python"></i>
-                    <h3>Python</h3>
-                    <p data-translate="skills.python.desc">Domínio de Python para algoritmos, orientação a objetos, automação de tarefas e segurança.</p>
-                    <div class="skill-bar">
-                        <div class="skill-level" data-width="85%"></div>
-                    </div>
-                </div>
-                <div class="habilidade-card">
-                    <i class="fas fa-shield-halved"></i>
-                    <h3 data-translate="skills.pentest.title">Segurança Ofensiva / Pentest</h3>
-                    <p data-translate="skills.pentest.desc">Fundamentos de segurança da informação, Reconhecimento (Recon) e Pentest em redes.</p>
-                    <div class="skill-bar">
-                        <div class="skill-level" data-width="80%"></div>
-                    </div>
-                </div>
-                <div class="habilidade-card">
-                    <i class="fas fa-network-wired"></i>
-                    <h3 data-translate="skills.networks.title">Redes</h3>
-                    <p data-translate="skills.networks.desc">Fundamentos de redes para pentest, protocolos de comunicação, topologias e análise de tráfego.</p>
-                    <div class="skill-bar">
-                        <div class="skill-level" data-width="80%"></div>
-                    </div>
-                </div>
-                <div class="habilidade-card">
-                    <i class="fas fa-key"></i>
-                    <h3 data-translate="skills.crypto.title">Criptografia & Senhas</h3>
-                    <p data-translate="skills.crypto.desc">Criptografia simétrica/assimétrica, algoritmos de hashing e cracking de senhas.</p>
-                    <div class="skill-bar">
-                        <div class="skill-level" data-width="80%"></div>
-                    </div>
-                </div>
-                <div class="habilidade-card">
-                    <i class="fab fa-linux"></i>
-                    <h3 data-translate="skills.linux.title">Linux & Automação</h3>
-                    <p data-translate="skills.linux.desc">Linux para pentesters, Shell Scripting avançado e Python focado em segurança e automação.</p>
-                    <div class="skill-bar">
-                        <div class="skill-level" data-width="85%"></div>
-                    </div>
-                </div>
-                <div class="habilidade-card">
-                    <i class="fas fa-database"></i>
-                    <h3>MongoDB</h3>
-                    <p data-translate="skills.mongodb.desc">Experiência com bancos de dados NoSQL, utilizando MongoDB.</p>
-                    <div class="skill-bar">
-                        <div class="skill-level" data-width="70%"></div>
-                    </div>
-                </div>
-                <div class="habilidade-card">
-                    <i class="fab fa-git-alt"></i>
-                    <h3>Git</h3>
-                    <p data-translate="skills.git.desc">Experiência com controle de versão utilizando Git.</p>
-                    <div class="skill-bar">
-                        <div class="skill-level" data-width="85%"></div>
-                    </div>
-                </div>
-                <div class="habilidade-card">
-                    <i class="fab fa-github"></i>
-                    <h3>GitHub</h3>
-                    <p data-translate="skills.github.desc">Domínio do GitHub para hospedagem de repositórios e colaboração.</p>
-                    <div class="skill-bar">
-                        <div class="skill-level" data-width="90%"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects -->
-        <section id="projetos" class="reveal">
-            <h2 data-translate="projects.title">Projetos</h2>
-            <p class="section-subtitle" data-translate="projects.subtitle">Alguns dos meus trabalhos mais recentes</p>
-
-            <div class="projetos-grid">
-                <!-- TaskFlow -->
-                <div class="projeto-card">
-                    <div class="projeto-imagem">
-                        <img src="assets/taskflow.png" alt="TaskFlow" style="object-fit: contain; background-color: #050505; padding: 1rem;">
-                        <div class="projeto-tech">
-                            <span>Next.js 14</span>
-                            <span>TypeScript</span>
-                            <span>PostgreSQL</span>
-                            <span>Prisma</span>
-                            <span>Tailwind CSS</span>
-                        </div>
-                    </div>
-                    <div class="projeto-conteudo">
-                        <h3>TaskFlow</h3>
-                        <p class="projeto-desc" data-translate="projects.taskflow.desc">Sistema de gestão de tarefas por departamentos para ambiente corporativo, onde cada demanda chega direto para o setor responsável.</p>
-                        <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.taskflow.f1">Kanban com drag & drop</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.taskflow.f2">Sugestão de tarefas por IA</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.taskflow.f3">Autenticação com NextAuth</span></p>
-                        </div>
-                        <div class="projeto-links">
-                            <a href="https://task-flow-3fdo51d84-felipes-projects-dff84a82.vercel.app/login" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Food Explorer -->
-                <div class="projeto-card">
-                    <div class="projeto-imagem">
-                        <img src="assets/meuportifolio.png" alt="Food Explorer">
-                        <div class="projeto-tech">
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>MongoDB</span>
-                        </div>
-                    </div>
-                    <div class="projeto-conteudo">
-                        <h3>Food Explorer</h3>
-                        <p class="projeto-desc" data-translate="projects.foodexplorer.desc">Aplicação web que permite aos usuários buscar, explorar e salvar receitas de diferentes tipos de alimentos.</p>
-                        <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.foodexplorer.f1">Sistema de autenticação</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.foodexplorer.f2">Busca avançada</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.foodexplorer.f3">Favoritos</span></p>
-                        </div>
-                        <div class="projeto-links">
-                            <a href="https://github.com/FelipePrado200/Food-Explorer-FrontEnd" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Rocket Notes -->
-                <div class="projeto-card">
-                    <div class="projeto-imagem">
-                        <img src="assets/rocketnotesportifolio.webp" alt="RocketNotes">
-                        <div class="projeto-tech">
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>SQLite</span>
-                        </div>
-                    </div>
-                    <div class="projeto-conteudo">
-                        <h3>Rocket Notes</h3>
-                        <p class="projeto-desc" data-translate="projects.rocketnotes.desc">Aplicação de notas para organizar ideias e informações de maneira eficiente.</p>
-                        <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.rocketnotes.f1">CRUD completo</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.rocketnotes.f2">Sistema de tags</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.rocketnotes.f3">Busca em tempo real</span></p>
-                        </div>
-                        <div class="projeto-links">
-                            <a href="https://github.com/FelipePrado200/RocketNotes" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bank System -->
-                <div class="projeto-card">
-                    <div class="projeto-imagem">
-                        <img src="assets/banksystem.jpg" alt="Bank System">
-                        <div class="projeto-tech">
-                            <span>Python</span>
-                            <span>OOP</span>
-                        </div>
-                    </div>
-                    <div class="projeto-conteudo">
-                        <h3>Bank System</h3>
-                        <p class="projeto-desc" data-translate="projects.banksystem.desc">Sistema bancário em Python com criação de conta, depósitos, saques e consulta de saldo.</p>
-                        <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.banksystem.f1">Sistema de transações</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.banksystem.f2">Extrato bancário</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.banksystem.f3">Validações de segurança</span></p>
-                        </div>
-                        <div class="projeto-links">
-                            <a href="https://github.com/FelipePrado200/Sistema-Banc-rio-" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- DevFlix -->
-                <div class="projeto-card">
-                    <div class="projeto-imagem">
-                        <img src="assets/readme.png" alt="DevFlix">
-                        <div class="projeto-tech">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                        </div>
-                    </div>
-                    <div class="projeto-conteudo">
-                        <h3>DevFlix</h3>
-                        <p class="projeto-desc" data-translate="projects.devflix.desc">Plataforma de streaming de filmes desenvolvida para demonstrar habilidades em desenvolvimento web.</p>
-                        <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.devflix.f1">Interface responsiva</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.devflix.f2">Filtro por gênero</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.devflix.f3">Player de vídeo</span></p>
-                        </div>
-                        <div class="projeto-links">
-                            <a href="https://felipeprado200.github.io/Devflix/" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
-                            </a>
-                            <a href="https://github.com/FelipePrado200/Devflix" target="_blank" class="projeto-btn secundario">
-                                <i class="fab fa-github"></i> <span data-translate="button.code">Código</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Site Advocacia -->
-                <div class="projeto-card">
-                    <div class="projeto-imagem">
-                        <img src="assets/freelance.png" alt="Site Advocacia">
-                        <div class="projeto-tech">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                        </div>
-                    </div>
-                    <div class="projeto-conteudo">
-                        <h3 data-translate="projects.advocacia.title">Site Advocacia</h3>
-                        <p class="projeto-desc" data-translate="projects.advocacia.desc">Site freelancer desenvolvido para um advogado, com design profissional e responsivo.</p>
-                        <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.advocacia.f1">Design profissional</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.advocacia.f2">Totalmente responsivo</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.advocacia.f3">Formulário de contato</span></p>
-                        </div>
-                        <div class="projeto-links">
-                            <a href="https://felipeprado200.github.io/site-matheus/" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Chronos Pomodoro -->
-                <div class="projeto-card">
-                    <div class="projeto-imagem">
-                        <img src="assets/pomodoro.png" alt="Chronos Pomodoro">
-                        <div class="projeto-tech">
-                            <span>React</span>
-                            <span>CSS</span>
-                            <span>LocalStorage</span>
-                        </div>
-                    </div>
-                    <div class="projeto-conteudo">
-                        <h3>Chronos Pomodoro</h3>
-                        <p class="projeto-desc" data-translate="projects.pomodoro.desc">Aplicação de produtividade baseada na Técnica Pomodoro para gerenciamento de tempo.</p>
-                        <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.pomodoro.f1">Temporizador configurável</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.pomodoro.f2">Histórico de sessões</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.pomodoro.f3">Notificações</span></p>
-                        </div>
-                        <div class="projeto-links">
-                            <a href="https://chronos-pomodoro-lime.vercel.app/" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
-                            </a>
-                            <a href="https://github.com/FelipePrado200/chronos-pomodoro" target="_blank" class="projeto-btn secundario">
-                                <i class="fab fa-github"></i> <span data-translate="button.code">Código</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- My Finances -->
-                <div class="projeto-card">
-                    <div class="projeto-imagem">
-                        <img src="assets/finances.png" alt="My Finances">
-                        <div class="projeto-tech">
-                            <span>Next.js</span>
-                            <span>TypeScript</span>
-                            <span>Node.js</span>
-                            <span>PostgreSQL</span>
-                        </div>
-                    </div>
-                    <div class="projeto-conteudo">
-                        <h3>My Finances</h3>
-                        <p class="projeto-desc" data-translate="projects.finances.desc">Sistema de controle financeiro pessoal para gerenciamento de receitas e despesas.</p>
-                        <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.finances.f1">Dashboard de gastos</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.finances.f2">Categorização</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.finances.f3">Relatórios</span></p>
-                        </div>
-                        <div class="projeto-links">
-                            <a href="https://my-finances-liard.vercel.app/" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
-                            </a>
-                            <a href="https://github.com/FelipePrado200/my-finances" target="_blank" class="projeto-btn secundario">
-                                <i class="fab fa-github"></i> <span data-translate="button.code">Código</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Leon On -->
-                <div class="projeto-card">
-                    <div class="projeto-imagem">
-                        <img src="assets/Mary wallpaper.png" alt="Leon On">
-                        <div class="projeto-tech">
-                            <span>Next.js</span>
-                            <span>TypeScript</span>
-                            <span>Node.js</span>
-                            <span>PostgreSQL</span>
-                        </div>
-                    </div>
-                    <div class="projeto-conteudo">
-                        <h3>Leon On</h3>
-                        <p class="projeto-desc" data-translate="projects.leonon.desc">Espaço seguro e anônimo para acolher sua mente. Plataforma de suporte emocional com IA que oferece apoio inteligente 24 horas por dia.</p>
-                        <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.leonon.f1">Suporte 24/7</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.leonon.f2">Conversas anônimas</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.leonon.f3">IA inteligente</span></p>
-                        </div>
-                        <div class="projeto-links">
-                            <a href="https://lean-on-swart.vercel.app/" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
-                            </a>
-                            <a href="https://github.com/FelipePrado200/LeonOn" target="_blank" class="projeto-btn secundario">
-                                <i class="fab fa-github"></i> <span data-translate="button.code">Código</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- The Blog -->
-                <div class="projeto-card">
-                    <div class="projeto-imagem">
-                        <img src="assets/theblog.png" alt="The Blog">
-                        <div class="projeto-tech">
-                            <span>Next.js</span>
-                            <span>Tailwind CSS</span>
-                            <span>TypeScript</span>
-                        </div>
-                    </div>
-                    <div class="projeto-conteudo">
-                        <h3>The Blog</h3>
-                        <p class="projeto-desc" data-translate="projects.theblog.desc">Simulação de um blog moderno com sistema de posts e comentários.</p>
-                        <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.theblog.f1">Layout moderno</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.theblog.f2">Sistema de posts</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.theblog.f3">Comentários</span></p>
-                        </div>
-                        <div class="projeto-links">
-                            <a href="https://github.com/FelipePrado200/The-blog" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pet Dev -->
-                <div class="projeto-card">
-                    <div class="projeto-imagem">
-                        <img src="assets/petdev.png" alt="Pet Dev">
-                        <div class="projeto-tech">
-                            <span>Next.js</span>
-                            <span>Tailwind CSS</span>
-                            <span>TypeScript</span>
-                        </div>
-                    </div>
-                    <div class="projeto-conteudo">
-                        <h3>Pet Dev</h3>
-                        <p class="projeto-desc" data-translate="projects.petdev.desc">Dashboard para petshop com controle de clientes, serviços e agendamentos.</p>
-                        <div class="projeto-features">
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.petdev.f1">Dashboard interativo</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.petdev.f2">Agendamentos</span></p>
-                            <p><i class="fas fa-check"></i> <span data-translate="projects.petdev.f3">Controle de clientes</span></p>
-                        </div>
-                        <div class="projeto-links">
-                            <a href="https://github.com/FelipePrado200/petdev" target="_blank" class="projeto-btn">
-                                <i class="fas fa-external-link-alt"></i> <span data-translate="button.viewProject">Ver projeto</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education -->
-        <section id="formacao" class="reveal">
-            <h2 data-translate="education.title">Trilha de Aprendizado</h2>
-            <p class="section-subtitle" data-translate="education.subtitle">Minha jornada de formação e certificações</p>
-            <div class="timeline-container">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content formacao-card">
-                        <h3 data-translate="education.course">Análise e Desenvolvimento de Sistemas</h3>
-                        <p class="instituicao" data-translate="education.university">UniAmérica • 2023 – 2025 • Finalizado</p>
-                        <p data-translate="education.description">Formação sólida em desenvolvimento de software, arquitetura de soluções, frontend, backend, bancos de dados, metodologias ágeis e UX/UI.</p>
-                        <div class="disciplinas">
-                            <span data-translate="education.d1">Programação Web</span>
-                            <span data-translate="education.d2">Banco de Dados</span>
-                            <span data-translate="education.d3">Engenharia de Software</span>
-                            <span data-translate="education.d4">DevOps</span>
-                            <span data-translate="education.d5">Integração de Sistemas</span>
-                            <span data-translate="education.d6">Estrutura de Dados</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h2 class="cursos-title" data-translate="courses.title">Cursos e Certificações</h2>
-            <div class="cursos-grid">
-                <div class="curso-card">
-                    <i class="fas fa-rocket"></i>
-                    <h4>Explorer</h4>
-                    <p>Rocketseat • 120h</p>
-                    <span class="curso-status">Completo</span>
-                </div>
-                <div class="curso-card">
-                    <i class="fab fa-java"></i>
-                    <h4>Java</h4>
-                    <p>Rocketseat • 45h</p>
-                    <span class="curso-status">Completo</span>
-                </div>
-                <div class="curso-card">
-                    <i class="fas fa-code"></i>
-                    <h4>NLW Unite</h4>
-                    <p>Rocketseat • 8h</p>
-                    <span class="curso-status">Completo</span>
-                </div>
-                <div class="curso-card">
-                    <i class="fab fa-microsoft"></i>
-                    <h4>C#</h4>
-                    <p>Rocketseat • 40h</p>
-                    <span class="curso-status">Completo</span>
-                </div>
-                <div class="curso-card">
-                    <i class="fas fa-laptop-code"></i>
-                    <h4>Basic FrontEnd</h4>
-                    <p>UniAmérica • 40h</p>
-                    <span class="curso-status">Completo</span>
-                </div>
-                <div class="curso-card">
-                    <i class="fas fa-object-group"></i>
-                    <h4>Object-Oriented</h4>
-                    <p>UniAmérica • 60h</p>
-                    <span class="curso-status">Completo</span>
-                </div>
-                <div class="curso-card">
-                    <i class="fas fa-code"></i>
-                    <h4>Programming Basic</h4>
-                    <p>UniAmérica • 50h</p>
-                    <span class="curso-status">Completo</span>
-                </div>
-                <div class="curso-card">
-                    <i class="fas fa-desktop"></i>
-                    <h4>FrontEnd Dev</h4>
-                    <p>UniAmérica • 80h</p>
-                    <span class="curso-status">Completo</span>
-                </div>
-                <div class="curso-card">
-                    <i class="fas fa-server"></i>
-                    <h4>BackEnd Dev</h4>
-                    <p>UniAmérica • 80h</p>
-                    <span class="curso-status">Completo</span>
-                </div>
-                <div class="curso-card">
-                    <i class="fas fa-layer-group"></i>
-                    <h4>Full Stack Dev</h4>
-                    <p>UniAmérica • 120h</p>
-                    <span class="curso-status">Completo</span>
-                </div>
-                <div class="curso-card">
-                    <i class="fas fa-infinity"></i>
-                    <h4>DevOps Strategist</h4>
-                    <p>UniAmérica • 60h</p>
-                    <span class="curso-status">Completo</span>
-                </div>
-                <div class="curso-card">
-                    <i class="fas fa-shield-halved"></i>
-                    <h4>Recon em Pentest</h4>
-                    <p>Solyd Offensive Sec • 34h</p>
-                    <span class="curso-status">Completo</span>
-                </div>
-                <div class="curso-card">
-                    <i class="fab fa-python"></i>
-                    <h4>Python Automação & Sec</h4>
-                    <p>Solyd Offensive Sec • 78h</p>
-                    <span class="curso-status">Completo</span>
-                </div>
-                <div class="curso-card">
-                    <i class="fas fa-network-wired"></i>
-                    <h4>Redes para Pentesters</h4>
-                    <p>Solyd Offensive Sec • 40h</p>
-                    <span class="curso-status">Completo</span>
-                </div>
-                <div class="curso-card">
-                    <i class="fas fa-key"></i>
-                    <h4>Criptografia & Cracking</h4>
-                    <p>Solyd Offensive Sec • 30h</p>
-                    <span class="curso-status">Completo</span>
-                </div>
-                <div class="curso-card">
-                    <i class="fab fa-linux"></i>
-                    <h4>Linux & Shell Script</h4>
-                    <p>Solyd Offensive Sec • 35h</p>
-                    <span class="curso-status">Completo</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact -->
-        <section id="contatos" class="reveal">
-            <h2 data-translate="contact.title">Entre em Contato</h2>
-            <p class="section-subtitle" data-translate="contact.subtitle">Estou sempre aberto a novas oportunidades</p>
-            <div class="contato-container">
-                <div class="contato-info">
-                    <h3>Vamos conversar!</h3>
-                    <p>Estou disponível para projetos freelancer, oportunidades de emprego ou apenas para trocar uma ideia sobre tecnologia.</p>
-
-                    <div class="contato-detalhes">
-                        <div class="contato-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4 data-translate="contact.email.label">Email</h4>
-                                <p>felipeendz@gmail.com</p>
-                            </div>
-                        </div>
-
-                        <div class="contato-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h4 data-translate="contact.phone.label">Telefone</h4>
-                                <p>(13) 98117-5814</p>
-                            </div>
-                        </div>
-
-                        <div class="contato-item">
-                            <i class="fab fa-whatsapp"></i>
-                            <div>
-                                <h4 data-translate="contact.whatsapp.label">WhatsApp</h4>
-                                <p>(13) 98117-5814</p>
-                            </div>
-                        </div>
-
-                        <div class="contato-item">
-                            <i class="fab fa-linkedin"></i>
-                            <div>
-                                <h4 data-translate="contact.linkedin.label">LinkedIn</h4>
-                                <p>/felipe-prado013</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="social-links">
-                        <a href="https://github.com/FelipePrado200" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/felipe-prado013" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
-
-                <div class="contato-form">
-                    <h3 data-translate="contact.sendMessage">Envie uma mensagem</h3>
-                    <form id="whatsappForm">
-                        <div class="form-group">
-                            <input type="text" id="nome" placeholder=" " required>
-                            <label for="nome" data-translate="form.name">Nome completo</label>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="email" id="email" placeholder=" " required>
-                            <label for="email" data-translate="form.email">E-mail</label>
-                        </div>
-
-                        <div class="form-group">
-                            <textarea id="mensagem" placeholder=" " rows="5" required></textarea>
-                            <label for="mensagem" data-translate="form.message">Sua mensagem</label>
-                        </div>
-
-                        <button type="submit" class="btn-enviar" data-translate="button.send">
-                            <i class="fab fa-whatsapp"></i> Enviar via WhatsApp
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <h3>Felipe Prado</h3>
-                    <p>Desenvolvedor Full Stack</p>
-                </div>
-
-                <div class="footer-links">
-                    <a href="#sobre-mim" data-translate="footer.about">Sobre</a>
-                    <a href="#habilidades" data-translate="footer.skills">Habilidades</a>
-                    <a href="#projetos" data-translate="footer.projects">Projetos</a>
-                    <a href="#formacao" data-translate="footer.education">Formação</a>
-                    <a href="#contatos" data-translate="footer.contact">Contato</a>
-                </div>
-
-                <div class="footer-social">
-                    <a href="https://github.com/FelipePrado200" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/felipe-prado013" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p data-translate="footer.copyright">&copy; 2025 Felipe Rodrigues Prado. Todos os direitos reservados.</p>
-                <p><span data-translate="footer.developed">Desenvolvido com</span> <i class="fas fa-heart"></i> e muito código</p>
-            </div>
-        </footer>
-    </main>
-
-    <script>
-    // ============================================================
-    // TRANSLATION SYSTEM — Multilingual Support
-    // ============================================================
-
-    const translations = {
-        pt: {
-            'loading.text': 'Carregando experiência',
-            'nav.about': 'Sobre',
-            'nav.skills': 'Skills',
-            'nav.projects': 'Projetos',
-            'nav.education': 'Formação',
-            'nav.contact': 'Contato',
-            'hero.title': 'Criando experiências digitais com',
-            'hero.titleSpan': 'Design Impecável',
-            'hero.description': 'Olá! Sou Felipe Prado, Desenvolvedor Full Stack apaixonado por desenvolver soluções inovadoras, rápidas e esteticamente deslumbrantes.',
-            'hero.button1': 'Ver Projetos',
-            'hero.button2': 'Falar Comigo',
-            'about.title': 'Sobre Mim',
-            'about.subtitle': 'Conheça um pouco da minha trajetória',
-            'about.text': 'Olá! Sou Felipe Rodrigues Prado, um desenvolvedor apaixonado por tecnologia e inovação. Com 22 anos e residente de São Paulo, venho aprimorando minhas habilidades em desenvolvimento de software. No momento, estou cursando Análise e Desenvolvimento de Sistemas, focando principalmente em frontend, backend e análise de sistemas. Busco sempre aplicar meus conhecimentos em projetos reais e estou em busca de novas oportunidades para crescer ainda mais profissionalmente.',
-            'about.phone': 'Celular:',
-            'about.email': 'E-mail:',
-            'about.linkedin': 'LinkedIn:',
-            'skills.title': 'Habilidades Técnicas',
-            'skills.subtitle': 'Tecnologias que domino e utilizo no dia a dia',
-            
-            // skills desc
-            'skills.html.desc': 'Domínio de HTML5 para construção de páginas semânticas, acessíveis e bem estruturadas.',
-            'skills.css.desc': 'Proficiência em estilização de layouts modernos e responsivos, utilizando técnicas avançadas.',
-            'skills.js.desc': 'Experiência no desenvolvimento de aplicações dinâmicas e interativas.',
-            'skills.react.desc': 'Experiência com React para criação de interfaces dinâmicas e escaláveis.',
-            'skills.next.desc': 'Experiência com Next.js para aplicações server-side rendering e produção.',
-            'skills.node.desc': 'Habilidade em construir servidores web e APIs RESTful.',
-            'skills.java.desc': 'Habilidade na construção de sistemas robustos, com foco em OOP.',
-            'skills.python.desc': 'Domínio de Python para algoritmos, orientação a objetos, automação de tarefas e segurança.',
-            'skills.pentest.title': 'Segurança Ofensiva / Pentest',
-            'skills.pentest.desc': 'Fundamentos de Segurança da Informação, Reconhecimento (Recon) e Pentest em redes.',
-            'skills.networks.title': 'Redes',
-            'skills.networks.desc': 'Fundamentos de redes para pentest, protocolos de comunicação, topologias e análise de tráfego.',
-            'skills.crypto.title': 'Criptografia & Senhas',
-            'skills.crypto.desc': 'Criptografia simétrica/assimétrica, algoritmos de hashing e cracking de senhas.',
-            'skills.linux.title': 'Linux & Automação',
-            'skills.linux.desc': 'Linux para pentesters, Shell Scripting avançado e Python focado em segurança e automação.',
-            'skills.mongodb.desc': 'Experiência com bancos de dados NoSQL, utilizando MongoDB.',
-            'skills.git.desc': 'Experiência com controle de versão utilizando Git.',
-            'skills.github.desc': 'Domínio do GitHub para hospedagem de repositórios e colaboração.',
-
-            'projects.title': 'Projetos',
-            'projects.subtitle': 'Alguns dos meus trabalhos mais recentes',
-
-            // projects details
-            'projects.taskflow.desc': 'Sistema de gestão de tarefas por departamentos, pensado para o ambiente corporativo. A ideia central é simples: cada demanda chega direto pro setor responsável, sem intermediários.',
-            'projects.taskflow.f1': 'Kanban com drag and drop, filtros de status e prioridade',
-            'projects.taskflow.f2': 'Sugestão automática de tarefas via IA (NLP)',
-            'projects.taskflow.f3': 'Autenticação segura (NextAuth.js e bcryptjs)',
-
-            'projects.foodexplorer.desc': 'Aplicação web que permite aos usuários buscar, explorar e salvar receitas de diferentes tipos de alimentos.',
-            'projects.foodexplorer.f1': 'Sistema de autenticação',
-            'projects.foodexplorer.f2': 'Busca avançada',
-            'projects.foodexplorer.f3': 'Favoritos',
-
-            'projects.rocketnotes.desc': 'Aplicação de notas para organizar ideias e informações de maneira eficiente.',
-            'projects.rocketnotes.f1': 'CRUD completo',
-            'projects.rocketnotes.f2': 'Sistema de tags',
-            'projects.rocketnotes.f3': 'Busca em tempo real',
-
-            'projects.banksystem.desc': 'Sistema bancário em Python com criação de conta, depósitos, saques e consulta de saldo.',
-            'projects.banksystem.f1': 'Sistema de transações',
-            'projects.banksystem.f2': 'Extrato bancário',
-            'projects.banksystem.f3': 'Validações de segurança',
-
-            'projects.devflix.desc': 'Plataforma de streaming de filmes desenvolvida para demonstrar habilidades em desenvolvimento web.',
-            'projects.devflix.f1': 'Interface responsiva',
-            'projects.devflix.f2': 'Filtro por gênero',
-            'projects.devflix.f3': 'Player de vídeo',
-
-            'projects.advocacia.title': 'Site Advocacia',
-            'projects.advocacia.desc': 'Site freelancer desenvolvido para um advogado, com design profissional e responsivo.',
-            'projects.advocacia.f1': 'Design profissional',
-            'projects.advocacia.f2': 'Totalmente responsivo',
-            'projects.advocacia.f3': 'Formulário de contato',
-
-            'projects.pomodoro.desc': 'Aplicação de produtividade baseada na Técnica Pomodoro para gerenciamento de tempo.',
-            'projects.pomodoro.f1': 'Temporizador configurável',
-            'projects.pomodoro.f2': 'Histórico de sessões',
-            'projects.pomodoro.f3': 'Notificações',
-
-            'projects.finances.desc': 'Sistema de controle financeiro pessoal para gerenciamento de receitas e despesas.',
-            'projects.finances.f1': 'Dashboard de gastos',
-            'projects.finances.f2': 'Categorização',
-            'projects.finances.f3': 'Relatórios',
-
-            'projects.leonon.desc': 'Espaço seguro e anônimo para acolher sua mente. Plataforma de suporte emocional com IA que oferece apoio inteligente 24 horas por dia.',
-            'projects.leonon.f1': 'Suporte 24/7',
-            'projects.leonon.f2': 'Conversas anônimas',
-            'projects.leonon.f3': 'IA inteligente',
-
-            'projects.theblog.desc': 'Simulação de um blog moderno com sistema de posts e comentários.',
-            'projects.theblog.f1': 'Layout moderno',
-            'projects.theblog.f2': 'Sistema de posts',
-            'projects.theblog.f3': 'Comentários',
-
-            'projects.petdev.desc': 'Dashboard para petshop com controle de clientes, serviços e agendamentos.',
-            'projects.petdev.f1': 'Dashboard interativo',
-            'projects.petdev.f2': 'Agendamentos',
-            'projects.petdev.f3': 'Controle de clientes',
-
-            'education.title': 'Trilha de Aprendizado',
-            'education.subtitle': 'Minha jornada de formação e certificações',
-            'education.course': 'Análise e Desenvolvimento de Sistemas',
-            'education.university': 'UniAmérica • 2023 – 2025 • Finalizado',
-            'education.description': 'Formação sólida em desenvolvimento de software, arquitetura de soluções, frontend, backend, bancos de dados, metodologias ágeis e UX/UI.',
-            'education.d1': 'Programação Web',
-            'education.d2': 'Banco de Dados',
-            'education.d3': 'Engenharia de Software',
-            'education.d4': 'DevOps',
-            'education.d5': 'Integração de Sistemas',
-            'education.d6': 'Estrutura de Dados',
-
-            'courses.title': 'Cursos e Certificações',
-            'courses.completed': 'Completo',
-            'contact.title': 'Entre em Contato',
-            'contact.subtitle': 'Estou sempre aberto a novas oportunidades',
-            'contact.sendMessage': 'Enviar uma mensagem',
-            'contact.conversation': 'Vamos conversar!',
-            'contact.available': 'Estou disponível para projetos freelancer, oportunidades de emprego ou apenas para trocar uma ideia sobre tecnologia.',
-            'contact.email.label': 'Email',
-            'contact.phone.label': 'Telefone',
-            'contact.whatsapp.label': 'WhatsApp',
-            'contact.linkedin.label': 'LinkedIn',
-            'form.name': 'Nome completo',
-            'form.email': 'E-mail',
-            'form.message': 'Sua mensagem',
-            'button.send': 'Enviar via WhatsApp',
-            'button.viewProject': 'Ver projeto',
-            'button.code': 'Código',
-            'footer.about': 'Sobre',
-            'footer.skills': 'Habilidades',
-            'footer.projects': 'Projetos',
-            'footer.education': 'Formação',
-            'footer.contact': 'Contato',
-            'footer.copyright': '© 2025 Felipe Rodrigues Prado. Todos os direitos reservados.',
-            'footer.developed': 'Desenvolvido com'
-        },
-        en: {
-            'loading.text': 'Loading experience',
-            'nav.about': 'About',
-            'nav.skills': 'Skills',
-            'nav.projects': 'Projects',
-            'nav.education': 'Education',
-            'nav.contact': 'Contact',
-            'hero.title': 'Creating digital experiences with',
-            'hero.titleSpan': 'Impeccable Design',
-            'hero.description': 'Hi! I\'m Felipe Prado, a Full Stack Developer passionate about developing innovative, fast and visually stunning solutions.',
-            'hero.button1': 'View Projects',
-            'hero.button2': 'Contact Me',
-            'about.title': 'About Me',
-            'about.subtitle': 'Learn a little about my journey',
-            'about.text': 'Hello! I\'m Felipe Rodrigues Prado, a developer passionate about technology and innovation. At 22 years old and a resident of São Paulo, I\'ve been improving my software development skills. Currently, I\'m taking a course in Systems Analysis and Development, focusing mainly on frontend, backend and systems analysis. I always seek to apply my knowledge to real projects and I\'m looking for new opportunities to grow even more professionally.',
-            'about.phone': 'Phone:',
-            'about.email': 'Email:',
-            'about.linkedin': 'LinkedIn:',
-            'skills.title': 'Technical Skills',
-            'skills.subtitle': 'Technologies I master and use daily',
-            
-            // skills desc
-            'skills.html.desc': 'HTML5 mastery for building semantic, accessible, and well-structured pages.',
-            'skills.css.desc': 'Proficiency in styling modern and responsive layouts using advanced techniques.',
-            'skills.js.desc': 'Experience in developing dynamic and interactive applications.',
-            'skills.react.desc': 'Experience with React for creating dynamic and scalable interfaces.',
-            'skills.next.desc': 'Experience with Next.js for server-side rendering and production applications.',
-            'skills.node.desc': 'Ability to build web servers and RESTful APIs.',
-            'skills.java.desc': 'Ability to build robust systems, focusing on OOP.',
-            'skills.python.desc': 'Python mastery for algorithms, object-oriented programming, task automation, and security.',
-            'skills.pentest.title': 'Offensive Security / Pentest',
-            'skills.pentest.desc': 'Information Security fundamentals, Reconnaissance (Recon), and Network Infrastructure Pentesting.',
-            'skills.networks.title': 'Networks',
-            'skills.networks.desc': 'Networking fundamentals for pentesting, communication protocols, topologies, and traffic analysis.',
-            'skills.crypto.title': 'Cryptography & Passwords',
-            'skills.crypto.desc': 'Symmetric/asymmetric cryptography, hashing algorithms, and password cracking.',
-            'skills.linux.title': 'Linux & Automation',
-            'skills.linux.desc': 'Linux for pentesters, advanced Shell Scripting, and Python focused on security and automation.',
-            'skills.mongodb.desc': 'Experience with NoSQL databases using MongoDB.',
-            'skills.git.desc': 'Experience with version control using Git.',
-            'skills.github.desc': 'GitHub mastery for hosting repositories and collaboration.',
-
-            'projects.title': 'Projects',
-            'projects.subtitle': 'Some of my most recent work',
-
-            // projects details
-            'projects.taskflow.desc': 'Department-based task management system designed for corporate environments. Demands reach the responsible sector directly, with no intermediaries.',
-            'projects.taskflow.f1': 'Kanban with drag and drop, status and priority filters',
-            'projects.taskflow.f2': 'Automatic AI task suggestions (NLP)',
-            'projects.taskflow.f3': 'Secure authentication (NextAuth.js and bcryptjs)',
-
-            'projects.foodexplorer.desc': 'Web application that allows users to search, explore, and save recipes for different types of food.',
-            'projects.foodexplorer.f1': 'Authentication system',
-            'projects.foodexplorer.f2': 'Advanced search',
-            'projects.foodexplorer.f3': 'Favorites',
-
-            'projects.rocketnotes.desc': 'Note-taking application to efficiently organize ideas and information.',
-            'projects.rocketnotes.f1': 'Full CRUD',
-            'projects.rocketnotes.f2': 'Tag system',
-            'projects.rocketnotes.f3': 'Real-time search',
-
-            'projects.banksystem.desc': 'Banking system in Python with account creation, deposits, withdrawals, and balance inquiries.',
-            'projects.banksystem.f1': 'Transaction system',
-            'projects.banksystem.f2': 'Bank statement',
-            'projects.banksystem.f3': 'Security validations',
-
-            'projects.devflix.desc': 'Movie streaming platform developed to demonstrate web development skills.',
-            'projects.devflix.f1': 'Responsive interface',
-            'projects.devflix.f2': 'Filter by genre',
-            'projects.devflix.f3': 'Video player',
-
-            'projects.advocacia.title': 'Lawyer Website',
-            'projects.advocacia.desc': 'Freelance website developed for an attorney, with a professional and responsive design.',
-            'projects.advocacia.f1': 'Professional design',
-            'projects.advocacia.f2': 'Fully responsive',
-            'projects.advocacia.f3': 'Contact form',
-
-            'projects.pomodoro.desc': 'Productivity application based on the Pomodoro Technique for time management.',
-            'projects.pomodoro.f1': 'Configurable timer',
-            'projects.pomodoro.f2': 'Session history',
-            'projects.pomodoro.f3': 'Notifications',
-
-            'projects.finances.desc': 'Personal financial control system for managing income and expenses.',
-            'projects.finances.f1': 'Expense dashboard',
-            'projects.finances.f2': 'Categorization',
-            'projects.finances.f3': 'Reports',
-
-            'projects.leonon.desc': 'A safe and anonymous space to welcome your mind. Emotional support platform with AI offering smart support 24 hours a day.',
-            'projects.leonon.f1': '24/7 support',
-            'projects.leonon.f2': 'Anonymous conversations',
-            'projects.leonon.f3': 'Smart AI',
-
-            'projects.theblog.desc': 'Simulation of a modern blog with a post and comment system.',
-            'projects.theblog.f1': 'Modern layout',
-            'projects.theblog.f2': 'Post system',
-            'projects.theblog.f3': 'Comments',
-
-            'projects.petdev.desc': 'Petshop dashboard with customer control, services, and appointments.',
-            'projects.petdev.f1': 'Interactive dashboard',
-            'projects.petdev.f2': 'Appointments',
-            'projects.petdev.f3': 'Customer control',
-
-            'education.title': 'Learning Path',
-            'education.subtitle': 'My journey of education and certifications',
-            'education.course': 'Analysis and Systems Development',
-            'education.university': 'UniAmerica • 2023 – 2025 • Completed',
-            'education.description': 'Solid training in software development, solution architecture, frontend, backend, databases, agile methodologies and UX/UI.',
-            'education.d1': 'Web Programming',
-            'education.d2': 'Database',
-            'education.d3': 'Software Engineering',
-            'education.d4': 'DevOps',
-            'education.d5': 'Systems Integration',
-            'education.d6': 'Data Structures',
-
-            'courses.title': 'Courses and Certifications',
-            'courses.completed': 'Completed',
-            'contact.title': 'Get In Touch',
-            'contact.subtitle': 'I\'m always open to new opportunities',
-            'contact.sendMessage': 'Send a message',
-            'contact.conversation': 'Let\'s talk!',
-            'contact.available': 'I\'m available for freelance projects, employment opportunities or just to exchange ideas about technology.',
-            'contact.email.label': 'Email',
-            'contact.phone.label': 'Phone',
-            'contact.whatsapp.label': 'WhatsApp',
-            'contact.linkedin.label': 'LinkedIn',
-            'form.name': 'Full name',
-            'form.email': 'Email',
-            'form.message': 'Your message',
-            'button.send': 'Send via WhatsApp',
-            'button.viewProject': 'View project',
-            'button.code': 'Code',
-            'footer.about': 'About',
-            'footer.skills': 'Skills',
-            'footer.projects': 'Projects',
-            'footer.education': 'Education',
-            'footer.contact': 'Contact',
-            'footer.copyright': '© 2025 Felipe Rodrigues Prado. All rights reserved.',
-            'footer.developed': 'Developed with'
-        }
-    };
-
-    let currentLanguage = localStorage.getItem('language') || 'pt';
-
-    function setLanguage(lang) {
-        if (!translations[lang]) lang = 'pt';
-        currentLanguage = lang;
-        localStorage.setItem('language', lang);
-
-        // Update all elements with data-translate attribute
-        document.querySelectorAll('[data-translate]').forEach(el => {
-            const key = el.getAttribute('data-translate');
-            if (translations[lang][key]) {
-                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                    el.placeholder = translations[lang][key];
-                } else {
-                    el.textContent = translations[lang][key];
-                }
-            }
-        });
-
-        // Update course status
-        document.querySelectorAll('.curso-status').forEach(el => {
-            if (el.textContent === 'Completo' || el.textContent === 'Completed') {
-                el.textContent = translations[lang]['courses.completed'];
-            }
-        });
-
-        // Update language toggle button
-        const langToggle = document.getElementById('langToggle');
-        const langText = document.getElementById('langText');
-        const langFlag = document.getElementById('langFlag');
-        if (langToggle) {
-            langText.textContent = lang.toUpperCase();
-            langFlag.textContent = lang === 'pt' ? '🇧🇷' : '🇺🇸';
-        }
-
-        // Update HTML lang attribute
-        document.documentElement.lang = lang;
+    <a class="cue eyebrow fx" style="--d:1.5s" href="#sobre" aria-label="Rolar para baixo">scroll<i></i></a>
+    <div class="hair"></div>
+  </section>
+
+  <section class="story" id="processo" aria-labelledby="storyTitle">
+    <div class="shell rv"><p class="path"><b>~/felipe/</b>processo</p><h2 id="storyTitle">Como trabalhamos juntos.</h2></div>
+    <ol class="shell" id="steps"></ol>
+  </section>
+</div>
+
+  <div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
+
+  <section class="sec" id="sobre">
+    <div class="shell about">
+      <div class="win card fetch rv"><i class="halo"></i>
+        <div class="id">
+          <div class="avatar iridescent" aria-hidden="true">FP</div>
+          <p class="who"><b>felipe</b>@sao-paulo<small>whoami.sh</small></p>
+        </div>
+        <dl class="kv">
+          <dt>role</dt><dd>Full Stack Dev</dd>
+          <dt>base</dt><dd>São Paulo, BR</dd>
+          <dt>foco</dt><dd>Web + Segurança</dd>
+          <dt>stack</dt><dd>React · Next.js · Node.js · Python</dd>
+          <dt>formação</dt><dd>ADS · UniAmérica</dd>
+          <dt>status</dt><dd>Disponível para novos projetos</dd>
+        </dl>
+      </div>
+      <div>
+        <div class="rv">
+          <p class="path"><b>~/felipe/</b>sobre.md</p>
+          <h2>Código limpo, interface cuidada, segurança desde o início.</h2>
+        </div>
+        <p class="txt rv" style="margin-top:32px">Sou desenvolvedor apaixonado por tecnologia e inovação, morando em São Paulo. Formado em Análise e Desenvolvimento de Sistemas, trabalho com front-end, back-end e análise de sistemas.</p>
+        <p class="txt rv">Além do desenvolvimento web, estudo segurança ofensiva (pentest, redes, criptografia), o que muda a forma como eu escrevo e revisito código. Busco aplicar tudo isso em projetos reais e crescer profissionalmente.</p>
+        <dl class="stats rv">
+          <div><dt>projetos</dt><dd id="sProj">11</dd></div>
+          <div><dt>horas de cursos</dt><dd id="sHours">920</dd></div>
+          <div><dt>anos estudando</dt><dd id="sYears">3</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec t0" id="servicos">
+    <div class="shell">
+      <div class="sec-head rv"><p class="path"><b>~/felipe/</b>stack</p><h2>Do front ao back, com segurança.</h2></div>
+      <div class="services" id="services"></div>
+    </div>
+  </section>
+
+  <section class="sec t0" id="projetos">
+    <div class="shell">
+      <div class="sec-head rv"><p class="path"><b>~/felipe/</b>projetos</p><h2>Trabalhos selecionados.</h2></div>
+      <div class="filters rv" id="filters" role="tablist" aria-label="Filtro de projetos"></div>
+      <div class="projects" id="projects"></div>
+    </div>
+  </section>
+
+  <section class="sec t0" id="formacao">
+    <div class="shell">
+      <div class="sec-head rv"><p class="path"><b>~/felipe/</b>formacao</p><h2>Trilha de aprendizado.</h2></div>
+      <article class="win card degree rv"><i class="halo"></i>
+        <div class="bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="file">formacao/ads.md</span></div>
+        <div class="degree-body">
+          <div class="meta-row"><span>UniAmérica</span><span>2023 - 2025</span><span class="badge">Finalizado</span></div>
+          <h3>Análise e Desenvolvimento de Sistemas</h3>
+          <p>Formação sólida em desenvolvimento de software, arquitetura de soluções, front-end, back-end, bancos de dados, metodologias ágeis e UX/UI.</p>
+          <div class="chips" id="topics"></div>
+        </div>
+      </article>
+      <div class="win card courses rv"><i class="halo"></i>
+        <div class="bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="file">cursos.log</span><span class="end" id="cTotal"></span></div>
+        <div class="cgrid" id="courses"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec t0" id="contato">
+    <div class="shell contact">
+      <div>
+        <div class="rv"><p class="path"><b>~/felipe/</b>contato</p><h2 class="big">Vamos construir algo juntos?</h2></div>
+        <p class="txt rv">Disponível para projetos freelancer, oportunidades de emprego ou só para trocar ideia sobre tecnologia.</p>
+        <ul class="clist rv" id="clist"></ul>
+      </div>
+      <form class="win card rv" id="wform" novalidate><i class="halo"></i>
+        <div class="bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="file">mensagem.sh</span></div>
+        <div class="form-body">
+          <label class="field"><input type="text" id="nome" placeholder=" " autocomplete="name"><span>--nome</span></label>
+          <label class="field"><input type="email" id="email" placeholder=" " autocomplete="email"><span>--email</span></label>
+          <label class="field"><textarea id="msg" rows="5" placeholder=" "></textarea><span>--mensagem</span></label>
+          <p class="err" id="err" role="alert" hidden>Preencha todos os campos.</p>
+          <a class="btn solid" id="send" href="https://wa.me/5513981175814" target="_blank" rel="noopener"><i class="halo"></i><i class="sheen"></i><span>Enviar via WhatsApp</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot-site">
+  <div class="shell">
+    <p>© <span id="yr">2026</span> Felipe Rodrigues Prado. Todos os direitos reservados.</p>
+    <p>// Feito com código e café.</p>
+    <div class="social">
+      <a href="https://github.com/FelipePrado200" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.82 1.19 3.08 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg></a>
+      <a href="https://www.linkedin.com/in/felipe-prado013" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11.5H3zM9.5 9.75h3.8v1.57h.05c.53-1 1.82-2.07 3.75-2.07 4 0 4.75 2.63 4.75 6.05v5.95h-4v-5.28c0-1.26-.02-2.88-1.76-2.88-1.76 0-2.03 1.37-2.03 2.79v5.37h-4z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<div class="sbar" role="status">
+  <div class="l">
+    <span class="br"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 7v10M18 10c0 5-12 3-12 7"/></svg>main</span>
+    <span class="pth" id="sbPath">~/felipe</span>
+  </div>
+  <div class="r">
+    <span class="hide-s">UTF-8</span><span class="hide-s">PT-BR</span>
+    <span class="ok"><i class="dot"></i>Disponível</span>
+  </div>
+</div>
+
+<dialog class="pal" id="pal" aria-label="Paleta de comandos">
+  <label class="pal-q"><span>&gt;</span><input id="palq" type="text" placeholder="Digite um comando..." autocomplete="off" spellcheck="false"></label>
+  <ul id="pall"></ul>
+  <p class="pal-empty" id="palEmpty" hidden>Nenhum comando encontrado.</p>
+  <p class="pal-foot">↑ ↓ navegar · Enter abrir · Esc fechar</p>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
+<script>
+(function () {
+  var root = document.documentElement;
+  root.classList.add('js');
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
+  var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var $ = function (id) { return document.getElementById(id); };
+  var DOTS = '<span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>';
+
+  /* ---------- dados (do seu data.js) ---------- */
+  var PROFILE = { email: 'felipeendz@gmail.com', phone: '(13) 98117-5814', whatsapp: '5513981175814', github: 'https://github.com/FelipePrado200', linkedin: 'https://www.linkedin.com/in/felipe-prado013', linkedinHandle: '/felipe-prado013', startYear: 2023 };
+  var SKILLS = [
+    { k: 'front-end', t: 'Front-end', d: 'Interfaces rápidas, acessíveis e responsivas com React e Next.js.', i: ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'Tailwind CSS'] },
+    { k: 'back-end', t: 'Back-end & Dados', d: 'APIs REST, autenticação e bancos SQL e NoSQL com Node.js, Java e Python.', i: ['Node.js', 'Java', 'Python', 'PostgreSQL', 'MongoDB', 'Prisma', 'APIs REST'] },
+    { k: 'seguranca', t: 'Segurança Ofensiva', d: 'Recon, pentest em redes e criptografia para revisar o código com olhar de atacante.', i: ['Pentest', 'Recon', 'Redes', 'Criptografia', 'Hashing & Cracking', 'Análise de tráfego'] },
+    { k: 'linux', t: 'Linux & Ferramentas', d: 'Linux, shell script, automação com Python, Git e fluxos de DevOps.', i: ['Linux', 'Shell Script', 'Automação Python', 'Git', 'GitHub', 'DevOps'] }
+  ];
+  var PROCESS = [
+    { c: 'contato', t: 'Contato', d: 'Você conta a ideia por WhatsApp ou e-mail e eu respondo com perguntas para entender o objetivo.' },
+    { c: 'proposta', t: 'Proposta', d: 'Escopo, prazo e entregas combinados antes de começar, em etapas curtas que dá para acompanhar.' },
+    { c: 'entrega', t: 'Entrega', d: 'Projeto publicado, testado em celular e computador, com o código organizado no GitHub.' }
+  ];
+  var CAT = { web: 'Web', fullstack: 'Full Stack', backend: 'Back-end', freelance: 'Freelance', ai: 'IA' };
+  var PROJECTS = [
+    { id: 'taskflow', y: 2025, f: 1, c: 'fullstack', t: 'TaskFlow', d: 'Sistema de gestão de tarefas por departamentos, pensado para o ambiente corporativo. Cada demanda chega direto ao setor responsável, sem intermediários.', s: ['Next.js 14', 'TypeScript', 'PostgreSQL', 'Prisma', 'Tailwind CSS'], live: 'https://task-flow-3fdo51d84-felipes-projects-dff84a82.vercel.app/login', ft: ['Kanban com drag and drop, filtros de status e prioridade', 'Sugestão automática de tarefas via IA (NLP)', 'Autenticação segura (NextAuth.js e bcryptjs)'] },
+    { id: 'leonon', y: 2025, f: 1, c: 'ai', t: 'Leon On', d: 'Espaço seguro e anônimo para acolher a mente. Plataforma de suporte emocional com IA, com apoio 24 horas por dia.', s: ['Next.js', 'TypeScript', 'Node.js', 'PostgreSQL'], live: 'https://lean-on-swart.vercel.app/', code: 'https://github.com/FelipePrado200/LeonOn', ft: ['Suporte 24/7', 'Conversas anônimas', 'IA conversacional'] },
+    { id: 'myfinances', y: 2025, c: 'fullstack', t: 'My Finances', d: 'Controle financeiro pessoal para gerenciar receitas e despesas.', s: ['Next.js', 'TypeScript', 'Node.js', 'PostgreSQL'], live: 'https://my-finances-liard.vercel.app/', code: 'https://github.com/FelipePrado200/my-finances', ft: ['Dashboard de gastos', 'Categorização', 'Relatórios'] },
+    { id: 'chronos', y: 2025, c: 'web', t: 'Chronos Pomodoro', d: 'App de produtividade baseado na Técnica Pomodoro para gerenciar o tempo.', s: ['React', 'CSS', 'LocalStorage'], live: 'https://chronos-pomodoro-lime.vercel.app/', code: 'https://github.com/FelipePrado200/chronos-pomodoro', ft: ['Temporizador configurável', 'Histórico de sessões', 'Notificações'] },
+    { id: 'petdev', y: 2025, c: 'web', t: 'Pet Dev', d: 'Dashboard para petshop com controle de clientes, serviços e agendamentos.', s: ['Next.js', 'Tailwind CSS', 'TypeScript'], code: 'https://github.com/FelipePrado200/petdev', ft: ['Dashboard interativo', 'Agendamentos', 'Controle de clientes'] },
+    { id: 'theblog', y: 2025, c: 'web', t: 'The Blog', d: 'Simulação de um blog moderno com sistema de posts e comentários.', s: ['Next.js', 'Tailwind CSS', 'TypeScript'], code: 'https://github.com/FelipePrado200/The-blog', ft: ['Layout moderno', 'Sistema de posts', 'Comentários'] },
+    { id: 'foodexplorer', y: 2024, c: 'fullstack', t: 'Food Explorer', d: 'Aplicação web para buscar, explorar e salvar receitas de diferentes tipos de alimentos.', s: ['React', 'Node.js', 'MongoDB'], code: 'https://github.com/FelipePrado200/Food-Explorer-FrontEnd', ft: ['Sistema de autenticação', 'Busca avançada', 'Favoritos'] },
+    { id: 'rocketnotes', y: 2024, c: 'fullstack', t: 'Rocket Notes', d: 'Aplicação de notas para organizar ideias e informações com eficiência.', s: ['React', 'Node.js', 'SQLite'], code: 'https://github.com/FelipePrado200/RocketNotes', ft: ['CRUD completo', 'Sistema de tags', 'Busca em tempo real'] },
+    { id: 'devflix', y: 2024, c: 'web', t: 'DevFlix', d: 'Plataforma de streaming de filmes criada para demonstrar habilidades em desenvolvimento web.', s: ['HTML', 'CSS', 'JavaScript'], live: 'https://felipeprado200.github.io/Devflix/', code: 'https://github.com/FelipePrado200/Devflix', ft: ['Interface responsiva', 'Filtro por gênero', 'Player de vídeo'] },
+    { id: 'advocacia', y: 2024, c: 'freelance', t: 'Site Advocacia', d: 'Site freelancer para um advogado, com design profissional e responsivo.', s: ['HTML', 'CSS', 'JavaScript'], live: 'https://felipeprado200.github.io/site-matheus/', ft: ['Design profissional', 'Totalmente responsivo', 'Formulário de contato'] },
+    { id: 'banksystem', y: 2024, c: 'backend', t: 'Bank System', d: 'Sistema bancário em Python com criação de conta, depósitos, saques e consulta de saldo.', s: ['Python', 'OOP'], code: 'https://github.com/FelipePrado200/Sistema-Banc-rio-' , ft: ['Sistema de transações', 'Extrato bancário', 'Validações de segurança'] }
+  ];
+  var TOPICS = ['Programação Web', 'Banco de Dados', 'Engenharia de Software', 'DevOps', 'Integração de Sistemas', 'Estrutura de Dados'];
+  var COURSES = [
+    ['Explorer', 'Rocketseat', 120], ['Java', 'Rocketseat', 45], ['NLW Unite', 'Rocketseat', 8], ['C#', 'Rocketseat', 40],
+    ['Basic FrontEnd', 'UniAmérica', 40], ['Object-Oriented', 'UniAmérica', 60], ['Programming Basic', 'UniAmérica', 50], ['FrontEnd Dev', 'UniAmérica', 80],
+    ['BackEnd Dev', 'UniAmérica', 80], ['Full Stack Dev', 'UniAmérica', 120], ['DevOps Strategist', 'UniAmérica', 60],
+    ['Recon em Pentest', 'Solyd Offensive Sec', 34], ['Python Automação & Sec', 'Solyd Offensive Sec', 78], ['Redes para Pentesters', 'Solyd Offensive Sec', 40],
+    ['Criptografia & Cracking', 'Solyd Offensive Sec', 30], ['Linux & Shell Script', 'Solyd Offensive Sec', 35]
+  ];
+
+  /* ---------- render ---------- */
+  var row = [].concat.apply([], SKILLS.map(function (g) { return g.i; })).map(function (i) { return '<span>' + esc(i) + '</span>'; }).join('');
+  $('track').innerHTML = row + row;
+
+  var totalH = COURSES.reduce(function (a, c) { return a + c[2]; }, 0);
+  $('sHours').textContent = totalH; $('sProj').textContent = PROJECTS.length;
+  $('sYears').textContent = Math.max(1, new Date().getFullYear() - PROFILE.startYear);
+  $('yr').textContent = new Date().getFullYear();
+  $('cTotal').textContent = 'total ' + totalH + 'h';
+
+  $('services').innerHTML = SKILLS.map(function (g, i) {
+    return '<article class="win card rv" style="--d:' + (i * .08) + 's"><i class="halo"></i><div class="bar">' + DOTS + '<span class="file">stack/' + g.k + '</span><span class="end">' + String(i + 1).padStart(2, '0') + '</span></div>' +
+      '<div class="svc-body"><p class="cm">' + esc(g.d) + '</p><h3>' + esc(g.t) + '</h3><p class="cmd-line"><b>$</b>ls --stack</p><div class="chips">' + g.i.map(function (s) { return '<span class="chip">' + esc(s) + '</span>'; }).join('') + '</div></div></article>';
+  }).join('');
+
+  $('steps').innerHTML = PROCESS.map(function (s, i) {
+    var nn = String(i + 1).padStart(2, '0');
+    return '<li class="sstep" data-side="l"><article class="win card scard rv"><i class="halo"></i><div class="bar">' + DOTS + '<span class="file commit">feat<span>(</span>' + s.c + '<span>)</span></span><span class="end">' + nn + ' / ' + String(PROCESS.length).padStart(2, '0') + '</span></div>' +
+      '<div class="sbody"><span class="num" aria-hidden="true">' + nn + '</span><h3>' + esc(s.t) + '</h3><p>' + esc(s.d) + '</p></div></article></li>';
+  }).join('');
+
+  $('topics').innerHTML = TOPICS.map(function (s) { return '<span class="chip">' + esc(s) + '</span>'; }).join('');
+  var schools = COURSES.map(function (c) { return c[1]; }).filter(function (s, i, a) { return a.indexOf(s) === i; });
+  $('courses').innerHTML = schools.map(function (sc) {
+    var list = COURSES.filter(function (c) { return c[1] === sc; });
+    var sum = list.reduce(function (a, c) { return a + c[2]; }, 0);
+    return '<div class="cgroup"><h4>' + esc(sc) + '<span>' + sum + 'h</span></h4>' + list.map(function (c) {
+      return '<div class="crow"><i aria-hidden="true">&#10003;</i><span>' + esc(c[0]) + '</span><span class="lead" aria-hidden="true"></span><em>' + c[2] + 'h</em></div>';
+    }).join('') + '</div>';
+  }).join('');
+
+  var ARROW = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
+  function contactRow(href, label, value, ext) {
+    return '<li><a href="' + esc(href) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '><div><small>' + label + '</small><span>' + esc(value) + '</span></div>' + ARROW + '</a></li>';
+  }
+  $('clist').innerHTML =
+    contactRow('mailto:' + PROFILE.email, 'email', PROFILE.email) +
+    contactRow('https://wa.me/' + PROFILE.whatsapp, 'whatsapp', PROFILE.phone, 1) +
+    contactRow(PROFILE.linkedin, 'linkedin', PROFILE.linkedinHandle, 1) +
+    contactRow(PROFILE.github, 'github', '/FelipePrado200', 1);
+
+  /* projetos como arquivos de codigo */
+  var WPAL = ['139,233,255', '183,164,255', '255,194,238', '138,255,216', '255,165,122', '255,214,120'];
+  function wallpaper(id) {
+    var h = 0; for (var i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) >>> 0;
+    var ia = h % WPAL.length, ib = (ia + 1 + (h >>> 5) % (WPAL.length - 1)) % WPAL.length;
+    var a = WPAL[ia], b = WPAL[ib];
+    var x1 = 15 + (h % 55), y1 = 10 + ((h >>> 4) % 45), x2 = 30 + ((h >>> 7) % 55), y2 = 40 + ((h >>> 10) % 50);
+    return 'radial-gradient(75% 95% at ' + x1 + '% ' + y1 + '%, rgba(' + a + ',.95), transparent 72%), ' +
+      'radial-gradient(70% 90% at ' + x2 + '% ' + y2 + '%, rgba(' + b + ',.85), transparent 72%), ' +
+      'linear-gradient(160deg, #0b0d12, #05060a)';
+  }
+  function ext(p) { var s = p.s.join(' '); return /Python/.test(s) ? 'py' : /React|Next|TypeScript/.test(s) ? 'tsx' : 'html'; }
+  function snippet(p) {
+    var L = [
+      '<i class="k">export const</i> <i class="v">project</i> = {',
+      '  <i class="p">name</i>: <i class="s">"' + esc(p.t) + '"</i>,',
+      '  <i class="p">type</i>: <i class="s">"' + esc(CAT[p.c] || p.c) + '"</i>,',
+      '  <i class="p">year</i>: <i class="n">' + p.y + '</i>,',
+      '  <i class="p">stack</i>: ['
+    ];
+    p.s.forEach(function (s) { L.push('    <i class="s">"' + esc(s) + '"</i>,'); });
+    L.push('  ],');
+    if (p.ft && p.ft.length) {
+      L.push('  <i class="p">destaques</i>: [');
+      p.ft.forEach(function (f) { L.push('    <i class="s">"' + esc(f) + '"</i>,'); });
+      L.push('  ],');
     }
+    L.push('  <i class="p">status</i>: <i class="s">"' + (p.live ? 'online' : 'repositório') + '"</i>,');
+    L.push('};');
+    return L.map(function (l, i) { return '<div class="ln"><em>' + (i + 1) + '</em><span>' + l + '</span></div>'; }).join('');
+  }
+  var active = 'all', grid = $('projects'), fbox = $('filters');
+  var cats = PROJECTS.map(function (p) { return p.c; }).filter(function (c, i, a) { return a.indexOf(c) === i; });
+  function chip(k, label, n) { return '<button class="filter" type="button" role="tab" data-cat="' + k + '" aria-selected="' + (active === k) + '">' + esc(label) + '<sup>' + n + '</sup></button>'; }
+  fbox.innerHTML = '<span class="cmd-line"><b>$</b>ls projetos/ --tipo</span>' + chip('all', 'todos', PROJECTS.length) + cats.map(function (c) { return chip(c, (CAT[c] || c).toLowerCase(), PROJECTS.filter(function (p) { return p.c === c; }).length); }).join('');
+  grid.innerHTML = PROJECTS.map(function (p, i) {
+    var links = (p.live ? '<a href="' + esc(p.live) + '" target="_blank" rel="noopener"><b>$</b>open --live</a>' : '') + (p.code ? '<a href="' + esc(p.code) + '" target="_blank" rel="noopener"><b>$</b>git clone</a>' : '');
+    return '<article class="win card proj rv' + (p.f ? ' feat' : '') + '" data-cat="' + p.c + '" style="--d:' + ((i % 3) * .08) + 's"><i class="halo"></i>' +
+      '<div class="bar">' + DOTS + '<span class="file">' + p.id + '.' + ext(p) + '</span><span class="end">' + p.y + '</span></div>' +
+      '<div class="code" aria-label="Resumo técnico do projeto ' + esc(p.t) + '">' + '<i class="shot" style="background:' + wallpaper(p.id) + '" aria-hidden="true"></i>' + snippet(p) + '</div>' +
+      '<div class="pbody"><h3>' + esc(p.t) + '<small>' + esc((CAT[p.c] || p.c).toLowerCase()) + '</small></h3><p>' + esc(p.d) + '</p>' + (links ? '<div class="plinks">' + links + '</div>' : '') + '</div></article>';
+  }).join('');
+  fbox.addEventListener('click', function (e) {
+    var b = e.target.closest('.filter'); if (!b || b.dataset.cat === active) return;
+    active = b.dataset.cat;
+    [].forEach.call(fbox.querySelectorAll('.filter'), function (f) { f.setAttribute('aria-selected', String(f === b)); });
+    var cards = [].slice.call(grid.children);
+    cards.forEach(function (c) { c.classList.add('out'); });
+    setTimeout(function () {
+      cards.forEach(function (c) { c.classList.toggle('hide', active !== 'all' && c.dataset.cat !== active); c.classList.remove('out'); c.classList.add('on'); });
+    }, reduce ? 0 : 260);
+  });
 
-    function toggleLanguage() {
-        const newLang = currentLanguage === 'pt' ? 'en' : 'pt';
-        setLanguage(newLang);
+  /* formulario -> WhatsApp */
+  var nome = $('nome'), email = $('email'), msg = $('msg'), send = $('send'), err = $('err');
+  function wa() { return 'https://wa.me/' + PROFILE.whatsapp + '?text=' + encodeURIComponent('Olá, meu nome é ' + nome.value.trim() + '. Meu e-mail é ' + email.value.trim() + '. ' + msg.value.trim()); }
+  [nome, email, msg].forEach(function (el) { el.addEventListener('input', function () { send.href = wa(); err.hidden = true; }); });
+  send.addEventListener('click', function (e) { if (!nome.value.trim() || !email.value.trim() || !msg.value.trim() || !email.checkValidity()) { e.preventDefault(); err.hidden = false; } });
+
+  /* ---------- paleta de comandos ---------- */
+  var isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent || '');
+  $('kbdKey').textContent = isMac ? '⌘K' : 'Ctrl K';
+  var pal = $('pal'), palq = $('palq'), pall = $('pall'), palEmpty = $('palEmpty');
+  var CMDS = [
+    ['Ir para: sobre', 'seção', '#sobre'], ['Ir para: serviços', 'seção', '#servicos'], ['Ir para: projetos', 'seção', '#projetos'],
+    ['Ir para: processo', 'seção', '#processo'], ['Ir para: formação', 'seção', '#formacao'], ['Ir para: contato', 'seção', '#contato'],
+    ['Abrir GitHub', 'link', PROFILE.github, 1], ['Abrir LinkedIn', 'link', PROFILE.linkedin, 1], ['Abrir WhatsApp', 'link', 'https://wa.me/' + PROFILE.whatsapp, 1],
+    ['Copiar e-mail', 'ação', 'copy']
+  ];
+  pall.innerHTML = CMDS.map(function (c, i) {
+    var inner = '<span>' + esc(c[0]) + '</span><kbd>' + c[1] + '</kbd>';
+    if (c[2] === 'copy') return '<li data-t="' + esc(c[0].toLowerCase()) + '"><button class="pcmd" type="button" data-copy="1">' + inner + '</button></li>';
+    return '<li data-t="' + esc(c[0].toLowerCase()) + '"><a class="pcmd" href="' + esc(c[2]) + '"' + (c[3] ? ' target="_blank" rel="noopener"' : '') + '>' + inner + '</a></li>';
+  }).join('');
+  function items() { return [].filter.call(pall.querySelectorAll('li'), function (li) { return !li.hidden; }).map(function (li) { return li.firstElementChild; }); }
+  function openPal() { if (typeof pal.showModal !== 'function') return; palq.value = ''; filter(); if (!pal.open) pal.showModal(); palq.focus(); }
+  function filter() {
+    var q = palq.value.trim().toLowerCase(), n = 0;
+    [].forEach.call(pall.querySelectorAll('li'), function (li) { var m = !q || li.dataset.t.indexOf(q) > -1; li.hidden = !m; if (m) n++; });
+    palEmpty.hidden = n > 0;
+  }
+  $('palBtn').addEventListener('click', openPal);
+  addEventListener('keydown', function (e) { if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); pal.open ? pal.close() : openPal(); } });
+  palq.addEventListener('input', filter);
+  palq.addEventListener('keydown', function (e) { if (e.key === 'ArrowDown') { e.preventDefault(); var it = items(); if (it[0]) it[0].focus(); } if (e.key === 'Enter') { var it2 = items(); if (it2[0]) it2[0].click(); } });
+  pall.addEventListener('keydown', function (e) {
+    var it = items(), i = it.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown') { e.preventDefault(); (it[i + 1] || it[0]).focus(); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); if (i <= 0) palq.focus(); else it[i - 1].focus(); }
+  });
+  pall.addEventListener('click', function (e) {
+    var el = e.target.closest('.pcmd'); if (!el) return;
+    if (el.dataset.copy) {
+      var label = el.firstElementChild;
+      var done = function (t) { label.textContent = t; setTimeout(function () { pal.close(); label.textContent = 'Copiar e-mail'; }, 900); };
+      try { navigator.clipboard.writeText(PROFILE.email).then(function () { done('E-mail copiado'); }, function () { done(PROFILE.email); }); } catch (x) { done(PROFILE.email); }
+      return;
     }
+    setTimeout(function () { pal.close(); }, 0);
+  });
+  pal.addEventListener('click', function (e) { if (e.target === pal) pal.close(); });
 
-    // Initialize language on page load
-    document.addEventListener('DOMContentLoaded', () => {
-        setLanguage(currentLanguage);
+  /* ---------- barra de status: secao atual ---------- */
+  var secs = ['top', 'processo', 'sobre', 'servicos', 'projetos', 'formacao', 'contato'].map(function (id) { return $(id); });
+  var sbPath = $('sbPath'), secIdx = 0;
+  function curSec() {
+    var mid = scrollY + innerHeight * .4, cur = secs[0];
+    secs.forEach(function (s) { if (s.offsetTop <= mid) cur = s; });
+    secIdx = secs.indexOf(cur);
+    sbPath.textContent = cur.id === 'top' ? '~/felipe' : '~/felipe/' + cur.id;
+  }
 
-        const langToggle = document.getElementById('langToggle');
-        if (langToggle) {
-            langToggle.addEventListener('click', toggleLanguage);
-        }
+  /* ---------- entrada, reveal, magnetico, parallax ---------- */
+  requestAnimationFrame(function () { requestAnimationFrame(function () { document.body.classList.add('is-in'); }); });
+  var rv = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+    }, { threshold: .1, rootMargin: '0px 0px -6% 0px' });
+    rv.forEach(function (el) { io.observe(el); });
+  } else { rv.forEach(function (el) { el.classList.add('on'); }); }
+
+  document.querySelectorAll('.btn').forEach(function (b) {
+    b.addEventListener('pointermove', function (e) {
+      var r = b.getBoundingClientRect();
+      b.style.setProperty('--mx', (e.clientX - r.left) + 'px'); b.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      if (!reduce) b.style.transform = 'translate(' + ((e.clientX - r.left - r.width / 2) * .25) + 'px,' + ((e.clientY - r.top - r.height / 2) * .25) + 'px)';
     });
-
-    // ============================================================
-    // DIGITAL AURORA — Interactive Scripts
-    // ============================================================
-
-    // ===== TECH PLEXUS BACKGROUND =====
-    class TechPlexus {
-        constructor() {
-            this.canvas = document.getElementById('tech-canvas');
-            if (!this.canvas) return;
-            this.ctx = this.canvas.getContext('2d');
-            this.particles = [];
-            this.packets = [];
-            this.mouse = { x: null, y: null, radius: 180 };
-            this.colors = [
-                'rgba(6, 182, 212, ',   // Cyan
-                'rgba(139, 92, 246, ',  // Violet
-                'rgba(236, 72, 153, '   // Magenta
-            ];
-            
-            this.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            
-            if (this.reducedMotion) return;
-            
-            this.init();
-            this.animate();
-            
-            window.addEventListener('resize', () => this.handleResize());
-            window.addEventListener('mousemove', (e) => {
-                this.mouse.x = e.clientX;
-                this.mouse.y = e.clientY;
-            });
-            window.addEventListener('mouseleave', () => {
-                this.mouse.x = null;
-                this.mouse.y = null;
-            });
-        }
-        
-        init() {
-            this.resizeCanvas();
-            this.createParticles();
-        }
-        
-        resizeCanvas() {
-            this.canvas.width = window.innerWidth;
-            this.canvas.height = window.innerHeight;
-        }
-        
-        handleResize() {
-            this.resizeCanvas();
-            this.createParticles();
-            this.packets = [];
-        }
-        
-        createParticles() {
-            this.particles = [];
-            const area = this.canvas.width * this.canvas.height;
-            const particleCount = Math.min(Math.floor(area / 15000), window.innerWidth < 768 ? 40 : 100);
-            
-            const types = ['circle', 'ring', 'square', 'plus'];
-            
-            for (let i = 0; i < particleCount; i++) {
-                this.particles.push({
-                    x: Math.random() * this.canvas.width,
-                    y: Math.random() * this.canvas.height,
-                    vx: (Math.random() - 0.5) * 0.4,
-                    vy: (Math.random() - 0.5) * 0.4,
-                    size: Math.random() * 2.5 + 1,
-                    type: types[Math.floor(Math.random() * types.length)],
-                    colorIndex: Math.floor(Math.random() * this.colors.length),
-                    pulseSpeed: Math.random() * 0.02 + 0.005,
-                    pulseTime: Math.random() * Math.PI * 2,
-                    alpha: Math.random() * 0.4 + 0.2
-                });
-            }
-        }
-        
-        drawParticle(p) {
-            const opacity = p.alpha * (0.6 + 0.4 * Math.sin(p.pulseTime));
-            this.ctx.fillStyle = this.colors[p.colorIndex] + opacity + ')';
-            this.ctx.strokeStyle = this.colors[p.colorIndex] + opacity + ')';
-            this.ctx.lineWidth = 1;
-            
-            this.ctx.beginPath();
-            if (p.type === 'circle') {
-                this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                this.ctx.fill();
-            } else if (p.type === 'ring') {
-                this.ctx.arc(p.x, p.y, p.size + 1.5, 0, Math.PI * 2);
-                this.ctx.stroke();
-            } else if (p.type === 'square') {
-                this.ctx.fillRect(p.x - p.size, p.y - p.size, p.size * 2, p.size * 2);
-            } else if (p.type === 'plus') {
-                const s = p.size + 1;
-                this.ctx.moveTo(p.x - s, p.y);
-                this.ctx.lineTo(p.x + s, p.y);
-                this.ctx.moveTo(p.x, p.y - s);
-                this.ctx.lineTo(p.x, p.y + s);
-                this.ctx.stroke();
-            }
-        }
-        
-        spawnPacket(fromIndex) {
-            if (this.packets.length > 8) return;
-            const from = this.particles[fromIndex];
-            
-            const targets = [];
-            for (let i = 0; i < this.particles.length; i++) {
-                if (i === fromIndex) continue;
-                const to = this.particles[i];
-                const dx = to.x - from.x;
-                const dy = to.y - from.y;
-                const dist = Math.sqrt(dx*dx + dy*dy);
-                if (dist < 130) {
-                    targets.push(i);
-                }
-            }
-            
-            if (targets.length > 0) {
-                const targetIndex = targets[Math.floor(Math.random() * targets.length)];
-                this.packets.push({
-                    from: fromIndex,
-                    to: targetIndex,
-                    progress: 0,
-                    speed: Math.random() * 0.015 + 0.01,
-                    colorIndex: from.colorIndex
-                });
-            }
-        }
-        
-        animate() {
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-            
-            for (let i = 0; i < this.particles.length; i++) {
-                const p = this.particles[i];
-                p.pulseTime += p.pulseSpeed;
-                
-                p.x += p.vx;
-                p.y += p.vy;
-                
-                if (this.mouse.x !== null) {
-                    const dx = this.mouse.x - p.x;
-                    const dy = this.mouse.y - p.y;
-                    const dist = Math.sqrt(dx*dx + dy*dy);
-                    if (dist < this.mouse.radius) {
-                        const force = (this.mouse.radius - dist) / this.mouse.radius;
-                        p.x += (dx / dist) * force * 0.3;
-                        p.y += (dy / dist) * force * 0.3;
-                    }
-                }
-                
-                if (p.x < -10) p.x = this.canvas.width + 10;
-                if (p.x > this.canvas.width + 10) p.x = -10;
-                if (p.y < -10) p.y = this.canvas.height + 10;
-                if (p.y > this.canvas.height + 10) p.y = -10;
-                
-                this.drawParticle(p);
-                
-                if (Math.random() < 0.001) {
-                    this.spawnPacket(i);
-                }
-            }
-            
-            for (let i = 0; i < this.particles.length; i++) {
-                const p1 = this.particles[i];
-                for (let j = i + 1; j < this.particles.length; j++) {
-                    const p2 = this.particles[j];
-                    const dx = p2.x - p1.x;
-                    const dy = p2.y - p1.y;
-                    const dist = Math.sqrt(dx*dx + dy*dy);
-                    
-                    if (dist < 130) {
-                        const alpha = (1 - (dist / 130)) * 0.12;
-                        this.ctx.strokeStyle = `rgba(139, 92, 246, ${alpha})`;
-                        this.ctx.lineWidth = 0.5;
-                        this.ctx.beginPath();
-                        this.ctx.moveTo(p1.x, p1.y);
-                        this.ctx.lineTo(p2.x, p2.y);
-                        this.ctx.stroke();
-                    }
-                }
-            }
-            
-            if (this.mouse.x !== null) {
-                for (let i = 0; i < this.particles.length; i++) {
-                    const p = this.particles[i];
-                    const dx = p.x - this.mouse.x;
-                    const dy = p.y - this.mouse.y;
-                    const dist = Math.sqrt(dx*dx + dy*dy);
-                    
-                    if (dist < this.mouse.radius) {
-                        const alpha = (1 - (dist / this.mouse.radius)) * 0.18;
-                        this.ctx.strokeStyle = `rgba(6, 182, 212, ${alpha})`;
-                        this.ctx.lineWidth = 0.7;
-                        this.ctx.beginPath();
-                        this.ctx.moveTo(this.mouse.x, this.mouse.y);
-                        this.ctx.lineTo(p.x, p.y);
-                        this.ctx.stroke();
-                    }
-                }
-            }
-            
-            for (let i = this.packets.length - 1; i >= 0; i--) {
-                const pkt = this.packets[i];
-                pkt.progress += pkt.speed;
-                
-                const pFrom = this.particles[pkt.from];
-                const pTo = this.particles[pkt.to];
-                
-                if (pFrom && pTo) {
-                    const px = pFrom.x + (pTo.x - pFrom.x) * pkt.progress;
-                    const py = pFrom.y + (pTo.y - pFrom.y) * pkt.progress;
-                    
-                    this.ctx.fillStyle = this.colors[pkt.colorIndex] + '0.8)';
-                    this.ctx.beginPath();
-                    this.ctx.arc(px, py, 2, 0, Math.PI * 2);
-                    this.ctx.fill();
-                    
-                    this.ctx.shadowColor = this.colors[pkt.colorIndex] + '1)';
-                    this.ctx.shadowBlur = 6;
-                    this.ctx.beginPath();
-                    this.ctx.arc(px, py, 3, 0, Math.PI * 2);
-                    this.ctx.fillStyle = this.colors[pkt.colorIndex] + '0.3)';
-                    this.ctx.fill();
-                    this.ctx.shadowBlur = 0;
-                }
-                
-                if (pkt.progress >= 1) {
-                    this.packets.splice(i, 1);
-                }
-            }
-            
-            requestAnimationFrame(() => this.animate());
-        }
-    }
-
-    // Initialize TechPlexus background
-    document.addEventListener("DOMContentLoaded", () => {
-        new TechPlexus();
+    b.addEventListener('pointerleave', function () { b.style.transform = ''; });
+  });
+  document.querySelectorAll('.card').forEach(function (c) {
+    c.addEventListener('pointermove', function (e) {
+      var r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px');
     });
+  });
 
-    // ===== CUSTOM CURSOR =====
-    const cursorDot = document.querySelector("[data-cursor-dot]");
-    const cursorOutline = document.querySelector("[data-cursor-outline]");
+  var hero = $('top'), aur = $('aurora'), cop = $('copy'), tick = false;
+  function onScroll() {
+    tick = false; curSec();
+    if (reduce) return;
+    var p = clamp(scrollY / hero.offsetHeight, 0, 1);
+    aur.style.transform = 'translate3d(0,' + (p * 22) + '%,0)';
+    cop.style.transform = 'translate3d(0,' + (p * -24) + '%,0)';
+    cop.style.opacity = String(clamp(1 - p / .75, 0, 1));
+  }
+  addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  curSec();
 
-    if (cursorDot && cursorOutline) {
-        window.addEventListener("mousemove", (e) => {
-            cursorDot.style.left = `${e.clientX}px`;
-            cursorDot.style.top = `${e.clientY}px`;
-
-            cursorOutline.animate({
-                left: `${e.clientX}px`,
-                top: `${e.clientY}px`
-            }, { duration: 400, fill: "forwards" });
-        });
-
-        // Hover effect on interactive elements
-        const hoverTargets = document.querySelectorAll('a, button, .habilidade-card, .curso-card, .projeto-card');
-        hoverTargets.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorDot.classList.add('hovering');
-                cursorOutline.classList.add('hovering');
-            });
-            el.addEventListener('mouseleave', () => {
-                cursorDot.classList.remove('hovering');
-                cursorOutline.classList.remove('hovering');
-            });
-        });
+  /* ---------- fundo: campo de caracteres que reage ao cursor ---------- */
+  (function () {
+    var cv = $('field'), ctx = cv && cv.getContext && cv.getContext('2d');
+    if (!ctx) return;
+    var PAL = ['139,233,255', '183,164,255', '255,194,238', '138,255,216'];
+    var CODE = '{}<>/;=+*01#$&|[]()';
+    var W = 0, H = 0, cell = 22, cols = 0, rows = 0, seeds = [];
+    var mx = -9999, my = -9999, cx = -9999, cy = -9999, act = 0, actT = 0, shift = 0, last = 0, raf = 0, waves = [];
+    function setup() {
+      var dpr = Math.min(devicePixelRatio || 1, 1.5);
+      W = innerWidth; H = innerHeight; cell = W < 720 ? 18 : 22;
+      cols = Math.ceil(W / cell) + 1; rows = Math.ceil(H / cell) + 1;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.font = '400 ' + Math.round(cell * .56) + 'px "JetBrains Mono", ui-monospace, Menlo, monospace';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      seeds = [];
+      for (var i = 0; i < cols * rows; i++) { var r = Math.sin(i * 12.9898 + 4.1) * 43758.5453; seeds.push(CODE.charAt(Math.floor((r - Math.floor(r)) * CODE.length))); }
     }
-
-    // ===== LOADING SCREEN =====
-    document.addEventListener("DOMContentLoaded", () => {
-        const welcomeScreen = document.getElementById("welcome-screen");
-        const mainContent = document.getElementById("main-content");
-        const progressBar = document.querySelector(".progress-bar");
-
-        if (!welcomeScreen || !mainContent) return;
-
-        // Animated progress
-        let progress = 0;
-        const loadInterval = setInterval(() => {
-            progress += Math.random() * 15 + 5;
-            if (progress >= 100) {
-                progress = 100;
-                clearInterval(loadInterval);
-            }
-            if (progressBar) progressBar.style.width = `${progress}%`;
-        }, 200);
-
-        // Transition out
-        setTimeout(() => {
-            clearInterval(loadInterval);
-            if (progressBar) progressBar.style.width = "100%";
-
-            setTimeout(() => {
-                welcomeScreen.style.opacity = "0";
-                welcomeScreen.style.transition = "opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
-
-                setTimeout(() => {
-                    welcomeScreen.style.display = "none";
-                    mainContent.style.opacity = "1";
-                    mainContent.style.transition = "opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
-                }, 800);
-            }, 400);
-        }, 2500);
-
-        // ===== SCROLL PROGRESS BAR =====
-        const scrollProgressEl = document.getElementById("scrollProgress");
-        if (scrollProgressEl) {
-            window.addEventListener("scroll", () => {
-                const scrollTop = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const scrollPercent = (scrollTop / docHeight) * 100;
-                scrollProgressEl.style.width = `${scrollPercent}%`;
-            });
+    function draw(now) {
+      var t = now / 1000, sy = scrollY * .0035, r2 = cell * cell * 64;
+      shift += (secIdx * .45 - shift) * .05;
+      cx += (mx - cx) * .14; cy += (my - cy) * .14; act += (actT - act) * .06;
+      waves = waves.filter(function (w) { return now - w.t < 1600; });
+      ctx.clearRect(0, 0, W, H);
+      var cur = -1;
+      for (var y = 0; y < rows; y++) {
+        var py = y * cell + cell / 2;
+        for (var x = 0; x < cols; x++) {
+          var px = x * cell + cell / 2;
+          var n = Math.sin(x * .085 + t * .32 + sy) * Math.cos(y * .11 - t * .24 + sy * .7) + .8 * Math.sin((x - y) * .045 + t * .16 - sy);
+          var b = (n - .5) / 1.3; b = b > 0 ? b * b * .22 : 0;
+          var dx = px - cx, dy = py - cy, d2 = dx * dx + dy * dy, c = 0;
+          if (act > .01 && d2 < r2 * 5) c = Math.exp(-d2 / r2) * act * .6;
+          for (var j = 0; j < waves.length; j++) {
+            var w = waves[j], age = (now - w.t) / 1000, wx = px - w.x, wy = py - w.y;
+            var dd = Math.sqrt(wx * wx + wy * wy) - age * 700;
+            if (dd > -60 && dd < 60) c += (1 - Math.abs(dd) / 60) * (1 - age / 1.6) * .45;
+          }
+          var I = b + c;
+          if (I < .03) continue;
+          var p = Math.floor((x / cols) * 2.2 + (y / rows) * .6 + shift) % PAL.length;
+          if (p !== cur) { cur = p; ctx.fillStyle = 'rgb(' + PAL[p] + ')'; }
+          ctx.globalAlpha = I > .6 ? .6 : I;
+          ctx.fillText(I > .26 ? seeds[y * cols + x] : I > .14 ? '+' : I > .07 ? ':' : '·', px, py);
         }
-
-        // ===== BACK TO TOP BUTTON =====
-        const backToTop = document.getElementById("backToTop");
-        if (backToTop) {
-            window.addEventListener("scroll", () => {
-                if (window.scrollY > 500) {
-                    backToTop.classList.add("visible");
-                } else {
-                    backToTop.classList.remove("visible");
-                }
-            });
-            backToTop.addEventListener("click", () => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            });
-        }
-
-        // ===== WHATSAPP FORM =====
-        const whatsappForm = document.getElementById("whatsappForm");
-        if (whatsappForm) {
-            whatsappForm.addEventListener("submit", (event) => {
-                event.preventDefault();
-                const nome = document.getElementById("nome")?.value || "";
-                const email = document.getElementById("email")?.value || "";
-                const mensagem = document.getElementById("mensagem")?.value || "";
-                if (!nome || !email || !mensagem) {
-                    alert("Por favor, preencha todos os campos!");
-                    return;
-                }
-                const numeroWhatsApp = "5513981175814";
-                const textoWhatsApp = `Olá, meu nome é ${nome}. Meu e-mail é ${email}. ${mensagem}`;
-                const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(textoWhatsApp)}`;
-                window.open(url, "_blank");
-                whatsappForm.reset();
-            });
-        }
-
-        // ===== SMOOTH NAVIGATION =====
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (!targetId || targetId === '#') return;
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // ===== HEADER SCROLL EFFECT =====
-        const header = document.querySelector('header');
-        if (header) {
-            window.addEventListener('scroll', () => {
-                header.classList.toggle('scrolled', window.scrollY > 50);
-            });
-        }
-
-        // ===== SCROLL REVEAL ANIMATION (WITH STAGGER) =====
-        const revealElements = document.querySelectorAll('.reveal');
-        
-        let delayCounter = 0;
-        let delayTimer = null;
-
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Apply a dynamic delay for a cascading effect
-                    entry.target.style.transitionDelay = `${delayCounter * 0.15}s`;
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                    
-                    delayCounter++;
-                    if (delayTimer) clearTimeout(delayTimer);
-                    delayTimer = setTimeout(() => {
-                        delayCounter = 0;
-                    }, 100);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-
-        revealElements.forEach(el => revealObserver.observe(el));
-
-        // ===== SKILL BAR ANIMATION =====
-        const skillBars = document.querySelectorAll('.skill-level');
-        const skillObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const bar = entry.target;
-                    const width = bar.getAttribute('data-width');
-                    if (width) {
-                        setTimeout(() => {
-                            bar.style.width = width;
-                        }, 200);
-                    }
-                    observer.unobserve(bar);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        skillBars.forEach(bar => skillObserver.observe(bar));
-    });
-
-    // ===== LOADING FALLBACK =====
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            const screen = document.getElementById("welcome-screen");
-            const main = document.getElementById("main-content");
-            if (screen && main) {
-                screen.style.opacity = "0";
-                main.style.opacity = "1";
-                
-                // Wait for the CSS transition to finish before hiding from DOM
-                setTimeout(() => {
-                    screen.style.display = "none";
-                }, 800);
-            }
-        }, 1500); // Reduced from 4000 to 1500 for a snappier load
-    });
-    // ===== SEAMLESS VIDEO LOOP =====
-    const video1 = document.getElementById('bgVideo1');
-    const video2 = document.getElementById('bgVideo2');
-    
-    if (video1 && video2) {
-        let activeVideo = 1;
-        const fadeTime = 1.5; // Start fade 1.5 seconds before video ends
-        
-        // Start first video
-        video1.play().catch(e => console.log("Autoplay prevented:", e));
-        
-        const checkTime = (currentVid, nextVid, num) => {
-            if (activeVideo === num && currentVid.duration - currentVid.currentTime <= fadeTime) {
-                activeVideo = num === 1 ? 2 : 1;
-                nextVid.currentTime = 0;
-                nextVid.play().catch(e => console.log("Autoplay prevented:", e));
-                
-                nextVid.classList.add('active');
-                currentVid.classList.remove('active');
-            }
-        };
-
-        video1.addEventListener('timeupdate', () => checkTime(video1, video2, 1));
-        video2.addEventListener('timeupdate', () => checkTime(video2, video1, 2));
+      }
+      ctx.globalAlpha = 1;
     }
-    </script>
-</body>
-</html>
+    function loop(now) { raf = requestAnimationFrame(loop); if (now - last < 33) return; last = now; draw(now); }
+    function start() { if (!raf && !reduce) raf = requestAnimationFrame(loop); }
+    function stop() { cancelAnimationFrame(raf); raf = 0; }
+    setup();
+    if (reduce) draw(0); else start();
+    var rt;
+    addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { setup(); if (reduce) draw(0); }, 120); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { setup(); if (reduce) draw(0); });
+    document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
+    if (!reduce) {
+      addEventListener('pointermove', function (e) { mx = e.clientX; my = e.clientY; if (cx < -999) { cx = mx; cy = my; } actT = 1; }, { passive: true });
+      addEventListener('pointerup', function (e) { if (e.pointerType === 'touch') actT = 0; }, { passive: true });
+      document.documentElement.addEventListener('pointerleave', function () { actT = 0; });
+      addEventListener('pointerdown', function (e) { if (waves.length < 3) waves.push({ x: e.clientX, y: e.clientY, t: performance.now() }); }, { passive: true });
+    }
+  })();
+
+  /* ---------- computador 3D guiado pelo scroll ---------- */
+  var rig = $('rig'), stage = $('stage'), pcv = $('pc');
+  if (!window.THREE || !pcv || !rig) return;
+  var T = THREE, renderer;
+  try { renderer = new T.WebGLRenderer({ canvas: pcv, antialias: true, alpha: true, powerPreference: 'high-performance' }); } catch (e) { return; }
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75));
+  renderer.outputEncoding = T.sRGBEncoding;
+  renderer.toneMapping = T.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.1;
+  renderer.setClearColor(0x000000, 0);
+
+  var scene = new T.Scene(), camera = new T.PerspectiveCamera(30, 1, .1, 100);
+  camera.position.set(0, 0, 12);
+
+  /* ambiente procedural nas cores da aurora: reflexos no aluminio */
+  var env = new T.Scene(); env.background = new T.Color(0x000000);
+  function panel(hex, k, w, h, x, y, z) {
+    var m = new T.Mesh(new T.PlaneGeometry(w, h), new T.MeshBasicMaterial({ color: new T.Color(hex).multiplyScalar(k), side: T.DoubleSide }));
+    m.position.set(x, y, z); m.lookAt(0, 0, 0); env.add(m);
+  }
+  panel(0x8be9ff, 3, 8, 2, -5, 2, -2); panel(0xb7a4ff, 2.6, 8, 2, 5, -1, 1); panel(0xffc2ee, 3, 4, 4, 0, 4, -4);
+  panel(0xffffff, 1.6, 10, 1, 0, -4, 2); panel(0xffffff, 1.2, 6, 1.2, 0, 2, 7);
+  scene.environment = new T.PMREMGenerator(renderer).fromScene(env, .02).texture;
+  scene.add(new T.HemisphereLight(0xcfeeff, 0x000000, .4));
+  var keyL = new T.DirectionalLight(0xffffff, .8); keyL.position.set(-3, 6, 6); scene.add(keyL);
+  var rimL = new T.DirectionalLight(0xb7a4ff, .8); rimL.position.set(5, 2, -5); scene.add(rimL);
+
+  function rrect(w, h, r) {
+    var s = new T.Shape(), x = -w / 2, y = -h / 2;
+    s.moveTo(x + r, y); s.lineTo(x + w - r, y); s.quadraticCurveTo(x + w, y, x + w, y + r);
+    s.lineTo(x + w, y + h - r); s.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    s.lineTo(x + r, y + h); s.quadraticCurveTo(x, y + h, x, y + h - r);
+    s.lineTo(x, y + r); s.quadraticCurveTo(x, y, x + r, y);
+    return s;
+  }
+  function slab(w, d, t, r, mat) {
+    var g = new T.ExtrudeGeometry(rrect(w, d, r), { depth: t, bevelEnabled: true, bevelThickness: .015, bevelSize: .015, bevelSegments: 3, curveSegments: 10 });
+    g.translate(0, 0, -t / 2);
+    return new T.Mesh(g, mat);
+  }
+  function blob(rgba) {
+    var c = document.createElement('canvas'); c.width = c.height = 128;
+    var x = c.getContext('2d'), g = x.createRadialGradient(64, 64, 0, 64, 64, 64);
+    g.addColorStop(0, rgba); g.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = g; x.fillRect(0, 0, 128, 128);
+    return new T.CanvasTexture(c);
+  }
+
+  var alu = new T.MeshPhysicalMaterial({ color: 0x1b1e24, metalness: .85, roughness: .3, clearcoat: .5, clearcoatRoughness: .2, envMapIntensity: 1.4 });
+  var keyMat = new T.MeshStandardMaterial({ color: 0x0e1014, metalness: .2, roughness: .55, envMapIntensity: .6 });
+  var glassMat = new T.MeshPhysicalMaterial({ color: 0x040507, metalness: 0, roughness: .08, clearcoat: 1, envMapIntensity: 1 });
+
+  var root = new T.Group(), inner = new T.Group(); root.add(inner); scene.add(root);
+  inner.position.set(0, -.9, .1);
+
+  /* base */
+  var base = slab(3.2, 2.2, .1, .16, alu); base.rotation.x = -Math.PI / 2; base.position.y = -.065; inner.add(base);
+  var deck = new T.Mesh(new T.ShapeGeometry(rrect(2.74, 1.0, .05)), new T.MeshBasicMaterial({ color: 0x0c2c36 }));
+  deck.rotation.x = -Math.PI / 2; deck.position.set(0, .002, -.3); inner.add(deck);
+  var keys = new T.InstancedMesh(new T.BoxGeometry(.165, .03, .155), keyMat, 80);
+  var m4 = new T.Matrix4(), q = new T.Quaternion(), v3 = new T.Vector3(), s3 = new T.Vector3(), kn = 0;
+  for (var r = 0; r < 5; r++) for (var c = 0; c < 14; c++) {
+    s3.set(1, 1, 1);
+    if (r === 4 && c >= 4 && c <= 9) { if (c !== 4) continue; v3.set(0, .017, -.3 + 2 * .185); s3.set(6.76, 1, 1); }
+    else v3.set((c - 6.5) * .19, .017, -.3 + (r - 2) * .185);
+    m4.compose(v3, q, s3); keys.setMatrixAt(kn++, m4);
+  }
+  keys.count = kn; inner.add(keys);
+  var pad = new T.Mesh(new T.ShapeGeometry(rrect(1.1, .62, .06)), new T.MeshPhysicalMaterial({ color: 0x23272e, metalness: .6, roughness: .22, clearcoat: .6, envMapIntensity: 1.2 }));
+  pad.rotation.x = -Math.PI / 2; pad.position.set(0, .003, .62); inner.add(pad);
+
+  /* tampa (gira na dobradica) */
+  var LH = 2.06, pivot = new T.Group(); pivot.position.set(0, .035, -1.06); inner.add(pivot);
+  var lid = slab(3.2, LH, .06, .16, alu); lid.position.set(0, LH / 2, -.046); pivot.add(lid);
+  var bez = new T.Mesh(new T.ShapeGeometry(rrect(3.08, LH - .1, .11)), glassMat); bez.position.set(0, LH / 2, .002); pivot.add(bez);
+  var SW = 1024, SH = 640, scv = document.createElement('canvas'); scv.width = SW; scv.height = SH;
+  var sx = scv.getContext('2d'), stex = new T.CanvasTexture(scv);
+  stex.encoding = T.sRGBEncoding; stex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  var scrMat = new T.MeshBasicMaterial({ map: stex, toneMapped: false });
+  var screen = new T.Mesh(new T.PlaneGeometry(2.88, 1.8), scrMat); screen.position.set(0, LH / 2 + .02, .004); pivot.add(screen);
+  var camDot = new T.Mesh(new T.CircleGeometry(.018, 16), new T.MeshBasicMaterial({ color: 0x1d2a33 })); camDot.position.set(0, LH - .07, .005); pivot.add(camDot);
+  var lcv = document.createElement('canvas'); lcv.width = lcv.height = 256;
+  var ltex = new T.CanvasTexture(lcv); ltex.encoding = T.sRGBEncoding;
+  function drawLogo() {
+    var x = lcv.getContext('2d'), g = x.createLinearGradient(0, 0, 256, 256);
+    g.addColorStop(0, '#8be9ff'); g.addColorStop(.5, '#b7a4ff'); g.addColorStop(1, '#ffc2ee');
+    x.clearRect(0, 0, 256, 256); x.fillStyle = g; x.font = '300 104px "JetBrains Mono", ui-monospace, monospace';
+    x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText('</>', 128, 132); ltex.needsUpdate = true;
+  }
+  drawLogo();
+  var logo = new T.Mesh(new T.PlaneGeometry(.62, .62), new T.MeshBasicMaterial({ map: ltex, transparent: true, opacity: .9, toneMapped: false }));
+  logo.position.set(0, LH / 2, -.095); logo.rotation.y = Math.PI; pivot.add(logo);
+  var spill = new T.PointLight(0x8be9ff, 0, 5, 2); spill.position.set(0, .9, .9); pivot.add(spill);
+
+  /* sombra e brilho no chao */
+  var shadow = new T.Mesh(new T.PlaneGeometry(5, 3.4), new T.MeshBasicMaterial({ map: blob('rgba(0,0,0,.8)'), transparent: true, depthWrite: false }));
+  shadow.rotation.x = -Math.PI / 2; shadow.position.y = -.16; inner.add(shadow);
+  var under = new T.Mesh(new T.PlaneGeometry(6.4, 4.4), new T.MeshBasicMaterial({ map: blob('rgba(139,233,255,.35)'), transparent: true, depthWrite: false, blending: T.AdditiveBlending, toneMapped: false }));
+  under.rotation.x = -Math.PI / 2; under.position.y = -.17; inner.add(under);
+
+  /* ---------- tela: terminal com cenas por etapa ---------- */
+  var COL = { k: '#b7a4ff', s: '#8affd8', v: '#8be9ff', p: '#f5f7fa', f: '#ffc2ee', n: '#9bd8ff', c: 'rgba(245,247,250,.42)', m: 'rgba(245,247,250,.68)', ok: '#3ddc84' };
+  var MONO = '"JetBrains Mono", ui-monospace, Menlo, monospace';
+  function L(k, w, s, extra) { var o = { k: k, w: w, s: s }; if (extra) for (var x in extra) o[x] = extra[x]; return o; }
+  function progress(local) {
+    var p = clamp(local / 1.5, 0, 1), n = Math.round(p * 22);
+    return [['[', 'c'], [new Array(n + 1).join('█'), 'v'], [new Array(23 - n).join('░'), 'c'], ['] ', 'c'], [('  ' + Math.round(p * 100)).slice(-3) + '%', 'p']];
+  }
+  var SCENES = [
+    { title: 'developer.ts', tag: 'TypeScript', gutter: true, lines: [
+      L('code', .1, [['const ', 'k'], ['developer', 'v'], [' = {', 'p']]),
+      L('code', 0, [['  name', 'p'], [':   ', 'p'], ["'Felipe Prado'", 's'], [',', 'p']]),
+      L('code', 0, [['  role', 'p'], [':   ', 'p'], ["'Full Stack Dev'", 's'], [',', 'p']]),
+      L('code', 0, [['  stack', 'p'], [':  [', 'p'], ["'React'", 's'], [', ', 'p'], ["'Next.js'", 's'], [', ', 'p'], ["'Node'", 's'], ['],', 'p']]),
+      L('code', 0, [['  focus', 'p'], [':  ', 'p'], ["'Web + Security'", 's'], [',', 'p']]),
+      L('code', 0, [['  status', 'p'], [': ', 'p'], ["'Open to work'", 's'], [',', 'p']]),
+      L('code', 0, [["  // let's build something", 'c']]),
+      L('code', 0, [['};', 'p']])
+    ] },
+    { title: 'zsh  ~/felipe/contato', tag: '01 / 03', lines: [
+      L('cmd', .1, [['$ ', 'v'], ['./contato ', 'p'], ['--whatsapp --email', 'f']]),
+      L('out', .25, [['> conexão aberta', 'm']]),
+      L('out', .5, [['> nova mensagem: ', 'm'], ['"tenho uma ideia"', 's']]),
+      L('cmd', .4, [['$ ', 'v'], ['perguntas ', 'p'], ['--objetivo --prazo', 'f']]),
+      L('out', .3, [['  objetivo ', 'c'], ['.......... ', 'c'], ['ok', 'ok']]),
+      L('out', .2, [['  prazo    ', 'c'], ['.......... ', 'c'], ['ok', 'ok']]),
+      L('out', .3, [['✓ ', 'ok'], ['ideia entendida, vamos para a proposta', 'p']])
+    ] },
+    { title: 'proposta.md', tag: '02 / 03', lines: [
+      L('cmd', .1, [['$ ', 'v'], ['cat ', 'p'], ['proposta.md', 's']]),
+      L('out', .2, [['# Escopo', 'k']]),
+      L('out', .1, [['  definido antes de começar', 'm']]),
+      L('out', .2, [['# Prazo', 'k']]),
+      L('out', .1, [['  etapas curtas que você acompanha', 'm']]),
+      L('out', .2, [['# Entregas', 'k']]),
+      L('out', .1, [['  uma por etapa', 'm']]),
+      L('cmd', .5, [['$ ', 'v'], ['git commit -m ', 'p'], ['"feat(proposta)"', 's']])
+    ] },
+    { title: 'zsh  ~/felipe/entrega', tag: '03 / 03', lines: [
+      L('cmd', .1, [['$ ', 'v'], ['npm run ', 'p'], ['build', 'f']]),
+      L('out', .2, null, { dyn: progress, hold: 1.7 }),
+      L('out', 0, [['✓ ', 'ok'], ['build concluído', 'p']]),
+      L('cmd', .3, [['$ ', 'v'], ['deploy ', 'p'], ['--prod', 'f']]),
+      L('out', .4, [['✓ ', 'ok'], ['publicado', 'p']]),
+      L('out', .2, [['✓ ', 'ok'], ['testado no celular e no computador', 'p']]),
+      L('out', .2, [['✓ ', 'ok'], ['código organizado no GitHub', 'p']])
+    ] }
+  ];
+
+  function paint(e, blink) {
+    var S = SCENES[sIdx];
+    sx.textBaseline = 'middle'; sx.textAlign = 'left';
+    sx.fillStyle = '#05060a'; sx.fillRect(0, 0, SW, SH);
+    var g = sx.createRadialGradient(SW * .82, -60, 0, SW * .82, -60, 720);
+    g.addColorStop(0, 'rgba(139,233,255,.12)'); g.addColorStop(1, 'rgba(139,233,255,0)'); sx.fillStyle = g; sx.fillRect(0, 0, SW, SH);
+    var g2 = sx.createRadialGradient(SW * .1, SH + 60, 0, SW * .1, SH + 60, 640);
+    g2.addColorStop(0, 'rgba(183,164,255,.10)'); g2.addColorStop(1, 'rgba(183,164,255,0)'); sx.fillStyle = g2; sx.fillRect(0, 0, SW, SH);
+    /* barra do topo */
+    sx.fillStyle = 'rgba(255,255,255,.04)'; sx.fillRect(0, 0, SW, 52);
+    sx.fillStyle = 'rgba(255,255,255,.1)'; sx.fillRect(0, 52, SW, 2);
+    sx.strokeStyle = 'rgba(255,255,255,.32)'; sx.lineWidth = 2;
+    for (var i = 0; i < 3; i++) { sx.beginPath(); sx.arc(32 + i * 24, 26, 7, 0, Math.PI * 2); sx.stroke(); }
+    sx.font = '400 20px ' + MONO; sx.fillStyle = COL.m; sx.fillText(S.title, 116, 27);
+    sx.textAlign = 'right'; sx.fillStyle = COL.c; sx.fillText(S.tag, SW - 28, 27); sx.textAlign = 'left';
+    /* barra de status */
+    sx.fillStyle = 'rgba(255,255,255,.035)'; sx.fillRect(0, SH - 44, SW, 44);
+    sx.fillStyle = 'rgba(255,255,255,.08)'; sx.fillRect(0, SH - 46, SW, 2);
+    sx.font = '400 18px ' + MONO; sx.fillStyle = COL.c; sx.fillText('main', 40, SH - 22);
+    var dw = sx.measureText('Disponível').width;
+    sx.textAlign = 'right'; sx.fillStyle = COL.m; sx.fillText('Disponível', SW - 28, SH - 22); sx.textAlign = 'left';
+    sx.fillStyle = COL.ok; sx.beginPath(); sx.arc(SW - 28 - dw - 16, SH - 22, 6, 0, Math.PI * 2); sx.fill();
+    /* linhas */
+    sx.font = '400 24px ' + MONO;
+    var cw = sx.measureText('M').width, y0 = 100, lh = 40, x0 = S.gutter ? 92 : 40, tc = 0, cx = x0, cy = y0, done = true;
+    for (var li = 0; li < S.lines.length; li++) {
+      var ln = S.lines[li], st = tc + ln.w, toks = ln.dyn ? ln.dyn(Math.max(0, e - st)) : ln.s;
+      var len = 0; for (var a = 0; a < toks.length; a++) len += toks[a][0].length;
+      var cps = ln.k === 'code' ? 55 : 26, dur = ln.k === 'out' ? (ln.hold || .12) : len / cps;
+      tc = st + dur;
+      if (e < st) { done = false; break; }
+      var show = ln.k === 'out' ? len : Math.min(len, Math.floor((e - st) * cps));
+      var y = y0 + li * lh;
+      if (S.gutter) { sx.fillStyle = 'rgba(245,247,250,.25)'; sx.textAlign = 'right'; sx.fillText(String(li + 1), 60, y); sx.textAlign = 'left'; }
+      var x = x0, left = show;
+      for (var ti = 0; ti < toks.length && left > 0; ti++) {
+        var tx = toks[ti][0].slice(0, left); left -= tx.length;
+        sx.fillStyle = COL[toks[ti][1]] || toks[ti][1]; sx.fillText(tx, x, y); x += cw * tx.length;
+      }
+      cx = x; cy = y;
+      if (show < len) { done = false; break; }
+    }
+    if (done) {
+      cy = y0 + S.lines.length * lh; cx = x0;
+      if (S.gutter) { sx.fillStyle = 'rgba(245,247,250,.25)'; sx.textAlign = 'right'; sx.fillText(String(S.lines.length + 1), 60, cy); sx.textAlign = 'left'; }
+      else { sx.fillStyle = COL.v; sx.fillText('$ ', x0, cy); cx = x0 + cw * 2; }
+    }
+    if (blink || !done) { sx.fillStyle = COL.v; sx.fillRect(cx + 2, cy - 14, cw * .6, 28); }
+    stex.needsUpdate = true;
+    return tc;
+  }
+
+  var sIdx = -1, sT0 = 0, sEnd = 0, lastBlink = -1, force = true, t0 = performance.now();
+  function setScene(i, now) { if (i === sIdx) return; sIdx = i; sT0 = now + (i === 0 && !reduce && now - t0 < 1500 ? 1100 : 250); force = true; }
+
+  /* ---------- poses por etapa: [x, y, rotX, rotY, rotZ, escala, tampa] ----------
+     As poses saem do espaco livre real da tela: o notebook fica so onde nao ha texto. */
+  var TAU = Math.PI * 2, K = [], anchors = [0, 1, 2, 3, 4], visW = 1, visH = 1, VW = 1, VH = 1;
+  function layout() {
+    var w = rig.clientWidth || innerWidth, h = rig.clientHeight || innerHeight;
+    VW = w; VH = h;
+    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+    visH = 2 * Math.tan(Math.PI / 12) * 12; visW = visH * camera.aspect;
+    var pw = visW / w, ph = visH / h, sy = scrollY;
+    function xF(px) { return px / w * 2 - 1; }
+    function yF(py) { return 1 - py / h * 2; }
+    var leadR = document.querySelector('.hero .lead-col').getBoundingClientRect();
+    var navR = document.querySelector('.hero .top').getBoundingClientRect();
+    var navB = navR.bottom + sy, leadT = leadR.top + sy;
+    var head = document.querySelector('.story h2'), sRight = head ? head.getBoundingClientRect().right : 0, cardH = 0;
+    [].forEach.call(document.querySelectorAll('.scard'), function (c) { var r = c.getBoundingClientRect(); sRight = Math.max(sRight, r.right); cardH = Math.max(cardH, r.height); });
+    var freeH = w - leadR.right - 48, freeS = w - sRight - 48;
+    var desk = w >= 1024 && freeH >= 340 && freeS >= 340;
+    var hx, hy, hs, kx, ky, ks;
+    if (desk) {
+      hx = xF(leadR.right + (w - leadR.right) / 2); hy = yF(navB + (h - navB) / 2 - 8);
+      hs = Math.min(freeH * pw * .9 / 3.3, (h - navB) * ph * .62 / 2.6);
+      kx = xF(sRight + (w - sRight) / 2); ky = 0;
+      ks = Math.min(freeS * pw * .82 / 3.3, h * ph * .6 / 2.6);
+    } else {
+      var t1 = navB + 8, b1 = leadT - 24;
+      if (b1 - t1 < 160) b1 = t1 + 160;
+      hx = 0; hy = yF((t1 + b1) / 2);
+      hs = Math.min((b1 - t1) * ph * .88 / 2.6, w * pw * .86 / 3.3);
+      var t2 = 16, b2 = h - h * .08 - cardH - 24;
+      if (b2 - t2 < 160) b2 = t2 + 160;
+      kx = 0; ky = yF((t2 + b2) / 2);
+      ks = Math.min((b2 - t2) * ph * .88 / 2.6, w * pw * .86 / 3.3);
+    }
+    var ry = desk ? -.42 : -.3;
+    K = [
+      [hx, hy, .32, desk ? -.6 : -.45, 0, hs, -.28],
+      [kx, ky, .22, ry, .03, ks, -.24],
+      [kx, ky, .26, ry + .12 - TAU, -.02, ks, -.3],
+      [kx, ky - .02, .52, ry - .12 - TAU, 0, ks * .97, -.24],
+      [kx, ky - .06, .72, ry - TAU, 0, ks * .9, 1.5]
+    ];
+    var vh = innerHeight;
+    anchors = [0];
+    [].forEach.call(document.querySelectorAll('.sstep'), function (el) { var r = el.getBoundingClientRect(); anchors.push(r.top + sy + r.height / 2 - vh / 2); });
+    var sr = stage.getBoundingClientRect(); anchors.push(sr.top + sy + sr.height - vh);
+    for (var i = 1; i < anchors.length; i++) if (anchors[i] < anchors[i - 1] + 1) anchors[i] = anchors[i - 1] + 1;
+  }
+  function uAt(y) {
+    if (y <= anchors[0]) return 0;
+    for (var i = 0; i < anchors.length - 1; i++) if (y < anchors[i + 1]) return i + (y - anchors[i]) / (anchors[i + 1] - anchors[i]);
+    return anchors.length - 1;
+  }
+  function plateau(f) { f = clamp((f - .12) / .76, 0, 1); return f * f * (3 - 2 * f); }
+
+  /* textos que o notebook nunca pode cobrir */
+  var AV = [].slice.call(document.querySelectorAll('.hero .logo, .hero .nav, .hero .kbd, .hero .lead-col > *, .story .path, .story h2, .scard'));
+  var copEl = $('copy'), fade = 1, vis = 1;
+  function guard(dt) {
+    root.updateMatrixWorld(true);
+    var x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+    for (var c8 = 0; c8 < 8; c8++) {
+      v3.set(c8 & 1 ? 1.65 : -1.65, c8 & 2 ? 2.15 : -.15, c8 & 4 ? 1.15 : -1.7).applyMatrix4(inner.matrixWorld).project(camera);
+      var qx = (v3.x + 1) / 2 * VW, qy = (1 - v3.y) / 2 * VH;
+      if (qx < x0) x0 = qx; if (qx > x1) x1 = qx; if (qy < y0) y0 = qy; if (qy > y1) y1 = qy;
+    }
+    var iw = (x1 - x0) * .12, ih = (y1 - y0) * .12; x0 += iw; x1 -= iw; y0 += ih; y1 -= ih;
+    var hit = false, copO = parseFloat(copEl.style.opacity || '1'), area = (x1 - x0) * (y1 - y0);
+    for (var a = 0; a < AV.length && !hit; a++) {
+      var el = AV[a];
+      if (copO < .25 && copEl.contains(el)) continue;
+      var rr = el.getBoundingClientRect();
+      if (rr.bottom < 0 || rr.top > VH) continue;
+      var ox = Math.min(x1, rr.right) - Math.max(x0, rr.left), oy = Math.min(y1, rr.bottom) - Math.max(y0, rr.top);
+      if (ox > 0 && oy > 0 && ox * oy > .06 * Math.min(area, rr.width * rr.height)) hit = true;
+    }
+    fade += ((hit ? .08 : 1) - fade) * (reduce ? 1 : 1 - Math.pow(.002, dt));
+    pcv.style.opacity = (fade * vis).toFixed(3);
+  }
+
+  var mx = 0, my = 0, mxs = 0, mys = 0, last = performance.now(), running = false, first = true;
+  var cur = [0, 0, 0, 0, 0, 1, 0], tgt = cur.slice();
+  addEventListener('pointermove', function (e) { mx = e.clientX / innerWidth * 2 - 1; my = e.clientY / innerHeight * 2 - 1; }, { passive: true });
+
+  function frame(now) {
+    if (!running) return;
+    requestAnimationFrame(frame);
+    var dt = Math.min(.05, (now - last) / 1000); last = now;
+    var u = uAt(scrollY), i = Math.min(K.length - 2, Math.floor(u)), f = plateau(u - i), j;
+    for (j = 0; j < 7; j++) tgt[j] = K[i][j] + (K[i + 1][j] - K[i][j]) * f;
+    var k = reduce || first ? 1 : 1 - Math.pow(.0005, dt); first = false;
+    for (j = 0; j < 7; j++) cur[j] += (tgt[j] - cur[j]) * k;
+    var kk = reduce ? 1 : 1 - Math.pow(.02, dt);
+    mxs += (mx - mxs) * kk; mys += (my - mys) * kk;
+
+    var ip = reduce ? 1 : clamp((now - t0 - 250) / 1800, 0, 1), ie = ip === 1 ? 1 : 1 - Math.pow(2, -10 * ip);
+    var bob = reduce ? 0 : Math.sin(now / 1000 * 1.1) * .06;
+    root.position.set(cur[0] * visW / 2, cur[1] * visH / 2 + (bob - (1 - ie) * .7) * cur[5], 0);
+    root.rotation.set(cur[2] + (reduce ? 0 : mys * .06), cur[3] + (reduce ? 0 : mxs * .16) + (1 - ie) * .5, cur[4], 'YXZ');
+    root.scale.setScalar(cur[5] * (.9 + .1 * ie));
+    var lidA = 1.52 + (cur[6] - 1.52) * ie;
+    pivot.rotation.x = lidA;
+    var open = clamp((1.52 - lidA) / 1.75, 0, 1);
+    spill.intensity = 1.4 * open; under.material.opacity = .2 + .8 * open;
+    scrMat.color.setScalar(.12 + .88 * open);
+
+    setScene(u < .55 ? 0 : Math.min(3, Math.round(u)), now);
+    var e = reduce ? 999 : (now - sT0) / 1000, bl = Math.floor(now / 530) % 2;
+    if (force || e < sEnd + .2 || bl !== lastBlink) { sEnd = paint(e, bl === 0); lastBlink = bl; force = false; }
+    var ex = clamp((u - 3.35) / .55, 0, 1); vis = 1 - ex * ex * (3 - 2 * ex);
+    guard(dt);
+    renderer.render(scene, camera);
+  }
+  function start() { if (running) return; running = true; last = performance.now(); requestAnimationFrame(frame); }
+
+  layout();
+  rig.classList.add('on');
+  if ('ResizeObserver' in window) new ResizeObserver(layout).observe(rig); else addEventListener('resize', layout);
+  addEventListener('load', layout);
+  function onFonts() { drawLogo(); force = true; layout(); }
+  if (document.fonts && document.fonts.load) document.fonts.load('400 24px "JetBrains Mono"').then(onFonts, onFonts);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { if (es[0].isIntersecting) start(); else running = false; }).observe(stage);
+  } else start();
+  document.addEventListener('visibilitychange', function () { if (document.hidden) running = false; else if (stage.getBoundingClientRect().bottom > 0) start(); });
+})();
+</script>

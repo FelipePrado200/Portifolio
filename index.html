@@ -373,8 +373,17 @@ html.booting, html.booting body { overflow: hidden; }
 html.js #boot.out { pointer-events: none; }
 html.js #boot.out .b-in { opacity: 0; transform: translateY(-14px) scale(1.04); filter: blur(10px); }
 html.js #boot.out .stage { opacity: 0; transform: scale(1.06); transition: opacity .5s var(--ease-glide), transform .9s var(--ease-igloo); }
-html.js #boot.out .slats i { transform: translateY(-101%); transition: transform 1.15s var(--ease-igloo); transition-delay: calc(.2s + var(--s) * .07s); }
-html.js #boot.out .slats i::after { opacity: 1; transition: opacity .2s linear; transition-delay: calc(.2s + var(--s) * .07s); }
+html.js #boot.out .slats i { transform: translateY(-101%); transition: transform 1.05s var(--ease-igloo); transition-delay: calc(.12s + var(--s) * .055s); }
+html.js #boot.out .slats i::after { opacity: 1; transition: opacity .2s linear; transition-delay: calc(.12s + var(--s) * .055s); }
+
+/* ---------- entrada da pagina, logo atras da cortina ---------- */
+.bloom { position: fixed; inset: 0; z-index: 199; pointer-events: none; opacity: 0; background: radial-gradient(72% 56% at 50% 52%, rgba(155, 216, 255, .3), rgba(183, 164, 255, .13) 45%, transparent 72%); }
+html.reveal .bloom { animation: bloomIn 1.5s var(--ease-glide) both; }
+@keyframes bloomIn { 0% { opacity: 0; } 20% { opacity: 1; } 100% { opacity: 0; } }
+html.reveal main { animation: pageIn 1.4s var(--ease-igloo) both; will-change: transform, filter, opacity; }
+@keyframes pageIn { 0% { opacity: .18; transform: scale(1.055); filter: blur(11px); } 55% { opacity: 1; } 100% { opacity: 1; transform: none; filter: none; } }
+html.reveal .bg { animation: bgIn 1.9s var(--ease-glide) both; }
+@keyframes bgIn { 0% { opacity: 0; } 100% { opacity: 1; } }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -419,6 +428,7 @@ setTimeout(function () {
   if (document.body) document.body.classList.add('is-in');
 }, 9000);
 </script>
+<div class="bloom" aria-hidden="true"></div>
 <div class="bg grain" aria-hidden="true">
   <canvas id="field"></canvas>
   <div class="glow"></div>
@@ -849,8 +859,14 @@ setTimeout(function () {
       setTimeout(function () {
         boot.classList.add('out');
         root.classList.remove('booting');
+        if (!reduce) root.classList.add('reveal');
         enter();
-        setTimeout(function () { if (boot.parentNode) boot.parentNode.removeChild(boot); }, reduce ? 360 : 1700);
+        setTimeout(function () {
+          root.classList.remove('reveal');
+          if (boot.parentNode) boot.parentNode.removeChild(boot);
+          var bl = document.querySelector('.bloom');
+          if (bl && bl.parentNode) bl.parentNode.removeChild(bl);
+        }, reduce ? 360 : 2000);
       }, reduce ? 0 : 320);
     }
 

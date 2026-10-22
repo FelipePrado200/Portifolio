@@ -377,12 +377,12 @@ html.js #boot.out .slats i { transform: translateY(-101%); transition: transform
 html.js #boot.out .slats i::after { opacity: 1; transition: opacity .2s linear; transition-delay: calc(.12s + var(--s) * .055s); }
 
 /* ---------- entrada da pagina, logo atras da cortina ---------- */
+/* so a atmosfera entra aqui: o texto ja tem sua propria revelacao (.fx, .word), */
+/* nunca duplicar blur/scale em cima dela, ou as duas brigam e o texto trava borrado */
 .bloom { position: fixed; inset: 0; z-index: 199; pointer-events: none; opacity: 0; background: radial-gradient(72% 56% at 50% 52%, rgba(155, 216, 255, .3), rgba(183, 164, 255, .13) 45%, transparent 72%); }
 html.reveal .bloom { animation: bloomIn 1.5s var(--ease-glide) both; }
 @keyframes bloomIn { 0% { opacity: 0; } 20% { opacity: 1; } 100% { opacity: 0; } }
-html.reveal main { animation: pageIn 1.4s var(--ease-igloo) both; will-change: transform, filter, opacity; }
-@keyframes pageIn { 0% { opacity: .18; transform: scale(1.055); filter: blur(11px); } 55% { opacity: 1; } 100% { opacity: 1; transform: none; filter: none; } }
-html.reveal .bg { animation: bgIn 1.9s var(--ease-glide) both; }
+html.reveal .bg { animation: bgIn 1.7s var(--ease-glide) both; }
 @keyframes bgIn { 0% { opacity: 0; } 100% { opacity: 1; } }
 
 @media (prefers-reduced-motion: reduce) {

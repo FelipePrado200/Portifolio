@@ -54,11 +54,11 @@ button { font: inherit; color: inherit; }
 
 /* entrada so com JS */
 .js .fx { opacity: 0; transform: translateY(24px); filter: blur(8px); }
-.js .is-in .fx { opacity: 1; transform: none; filter: none; transition: opacity 1.2s var(--ease-glide) var(--d, 0s), transform 1.2s var(--ease-glide) var(--d, 0s), filter 1.2s var(--ease-glide) var(--d, 0s); }
+.js .is-in .fx { opacity: 1; transform: none; filter: none; transition: opacity 1s var(--ease-glide) var(--d, 0s), transform 1s var(--ease-glide) var(--d, 0s), filter 1s var(--ease-glide) var(--d, 0s); }
 .word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .45em; margin-bottom: -.45em; margin-right: .22em; }
 .word > span { display: inline-block; will-change: transform; }
 .js .word > span { transform: translateY(112%) rotate(2deg); }
-.js .is-in .word > span { transform: none; transition: transform 1.4s var(--ease-igloo) calc(.25s + var(--i) * .07s); }
+.js .is-in .word > span { transform: none; transition: transform 1.15s var(--ease-igloo) calc(.1s + var(--i) * .05s); }
 .js .rv { opacity: .35; transform: translateY(32px); filter: blur(6px); }
 .js .rv.on { opacity: 1; transform: none; filter: none; transition: opacity 1.2s var(--ease-igloo) var(--d, 0s), transform 1.2s var(--ease-igloo) var(--d, 0s), filter 1.2s var(--ease-igloo) var(--d, 0s); }
 
@@ -457,8 +457,8 @@ setTimeout(function () {
         <h1 aria-label="Construo produtos web rápidos, seguros e bem acabados.">
           <span class="word" aria-hidden="true"><span style="--i:0">Construo</span></span><span class="word" aria-hidden="true"><span style="--i:1">produtos</span></span><span class="word" aria-hidden="true"><span style="--i:2">web</span></span><span class="word" aria-hidden="true"><span style="--i:3">rápidos,</span></span><span class="word" aria-hidden="true"><span class="iridescent" style="--i:4">seguros</span></span><span class="word" aria-hidden="true"><span style="--i:5">e</span></span><span class="word" aria-hidden="true"><span style="--i:6">bem</span></span><span class="word" aria-hidden="true"><span style="--i:7">acabados.</span></span>
         </h1>
-        <p class="sub fx" style="--d:.9s">Sou Felipe Prado, desenvolvedor Full Stack em São Paulo. Do front ao back, com um olhar a mais para segurança.</p>
-        <div class="ctas fx" style="--d:1.05s">
+        <p class="sub fx" style="--d:.65s">Sou Felipe Prado, desenvolvedor Full Stack em São Paulo. Do front ao back, com um olhar a mais para segurança.</p>
+        <div class="ctas fx" style="--d:.8s">
           <a class="btn solid" href="#projetos"><i class="halo"></i><i class="sheen"></i><span>Ver projetos</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
           <a class="btn" href="#contato"><i class="halo"></i><i class="sheen"></i><span>Falar comigo</span></a>
         </div>
@@ -856,11 +856,13 @@ setTimeout(function () {
       timers.forEach(function (t) { clearTimeout(t); clearInterval(t); });
       target = shown = 100;
       numEl.textContent = '100'; railEl.style.width = '100%';
+      /* dispara a revelacao do titulo JUNTO com a cortina, nao depois dela,
+         senao o texto ainda esta se montando quando a tela de boot ja sumiu */
+      enter();
       setTimeout(function () {
         boot.classList.add('out');
         root.classList.remove('booting');
         if (!reduce) root.classList.add('reveal');
-        enter();
         setTimeout(function () {
           root.classList.remove('reveal');
           if (boot.parentNode) boot.parentNode.removeChild(boot);

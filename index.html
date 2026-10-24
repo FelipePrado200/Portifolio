@@ -244,6 +244,10 @@ h3 { font: 300 1.5rem/1.15 var(--font-display); letter-spacing: -.02em; }
 .proj .code::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(5, 5, 8, .22), rgba(5, 5, 8, .62) 80%); pointer-events: none; }
 .proj .code > div.ln { position: relative; z-index: 2; }
 .proj:hover .shot, .proj:focus-within .shot { opacity: 1; filter: blur(18px) saturate(1.2); }
+.js .proj .code .ln { opacity: 0; transform: translateX(-6px); }
+.js .proj.on .code .ln { animation: lineIn .5s var(--ease-igloo) forwards; animation-delay: calc(var(--n) * .04s); }
+.proj .sdot { display: inline-block; margin-left: 10px; vertical-align: middle; }
+.proj .caret { height: .95em; margin-left: 2px; vertical-align: -.1em; }
 .pbody { display: flex; flex-direction: column; gap: 12px; padding: 22px 24px 24px; flex: 1; }
 .pbody h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 1.5rem; }
 .pbody h3 small { font: 400 .72rem var(--font-mono); letter-spacing: .06em; color: var(--ink-faint); white-space: nowrap; }
@@ -456,7 +460,7 @@ html.reveal .bg { animation: bgIn 1.7s var(--ease-glide) both; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition-duration: .001ms !important; transition-delay: 0s !important; }
-  .js .fx, .js .rv, .js .crystal, .js .hero-win .code .ln { opacity: 1; transform: none; filter: none; }
+  .js .fx, .js .rv, .js .crystal, .js .hero-win .code .ln, .js .proj .code .ln { opacity: 1; transform: none; filter: none; }
   .js .word > span { transform: none; }
   #boot .bw > i { opacity: 1; transform: none; }
   html.js #boot.out { opacity: 0; transition: opacity .35s linear; }
@@ -845,9 +849,9 @@ setTimeout(function () {
       p.ft.forEach(function (f) { L.push('    <i class="s">"' + esc(f) + '"</i>,'); });
       L.push('  ],');
     }
-    L.push('  <i class="p">status</i>: <i class="s">"' + (p.live ? 'online' : 'repositório') + '"</i>,');
+    L.push('  <i class="p">status</i>: <i class="s">"' + (p.live ? 'online' : 'repositório') + '"</i>,' + (p.live ? '<i class="dot sdot" aria-hidden="true"></i>' : ''));
     L.push('};');
-    return L.map(function (l, i) { return '<div class="ln"><em>' + (i + 1) + '</em><span>' + l + '</span></div>'; }).join('');
+    return L.map(function (l, i) { return '<div class="ln" style="--n:' + i + '"><em>' + (i + 1) + '</em><span>' + l + (i === L.length - 1 ? '<i class="caret" aria-hidden="true"></i>' : '') + '</span></div>'; }).join('');
   }
   var active = 'all', grid = $('projects'), fbox = $('filters');
   var cats = PROJECTS.map(function (p) { return p.c; }).filter(function (c, i, a) { return a.indexOf(c) === i; });

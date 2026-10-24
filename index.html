@@ -246,10 +246,15 @@ h3 { font: 300 1.5rem/1.15 var(--font-display); letter-spacing: -.02em; }
 .pbody h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 1.5rem; }
 .pbody h3 small { font: 400 .72rem var(--font-mono); letter-spacing: .06em; color: var(--ink-faint); white-space: nowrap; }
 .pbody p { color: var(--ink-muted); font-size: .96rem; }
-.plinks { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); }
-.plinks a { font: 400 .8125rem var(--font-mono); color: var(--ink-muted); transition: color .6s var(--ease-igloo); }
-.plinks a b { color: var(--cyan); font-weight: 400; margin-right: 6px; }
-.plinks a:hover { color: var(--ink); }
+.plinks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); }
+.plink { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--glass); font: 400 .8125rem var(--font-mono); letter-spacing: -.01em; color: var(--ink-muted); white-space: nowrap; transition: color .6s var(--ease-igloo), background .6s var(--ease-igloo), border-color .6s var(--ease-igloo), transform .6s var(--ease-igloo); }
+.plink svg { flex: none; transition: transform .6s var(--ease-igloo); }
+.plink:hover { color: var(--ink); border-color: rgba(255, 255, 255, .26); transform: translateY(-2px); }
+.plink:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+.plink.live { color: var(--ink); border-color: rgba(139, 233, 255, .34); }
+.plink.live:hover { background: var(--ink); border-color: var(--ink); color: var(--void); }
+.plink.live:hover svg { transform: translate(2px, -2px); }
+.plink.code:hover svg { transform: translateX(2px); }
 
 /* processo (commits) */
 .process { display: grid; grid-template-columns: 1fr; gap: 36px; }
@@ -845,7 +850,9 @@ setTimeout(function () {
   function chip(k, label, n) { return '<button class="filter" type="button" role="tab" data-cat="' + k + '" aria-selected="' + (active === k) + '">' + esc(label) + '<sup>' + n + '</sup></button>'; }
   fbox.innerHTML = '<span class="cmd-line"><b>$</b>ls projetos/ --tipo</span>' + chip('all', 'todos', PROJECTS.length) + cats.map(function (c) { return chip(c, (CAT[c] || c).toLowerCase(), PROJECTS.filter(function (p) { return p.c === c; }).length); }).join('');
   grid.innerHTML = PROJECTS.map(function (p, i) {
-    var links = (p.live ? '<a href="' + esc(p.live) + '" target="_blank" rel="noopener"><b>$</b>open --live</a>' : '') + (p.code ? '<a href="' + esc(p.code) + '" target="_blank" rel="noopener"><b>$</b>git clone</a>' : '');
+    var ICO_LIVE = '<svg width=\"14\" height=\"14\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6.5 3.5h-3v9h9v-3\"/><path d=\"M9.5 3.5h3v3\"/><path d=\"M12.5 3.5 7 9\"/></svg>';
+    var ICO_CODE = '<svg width=\"14\" height=\"14\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 11.5 2.5 8 6 4.5\"/><path d=\"M10 4.5 13.5 8 10 11.5\"/></svg>';
+    var links = (p.live ? '<a class="plink live" href="' + esc(p.live) + '" target="_blank" rel="noopener" aria-label="Abrir o site do projeto ' + esc(p.t) + ' em uma nova aba">' + ICO_LIVE + 'ver o site</a>' : '') + (p.code ? '<a class="plink code" href="' + esc(p.code) + '" target="_blank" rel="noopener" aria-label="Ver o código do projeto ' + esc(p.t) + ' no GitHub">' + ICO_CODE + 'ver o código</a>' : '');
     return '<article class="win card proj rv' + (p.f ? ' feat' : '') + '" data-cat="' + p.c + '" style="--d:' + ((i % 3) * .08) + 's"><i class="halo"></i>' +
       '<div class="bar">' + DOTS + '<span class="file">' + p.id + '.' + ext(p) + '</span><span class="end">' + p.y + '</span></div>' +
       '<div class="code" aria-label="Resumo técnico do projeto ' + esc(p.t) + '">' + '<i class="shot" style="background:' + wallpaper(p.id) + '" aria-hidden="true"></i>' + snippet(p) + '</div>' +

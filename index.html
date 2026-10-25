@@ -141,7 +141,7 @@ button { font: inherit; color: inherit; }
 @media (max-width: 767px) { .guides b:nth-child(n+3) { display: none; } .guides .shell { grid-template-columns: repeat(2, 1fr); } .guides b:nth-child(2) { border-right: 1px solid rgba(255, 255, 255, .05); } }
 
 .topwrap { position: fixed; top: 0; left: 0; right: 0; z-index: 60; border-bottom: 1px solid transparent; transition: background .6s var(--ease-igloo), border-color .6s var(--ease-igloo); }
-.topwrap.stuck { background: rgba(7, 8, 10, .72); backdrop-filter: blur(24px) saturate(140%); -webkit-backdrop-filter: blur(24px) saturate(140%); border-bottom-color: var(--line); }
+.topwrap.stuck { background: rgba(7, 8, 10, .84); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom-color: var(--line); }
 .top { position: relative; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 28px; }
 .logo { font: 400 .9375rem var(--font-mono); letter-spacing: -.02em; white-space: nowrap; color: var(--ink); }
 .logo .pr { color: var(--cyan); }
@@ -246,7 +246,9 @@ h3 { font: 300 1.5rem/1.15 var(--font-display); letter-spacing: -.02em; }
 .proj:hover .shot, .proj:focus-within .shot { opacity: 1; filter: blur(18px) saturate(1.2); }
 .js .proj .code .ln { opacity: 0; transform: translateX(-6px); }
 .js .proj.on .code .ln { animation: lineIn .5s var(--ease-igloo) forwards; animation-delay: calc(var(--n) * .04s); }
-.proj .sdot { display: inline-block; margin-left: 10px; vertical-align: middle; }
+.proj .sdot { display: inline-block; position: relative; margin-left: 10px; vertical-align: middle; animation: none; box-shadow: none; }
+.proj .sdot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: rgba(61, 220, 132, .55); animation: pingT 2s var(--ease-glide) infinite; }
+@keyframes pingT { 0% { transform: scale(1); opacity: .55; } 70% { transform: scale(3.2); opacity: 0; } 100% { transform: scale(3.2); opacity: 0; } }
 .proj .caret { height: .95em; margin-left: 2px; vertical-align: -.1em; }
 .pbody { display: flex; flex-direction: column; gap: 12px; padding: 22px 24px 24px; flex: 1; }
 .pbody h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 1.5rem; }

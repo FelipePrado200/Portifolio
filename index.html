@@ -250,6 +250,13 @@ h3 { font: 300 1.5rem/1.15 var(--font-display); letter-spacing: -.02em; }
 .proj .sdot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: rgba(61, 220, 132, .55); animation: pingT 2s var(--ease-glide) infinite; }
 @keyframes pingT { 0% { transform: scale(1); opacity: .55; } 70% { transform: scale(3.2); opacity: 0; } 100% { transform: scale(3.2); opacity: 0; } }
 .proj .caret { height: .95em; margin-left: 2px; vertical-align: -.1em; }
+@media (max-width: 640px) {
+  .proj .code { max-height: 236px; -webkit-mask-image: linear-gradient(180deg, #000 62%, transparent); mask-image: linear-gradient(180deg, #000 62%, transparent); }
+}
+@media (pointer: coarse) {
+  .plinks .plink { height: 44px; padding: 0 16px; }
+  .filter { min-height: 44px; }
+}
 .pbody { display: flex; flex-direction: column; gap: 12px; padding: 22px 24px 24px; flex: 1; }
 .pbody h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 1.5rem; }
 .pbody h3 small { font: 400 .72rem var(--font-mono); letter-spacing: .06em; color: var(--ink-faint); white-space: nowrap; }

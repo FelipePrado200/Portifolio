@@ -701,17 +701,24 @@ setTimeout(function () {
 
   var QA = (function () {
     var TIERS = {
-      3: { name: 'alta',  cell: 22, cellS: 18, dpr: 1.5,  fieldMs: 33, r3d: 1.75, aa: true,  rigMs: 0  },
-      2: { name: 'media', cell: 26, cellS: 22, dpr: 1.25, fieldMs: 40, r3d: 1.35, aa: true,  rigMs: 22 },
-      1: { name: 'baixa', cell: 32, cellS: 26, dpr: 1,    fieldMs: 50, r3d: 1,    aa: false, rigMs: 32 }
+      3: { name: 'alta',  cell: 22, cellS: 18, dpr: 1.5,  fieldMs: 33, r3d: 2,   aa: true,  rigMs: 0  },
+      2: { name: 'media', cell: 26, cellS: 22, dpr: 1.25, fieldMs: 40, r3d: 1.7, aa: true,  rigMs: 22 },
+      1: { name: 'baixa', cell: 32, cellS: 26, dpr: 1,    fieldMs: 50, r3d: 1.4, aa: false, rigMs: 32 }
     };
     var cbs = [], lvl = 3;
-    /* estimativa inicial pelo hardware declarado */
-    var cores = navigator.hardwareConcurrency || 4;
-    var mem = navigator.deviceMemory || 4;
-    var coarse = matchMedia('(pointer: coarse)').matches;
-    if (cores <= 4 || mem <= 4) lvl = 2;
-    if (cores <= 2 || mem <= 2 || (coarse && innerWidth < 500)) lvl = 1;
+    /* Estimativa inicial pelo hardware declarado.
+       r3d e um teto do devicePixelRatio, entao ele so pesa em tela densa, ou
+       seja, no celular. Um PC fraco tem densidade 1 e nao sente esse numero.
+       Um teto de 1 em um celular de densidade 3 desenha o notebook com um
+       terco da resolucao e a tela estica a imagem: o aluminio fica sujo e o
+       terminal vira borrao. Por isso nenhum nivel desce de 1.4.
+       Pelo mesmo motivo o celular nao cai de nivel so por ser celular. Quem
+       decide e o medidor de tempo de quadro mais abaixo, que rebaixa sozinho
+       se o aparelho realmente nao der conta. */
+    var cores = navigator.hardwareConcurrency || 0;
+    var mem = navigator.deviceMemory || 0;   /* 0 = nao informado, nao penaliza */
+    if ((cores && cores <= 4) || (mem && mem <= 3)) lvl = 2;
+    if ((cores && cores <= 2) || (mem && mem <= 2)) lvl = 1;
 
     var api = {};
     function apply() {
@@ -1277,6 +1284,19 @@ setTimeout(function () {
     var SW = 1024, SH = 640, scv = document.createElement('canvas'); scv.width = SW; scv.height = SH;
     var sx = scv.getContext('2d'), stex = new T.CanvasTexture(scv);
     stex.encoding = T.sRGBEncoding; stex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+    /* A tela desenha sempre em coordenadas 1024x640, mas o canvas nasce do
+       tamanho que a tela do notebook ocupa de verdade em pixels. Sem isto o
+       celular encolhe uma textura de 1024px para cerca de 560px e o texto do
+       terminal perde o tracado. De quebra, o celular pinta menos pixels. */
+    var sq = 1;
+    function screenRes(q) {
+      q = clamp(q, .34, 1);
+      if (Math.abs(q - sq) < .06) return false;
+      sq = q;
+      scv.width = Math.round(SW * q); scv.height = Math.round(SH * q);
+      sx.setTransform(q, 0, 0, q, 0, 0);
+      return true;
+    }
     var scrMat = new T.MeshBasicMaterial({ map: stex, toneMapped: false });
     var screen = new T.Mesh(new T.PlaneGeometry(2.88, 1.8), scrMat); screen.position.set(0, LH / 2 + .02, .004); pivot.add(screen);
     var camDot = new T.Mesh(new T.CircleGeometry(.018, 16), new T.MeshBasicMaterial({ color: 0x1d2a33 })); camDot.position.set(0, LH - .07, .005); pivot.add(camDot);
@@ -1437,6 +1457,8 @@ setTimeout(function () {
         kx = 0; ky = yF((t2 + b2) / 2);
         ks = Math.min((b2 - t2) * ph * .88 / 2.6, w * pw * .86 / 3.3);
       }
+      /* resolucao da textura da tela, igual ao tamanho real em pixels */
+      if (screenRes(2.88 * Math.max(hs, ks) / visW * VW * renderer.getPixelRatio() / SW)) force = true;
       var ry = desk ? -.42 : -.3;
       K = [
         [hx, hy, .32, desk ? -.6 : -.45, 0, hs, -.28],

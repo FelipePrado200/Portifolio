@@ -1,0 +1,7 @@
+[
+  {"check": "effects-fit", "target": "(the page)", "reason": "Portfolio uses CSS-generated aurora backgrounds as a design decision; CLAUDE.md says project decisions override skill defaults"},
+  {"check": "effect-kind", "target": "canvas#pc", "reason": "The 3D notebook is the portfolio's signature visual element, intentional design choice"},
+  {"check": "phone-number", "target": "ul#clist > li:nth-of-type(2) > a", "reason": "User's own WhatsApp contact, intentionally published for client inquiries"},
+  {"check": "hero-screen", "target": "div#stage", "reason": "Stage wraps hero + processo as one scroll-driven narrative unit by design"},
+  {"check": "moment-none", "target": "(the page)", "reason": "The 3D notebook with terminal scenes serves as the portfolio's dealt moment"}
+]
